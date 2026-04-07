@@ -23,13 +23,15 @@ export default function AboutPage() {
       </div>
       <div className="space-y-4 text-neutral-700 dark:text-neutral-300 leading-relaxed">
         <p>
-          15 years as a professional session musician and producer. Central Cee,
-          Mahalia, Wireless Festival, Akai. Now a backend and platform engineer
-          at Sophos, building threat intelligence infrastructure.
+          I&apos;m a software engineer at Sophos working on threat intelligence
+          infrastructure. I&apos;m also a professional session musician and producer.
         </p>
         <p>
-          I make tools for musicians and engineers. Things that remove friction
-          and let you focus on the work that matters.
+          I build tools across music, security, and AI. Mostly things that
+          remove friction from creative and engineering workflows.
+        </p>
+        <p>
+          Based in London.
         </p>
       </div>
       <div className="mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-800">
