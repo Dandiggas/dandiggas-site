@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { SocialLinks } from "@/components/SocialLinks";
 
 export const metadata: Metadata = {
@@ -11,9 +12,14 @@ export default function AboutPage() {
     <div className="max-w-2xl mx-auto px-6 py-12">
       <h1 className="text-2xl font-bold tracking-tight mb-8">About</h1>
       <div className="flex items-start gap-6 mb-8">
-        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white text-3xl font-bold shrink-0">
-          DD
-        </div>
+        <Image
+          src="/profile.jpeg"
+          alt="Daniel Adekugbe"
+          width={96}
+          height={96}
+          className="w-24 h-24 rounded-full object-cover shrink-0"
+          priority
+        />
         <div>
           <h2 className="text-xl font-semibold">Daniel Adekugbe</h2>
           <p className="text-neutral-500 dark:text-neutral-400 mt-1">

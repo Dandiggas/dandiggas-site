@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/posts";
 import { SocialLinks } from "@/components/SocialLinks";
@@ -10,9 +11,14 @@ export default function Home() {
       {/* Hero */}
       <section className="pt-16 pb-12 border-b border-neutral-200 dark:border-neutral-800">
         <div className="flex items-start gap-5">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white text-2xl font-bold shrink-0">
-            DD
-          </div>
+          <Image
+            src="/profile.jpeg"
+            alt="Dan Diggas"
+            width={80}
+            height={80}
+            className="w-20 h-20 rounded-full object-cover shrink-0"
+            priority
+          />
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Dan Diggas</h1>
             <p className="mt-1 text-neutral-600 dark:text-neutral-400 text-lg">
