@@ -21,8 +21,14 @@ export default function Home() {
           />
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Dan Diggas</h1>
-            <p className="mt-1 text-neutral-600 dark:text-neutral-400 text-lg">
-              Engineer. Musician. I build tools that remove friction.
+            <p className="mt-1 text-neutral-900 dark:text-neutral-100 text-lg font-medium leading-snug">
+              Backend/infra engineer at Sophos Labs building practical AI workflow
+              tools for music, security, and operations.
+            </p>
+            <p className="mt-3 text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              I work on threat-intelligence infrastructure by day. Outside work,
+              I build local-first AI systems that turn messy real-world workflows
+              into reliable software.
             </p>
             <div className="mt-4">
               <SocialLinks />
