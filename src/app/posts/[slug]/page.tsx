@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { remark } from "remark";
 import html from "remark-html";
+import BlogContent from "@/components/BlogContent";
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -62,10 +63,7 @@ export default async function PostPage({
             )}
           </div>
         </header>
-        <div
-          className="prose text-neutral-800 dark:text-neutral-200"
-          dangerouslySetInnerHTML={{ __html: contentHtml }}
-        />
+        <BlogContent html={contentHtml} />
       </article>
     </div>
   );

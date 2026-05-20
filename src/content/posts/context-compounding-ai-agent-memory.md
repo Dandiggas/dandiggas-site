@@ -17,7 +17,7 @@ Here's how it works, why it matters, and what I learned building it.
 
 ![Context Compounding Architecture diagram](/blog/context-compounding-architecture.png)
 
-*Context Compounding Architecture.*
+*Click the diagram to enlarge it. Press X, Escape, or the dark background to return to the post.*
 
 ---
 
