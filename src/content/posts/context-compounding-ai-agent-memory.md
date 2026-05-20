@@ -1,5 +1,5 @@
 ---
-title: "I Gave My AI Agent a Memory — Now It Knows More Context Than Most of My Team"
+title: "I Built a Memory Layer for My AI Agent"
 date: "2026-05-20"
 preview: "Stateless AI sessions waste engineering time. I built a context layer where sessions load relevant history, persist decisions, and traverse a knowledge graph instead of starting from zero."
 readTime: "8 min read"
