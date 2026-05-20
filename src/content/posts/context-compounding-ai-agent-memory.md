@@ -15,9 +15,9 @@ After two months of iteration, the system maintains a knowledge graph with 770+ 
 
 Here's how it works, why it matters, and what I learned building it.
 
-[![Context Compounding Architecture diagram](/blog/context-compounding-architecture.png)](/blog/context-compounding-architecture.png)
+![Context Compounding Architecture diagram](/blog/context-compounding-architecture.png)
 
-*Click the diagram to open it full-size.*
+*Context Compounding Architecture.*
 
 ---
 
