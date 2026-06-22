@@ -5,37 +5,25 @@ preview: "I do not learn hard technical skills by covering topics. I break them 
 readTime: "5 min read"
 ---
 
-I have realised I do not learn hard things by "covering topics."
+I have always learned best through reps.
 
-That phrase sounds productive, but it usually means I watched a few videos, read a few notes, and briefly felt like I understood something.
+Not vague repetition. Specific reps.
 
-Then I try to use it under pressure and the whole thing disappears.
+One small movement, repeated across different scenarios, until the pattern becomes automatic.
 
-The method that actually works for me is different. I break the skill into small movements, then I repeat one movement across different scenarios until it becomes boring.
+I have done this in music for years without calling it a framework. When you practise piano properly, you do not just keep playing the whole piece from the top and hope the awkward part magically fixes itself. You isolate the movement that is breaking the phrase.
 
-I call them primitive reps.
+Sometimes that movement is tiny. Tucking the thumb when crossing under. Getting the hand shape right. Slowing it down until the body understands what the brain keeps shouting.
 
-## Small movements compound
+Same with a jump shot.
 
-Atomic Habits is basically built on this idea: small actions repeated consistently become part of the system. You are not trying to win through one giant effort. You are trying to make the right behaviour easier to repeat.
+A good basketball player is not only thinking "shoot the ball." The shot is built from smaller pieces: foot position, balance, elbow, wrist, guide hand, follow-through. From the outside it looks like one clean movement. Underneath it are hundreds of small reps that have removed the argument from the body.
 
-That is obvious in physical skills.
+That is how I think about learning hard technical things too.
 
-A basketball player does not only practise "shooting." They practise the small pieces inside the jump shot. Foot position. Balance. Elbow. Wrist. Follow-through. Where the guide hand sits. How the ball leaves the fingers.
+## Topics are not reps
 
-The shot looks like one movement from the outside, but it is built from smaller movements that have been repeated so many times the body stops negotiating with itself.
-
-Same with piano.
-
-When I was practising properly, I would not just keep playing the whole piece badly from the top. I would isolate the awkward bit. Sometimes that meant practising the thumb tuck when crossing under. Just that movement. Slowly. Again and again. Then it starts to feel normal, and suddenly the bigger phrase is not as scary.
-
-That is the bit people skip when learning technical skills.
-
-They try to play the whole song too early.
-
-## Topics are too big
-
-A topic is usually too large to practise directly.
+A topic is usually too big to practise directly.
 
 "Learn system design" is not a rep.
 
@@ -50,11 +38,11 @@ Neither is:
 
 Those are labels. Useful labels, but still labels.
 
-A rep has to be smaller.
+A rep has to be smaller than that.
 
 For coding, filtering is a rep. Counting things in a dict is a rep. Reading a file and returning the right shape is a rep. Spotting the difference between mutating a list and returning a changed copy is a rep.
 
-That is why my CodingDojo is built the way it is. I do not do one filtering task and move on. I do 10 or 12 filtering tasks across different data shapes.
+That is why I built my CodingDojo the way I did. I do not do one filtering task and move on. I do 10 or 12 filtering tasks across different data shapes.
 
 Numbers greater than 10.
 
@@ -74,17 +62,21 @@ The goal is not to memorise the answer to "active users." The goal is to make th
 
 ## One module, one movement
 
-The rule I am using now is simple:
+The rule I use now is simple:
 
 One module = one movement.
 
 Many tasks = reps of that same movement across different scenarios.
 
-So if I am learning system design, I do not want one giant exercise where I have to do requirements, entities, APIs, storage, queues, caching, scaling, security, and failure modes all at once.
+That matters because a lot of learning material jumps to the full performance too quickly. It asks you to design the whole system, build the whole app, solve the whole problem, explain the whole architecture.
+
+There is a place for that. But if the primitives underneath are still shaky, the full exercise becomes noise.
+
+So when I am working on system design, I do not want one giant exercise where I have to do requirements, entities, APIs, storage, queues, caching, scaling, security, and failure modes all at once.
 
 That is too much load.
 
-Instead, I want a module just for requirements gathering.
+I want a module just for requirements gathering.
 
 Same movement, different scenarios:
 
@@ -120,13 +112,35 @@ Then failure modes.
 
 This is slower at the start, but faster later. It stops every design problem from feeling like a foggy blob.
 
+## Small movements compound
+
+This is where Atomic Habits connects for me.
+
+The useful part is not the motivational version of habits. It is the compounding part. Small actions repeated consistently become part of the system. Eventually you stop needing to negotiate with yourself every time.
+
+That is what I want from technical practice.
+
+I do not want to rely on panic, inspiration, or a perfect study day. I want the movement to be trained well enough that it shows up when I need it.
+
+That only happens if the movement is small enough to repeat.
+
+If the rep is too big, you avoid it.
+
+If the rep is too vague, you cannot tell whether you improved.
+
+If the rep keeps changing shape, you never get enough clean repetitions to build the pattern.
+
+So I make the movement small, keep the shape consistent, and change the scenario around it.
+
+That is the sweet spot.
+
 ## The AI platform version
 
-The same method works for AI platform engineering.
+I am applying the same structure to AI platform engineering.
 
 I do not want to "learn RAG" in the abstract. I want reps.
 
-A retrieval module should have 12 retrieval tasks across different products:
+A retrieval module should have retrieval tasks across different products:
 
 - customer support assistant
 - internal policy chatbot
@@ -148,7 +162,7 @@ Each task is training the same movement:
 
 Same for evals.
 
-Not one vague note saying "add evals." Twelve reps where I decide what good means, what bad looks like, what should block release, and what evidence I would want before trusting the system.
+Not one vague note saying "add evals." Reps where I decide what good means, what bad looks like, what should block release, and what evidence I would want before trusting the system.
 
 Same for tool permissions.
 
@@ -163,7 +177,7 @@ Not "agents need guardrails." That is too vague to be useful. The rep is:
 
 That is where the mental model starts forming.
 
-## Why this works for me
+## What the reps are really doing
 
 The value is not in the individual exercise.
 
@@ -205,4 +219,4 @@ The AI platform is in the boundary, the trace, the eval, the permission check.
 
 Small movements. Repeated properly. Over a long enough period.
 
-That is the method.
+That is the method I have been using. I am just putting better language around it now.
