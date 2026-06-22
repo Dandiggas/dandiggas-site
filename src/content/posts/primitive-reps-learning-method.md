@@ -9,7 +9,7 @@ I have always learned best through reps.
 
 Not vague repetition. Specific reps.
 
-One small movement, repeated across different scenarios, until the pattern becomes automatic.
+One small movement, small enough to do every day, repeated across different scenarios until the pattern becomes automatic.
 
 I have done this in music for years without calling it a framework. When you practise piano properly, you do not just keep playing the whole piece from the top and hope the awkward part magically fixes itself. You isolate the movement that is breaking the phrase.
 
@@ -122,7 +122,11 @@ That is what I want from technical practice.
 
 I do not want to rely on panic, inspiration, or a perfect study day. I want the movement to be trained well enough that it shows up when I need it.
 
-That only happens if the movement is small enough to repeat.
+That only happens if the movement is small enough to repeat consistently over a long period of time.
+
+I care about the size of the rep for that reason. If I cannot do it on a normal day, around work and life and all the usual noise, it is probably too big. The rep has to be small enough that I can come back tomorrow and do another one.
+
+Over time, those small reps start to solidify. Once the base movement is solid, I can build on top of it. Requirements can support APIs. APIs can support storage decisions. Storage decisions can support queues, failure modes, and tradeoffs. The bigger skill is built out of primitives that no longer wobble.
 
 If the rep is too big, you avoid it.
 
@@ -211,6 +215,8 @@ The system design interview is in the requirements rep before the diagram.
 
 The AI platform is in the boundary, the trace, the eval, the permission check.
 
-Small movements. Repeated properly. Over a long enough period.
+Small movements. Small enough to do daily. Repeated properly over a long enough period.
+
+That is what gives me something solid to build on.
 
 That is the method I have been using. I am just putting better language around it now.
