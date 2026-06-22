@@ -128,6 +128,8 @@ I care about the size of the rep for that reason. If I cannot do it on a normal 
 
 Over time, those small reps start to solidify. Once the base movement is solid, I can build on top of it. Requirements can support APIs. APIs can support storage decisions. Storage decisions can support queues, failure modes, and tradeoffs. The bigger skill is built out of primitives that no longer wobble.
 
+It also changes what happens when I am actually building. I am not burning all my attention on how to use the tool, what the next step is, or what shape the answer should take. Those movements are already familiar. That means more of my attention can go on the thing I am trying to build.
+
 If the rep is too big, you avoid it.
 
 If the rep is too vague, you cannot tell whether you improved.
@@ -218,5 +220,7 @@ The AI platform is in the boundary, the trace, the eval, the permission check.
 Small movements. Small enough to do daily. Repeated properly over a long enough period.
 
 That is what gives me something solid to build on.
+
+And when I am actually building, I do not want my attention stuck on the mechanics. I want the tools and primitives familiar enough that I can focus on the build itself.
 
 That is the method I have been using. I am just putting better language around it now.
