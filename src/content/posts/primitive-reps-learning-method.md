@@ -136,7 +136,7 @@ That is the sweet spot.
 
 ## The AI platform version
 
-This is the same structure I use for system design and AI platform work.
+This is the same structure I have used for system design and AI platform work.
 
 I do not treat "RAG", "evals", "agents", or "guardrails" as things to vaguely understand. They are too broad. I break them down into movements and drill the movements separately.
 
