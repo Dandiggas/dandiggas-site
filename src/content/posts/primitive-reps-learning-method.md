@@ -136,21 +136,17 @@ That is the sweet spot.
 
 ## The AI platform version
 
-I am applying the same structure to AI platform engineering.
+This is the same structure I use for system design and AI platform work.
 
-I do not want to "learn RAG" in the abstract. I want reps.
+I do not treat "RAG", "evals", "agents", or "guardrails" as things to vaguely understand. They are too broad. I break them down into movements and drill the movements separately.
 
-A retrieval module should have retrieval tasks across different products:
+For system design, requirements gathering gets its own reps. So does entity modelling, API design, storage choice, capacity, queues, failure modes, tradeoffs, security, and observability.
 
-- customer support assistant
-- internal policy chatbot
-- coding assistant
-- music sample librarian
-- invoice extraction assistant
-- legal clause explainer
-- research agent
+That means I can practise requirements without also trying to solve storage. I can practise APIs without also trying to solve scaling. I can practise failure modes without pretending I am doing a full interview answer.
 
-Each task is training the same movement:
+Same with AI platform engineering.
+
+Retrieval is not one topic. It is a set of movements:
 
 - what source data exists?
 - how does it get ingested?
@@ -160,13 +156,11 @@ Each task is training the same movement:
 - how do citations work?
 - what proves the answer is grounded?
 
-Same for evals.
+Evals are their own movement too. Not one vague note saying "add evals", but repeated decisions about what good means, what bad looks like, what should block release, and what evidence I would want before trusting the system.
 
-Not one vague note saying "add evals." Reps where I decide what good means, what bad looks like, what should block release, and what evidence I would want before trusting the system.
+Tool permissions are another movement.
 
-Same for tool permissions.
-
-Not "agents need guardrails." That is too vague to be useful. The rep is:
+Not "agents need guardrails." That sentence is usually where the thinking stops. The useful questions are more concrete:
 
 - what can the agent read?
 - what can it write?
@@ -175,7 +169,7 @@ Not "agents need guardrails." That is too vague to be useful. The rep is:
 - what gets logged?
 - what is the blast radius if it goes wrong?
 
-That is where the mental model starts forming.
+That is the method: isolate the primitive, repeat it across scenarios, then bring it back into the full design once the movement is no longer shaky.
 
 ## What the reps are really doing
 
@@ -183,7 +177,7 @@ The value is not in the individual exercise.
 
 The value is in seeing the pattern repeat.
 
-After enough reps, I start to notice what changes between scenarios and what stays the same. That is the mental model.
+After enough reps, the repeated pattern is what I am looking for. The scenario changes, but the movement underneath stays visible.
 
 In a chat app, entities are users, conversations, messages, delivery state.
 
