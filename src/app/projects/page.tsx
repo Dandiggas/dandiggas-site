@@ -23,6 +23,41 @@ export const metadata: Metadata = {
 
 const projects: Project[] = [
   {
+    title: "ShadowScout",
+    description:
+      "Autonomous compliance approval agent for shadow AI tools. Searches vendor evidence, maps it to company policy, produces scoped decisions, and monitors approved tools for drift.",
+    tech: ["Python", "Streamlit", "Tavily", "Gemini", "ClickHouse"],
+    href: "https://github.com/Dandiggas/shadow-ai-scout",
+    actions: [
+      { label: "Read write-up", href: "/posts/shadowscout-compliance-approval-agent" },
+      {
+        label: "Watch demo",
+        href: "https://www.loom.com/share/50c79eb38158418e94ad1d94564655e4",
+        external: true,
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com/Dandiggas/shadow-ai-scout",
+        external: true,
+      },
+    ],
+  },
+  {
+    title: "Recruiter Risk Triage",
+    description:
+      "Local-first dashboard for checking recruiter outreach across legitimacy, security risk, original JD clues, opportunity fit, and safe reply strategy.",
+    tech: ["Python", "Agent Graph", "DNS/RDAP", "Companies House", "Local UI"],
+    href: "https://github.com/Dandiggas/recruiter-risk-triage-v1",
+    actions: [
+      { label: "Read write-up", href: "/posts/recruiter-risk-triage" },
+      {
+        label: "GitHub",
+        href: "https://github.com/Dandiggas/recruiter-risk-triage-v1",
+        external: true,
+      },
+    ],
+  },
+  {
     title: "Keyboard Manual Assistant",
     description:
       "A grounded RAG system that answers questions about keyboard manuals using retrieved evidence, refusals, evals, and Langfuse tracing.",
