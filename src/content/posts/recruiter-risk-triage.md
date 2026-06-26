@@ -1,13 +1,19 @@
 ---
 title: "Recruiter Risk Triage: Separating Real Opportunities From Unsafe Outreach"
 date: "2026-06-25"
-preview: "A local-first dashboard that checks recruiter messages across legitimacy, security risk, opportunity fit, and safe reply strategy instead of reducing everything to vibes."
+preview: "Born from a real recruiter approach where basic due diligence showed the supposed company did not credibly exist. A local-first dashboard for checking legitimacy, security risk, opportunity fit, and safe reply strategy."
 readTime: "5 min read"
 ---
 
 Recruiter outreach is noisy in a very specific way.
 
-Some messages are real but not worth your time. Some are vague but harmless. Some are obvious scams. Some look legitimate until the assessment asks you to install a package, run a repo locally, move to Telegram, connect a wallet, or click a shortened link.
+This project came from a real scenario. A recruiter approached me about a role, and on the surface it looked like normal career outreach. But when I started doing basic company due diligence, the company they were supposedly representing did not appear to exist in any credible way.
+
+That changed the decision completely. I did not take it further.
+
+The scary part is what could have happened next. If I had kept engaging, they could have sent a technical test, a repo to clone, a package to install, a take-home task, or some other "assessment" that looked normal enough to run. That is exactly the kind of gap attackers can exploit, especially when someone is actively job hunting and trying to move quickly.
+
+Some recruiter messages are real but not worth your time. Some are vague but harmless. Some are obvious scams. Some look legitimate until the assessment asks you to install a package, run a repo locally, move to Telegram, connect a wallet, or click a shortened link.
 
 I wanted a tool that did not collapse all of that into "seems legit" or "looks suspicious".
 
