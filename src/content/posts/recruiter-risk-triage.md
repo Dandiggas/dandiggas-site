@@ -1,17 +1,23 @@
 ---
 title: "Recruiter Risk Triage: Separating Real Opportunities From Unsafe Outreach"
 date: "2026-06-25"
-preview: "Born from a real recruiter approach where basic due diligence showed the supposed company did not credibly exist. A local-first dashboard for checking legitimacy, security risk, opportunity fit, and safe reply strategy."
+preview: "A real LinkedIn recruiter message felt slightly off, so I checked the company, found the website did not resolve, and traced the role back to an expired job description. This is the local-first tool I built from that instinct."
 readTime: "5 min read"
 ---
 
-Recruiter outreach is noisy in a very specific way.
+I was minding my own business on a normal day when a recruiter message came through on LinkedIn.
 
-This project came from a real scenario. A recruiter approached me about a role, and on the surface it looked like normal career outreach. But when I started doing basic company due diligence, the company they were supposedly representing did not appear to exist in any credible way.
+That happens a fair bit, so normally I would just skim it, check whether the role is remote, check the salary if it is there, and decide whether it is worth replying. But this one gave me that small feeling that something was off.
+
+Part of the reason it stood out is because I already had a threat model in my head. There have been cases of people being sent malicious technical tests: clone this repo, run this package, install this dependency, complete this assessment. If you are actively looking for work, it is easy to treat that as normal hiring friction.
+
+So I dug deeper.
+
+I checked the company. I asked my AI agent to search for the company and verify the basic public evidence. The company did not show up in any credible way. The website did not resolve. The trail did not point to a live company with a real role. What the agent did find was more interesting: wording that looked like it came from an old job description that had already expired.
 
 That changed the decision completely. I did not take it further.
 
-The scary part is what could have happened next. If I had kept engaging, they could have sent a technical test, a repo to clone, a package to install, a take-home task, or some other "assessment" that looked normal enough to run. That is exactly the kind of gap attackers can exploit, especially when someone is actively job hunting and trying to move quickly.
+That is the bit I wanted to turn into software. Not because I think every vague recruiter message is malicious, but because I have a knack for spotting when a normal-looking workflow has a security edge hidden inside it. Job hunting creates pressure. Recruiters ask for action. Technical tests can involve code execution. That is a dangerous combination if nobody pauses to verify the basics.
 
 Some recruiter messages are real but not worth your time. Some are vague but harmless. Some are obvious scams. Some look legitimate until the assessment asks you to install a package, run a repo locally, move to Telegram, connect a wallet, or click a shortened link.
 
