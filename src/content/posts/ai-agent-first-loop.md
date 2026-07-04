@@ -24,7 +24,7 @@ The note lays out a ladder, and the useful move is figuring out which rung you'r
 - **Harness** — arming a single run: which tools, which actions, and *what counts as done*.
 - **Loop** — scheduling the harness so it runs itself, over and over, without you pressing go.
 
-[I drew the ladder out as a diagram here](https://excalidraw.com/#json=nnN6imi5iDv8OlhVlyto_,XRx2_-uVtr6cY5sIIonQlA) if you want the one-glance version, including where mistakes get caught at each layer.
+![The loop engineering ladder: four layers from prompt to loop, what each one minds, what a mistake costs at each level, and the three verbs that turn a harness into a loop](/blog/loop-engineering-ladder.png)
 
 They stack; they don't replace each other. And **figuring out which rung you're standing on is the whole exercise** — because the fix you need lives one rung up from where you are. My "context is a budget" work was all **context-layer**. The batch of guardrails I'd bolted on since — scripts that block the assistant from claiming a bug is fixed without evidence, or force a confirm before a destructive git command — those were **harness-layer**. They define "what counts as done" for a single run.
 
