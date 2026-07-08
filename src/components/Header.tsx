@@ -1,42 +1,51 @@
 "use client";
 
 import Link from "next/link";
-import { ThemeToggle } from "./ThemeToggle";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { List, X } from "@phosphor-icons/react";
+import { ThemeToggle } from "./ThemeToggle";
+
+const navItems = [
+  { href: "/writing", label: "Writing" },
+  { href: "/projects", label: "Projects" },
+  { href: "/music", label: "Music" },
+  { href: "/about", label: "About" },
+];
+
+function isActive(href: string, pathname: string) {
+  if (href === "/writing") {
+    return pathname.startsWith("/writing") || pathname.startsWith("/posts");
+  }
+  return pathname.startsWith(href);
+}
 
 export function Header() {
   const pathname = usePathname();
-
-  const navItems = [
-    { href: "/", label: "Posts" },
-    { href: "/projects", label: "Projects" },
-    { href: "/about", label: "About" },
-  ];
+  const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full border-b border-neutral-200 dark:border-neutral-800">
-      <div className="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
+    <header className="sticky top-0 z-40 w-full border-b border-neutral-200 bg-background/80 backdrop-blur-md dark:border-neutral-800">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="text-lg font-semibold tracking-tight hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
+          className="text-lg font-semibold tracking-tight transition-colors hover:text-amber-700 dark:hover:text-amber-400"
         >
           Dan Diggas
         </Link>
+
         <div className="flex items-center gap-1">
-          <nav className="flex items-center gap-1">
+          <nav className="hidden items-center gap-1 sm:flex">
             {navItems.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+              const active = isActive(item.href, pathname);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
-                    isActive
-                      ? "text-amber-700 dark:text-amber-400 font-medium"
-                      : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200"
+                  className={`rounded-md px-3 py-1.5 text-sm transition-colors ${
+                    active
+                      ? "font-medium text-amber-700 dark:text-amber-400"
+                      : "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-200"
                   }`}
                 >
                   {item.label}
@@ -44,9 +53,44 @@ export function Header() {
               );
             })}
           </nav>
+
           <ThemeToggle />
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800 sm:hidden"
+          >
+            {open ? <X size={20} /> : <List size={20} />}
+          </button>
         </div>
       </div>
+
+      {open && (
+        <nav className="border-t border-neutral-200 px-6 py-3 dark:border-neutral-800 sm:hidden">
+          <div className="flex flex-col">
+            {navItems.map((item) => {
+              const active = isActive(item.href, pathname);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={`rounded-md px-3 py-2.5 text-sm transition-colors ${
+                    active
+                      ? "font-medium text-amber-700 dark:text-amber-400"
+                      : "text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

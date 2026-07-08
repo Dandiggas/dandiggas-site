@@ -39,10 +39,10 @@ export default async function PostPage({
   return (
     <div className="max-w-2xl mx-auto px-6 py-12">
       <Link
-        href="/"
+        href="/writing"
         className="text-sm text-neutral-500 dark:text-neutral-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
       >
-        ← Back to posts
+        ← Back to writing
       </Link>
       <article className="mt-8">
         <header className="mb-8">

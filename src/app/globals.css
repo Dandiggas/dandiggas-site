@@ -85,3 +85,84 @@ body {
   cursor: zoom-in;
 }
 .dark .prose img { border-color: var(--color-neutral-800); }
+
+/* ------------------------------------------------------------------ */
+/* Music surfaces                                                      */
+/* Warm-dark studio palette borrowed from The Shed: charcoal with a    */
+/* warm undertone in dark, warm bone in light. Amber stays the single  */
+/* site-wide accent so the whole site reads as one system.             */
+/* ------------------------------------------------------------------ */
+:root {
+  --music-bg: #faf7f1;
+  --music-surface: #f2ece1;
+  --music-elevated: #ffffff;
+  --music-fg: #2a251f;
+  --music-muted: #6f6a60;
+  --music-hairline: rgba(42, 37, 31, 0.12);
+}
+.dark {
+  --music-bg: #16130f;
+  --music-surface: #1f1b16;
+  --music-elevated: #26211b;
+  --music-fg: #ece7e1;
+  --music-muted: #a89f94;
+  --music-hairline: rgba(236, 227, 213, 0.12);
+}
+
+@theme inline {
+  --color-music-bg: var(--music-bg);
+  --color-music-surface: var(--music-surface);
+  --color-music-elevated: var(--music-elevated);
+  --color-music-fg: var(--music-fg);
+  --color-music-muted: var(--music-muted);
+  --color-music-hairline: var(--music-hairline);
+}
+
+/* Staggered entry (parity with The Shed) for any CSS-only reveals */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rise-in {
+    animation: rise-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--stagger, 0) * 60ms);
+  }
+}
+
+/* Credits reel marquee (track holds the list twice for a seamless loop) */
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee-x 44s linear infinite; will-change: transform; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; transform: none; }
+}
+
+/* Split front door: the hovered half grows, the other dims. Layout      */
+/* transition runs once per hover (not per frame) and only on real       */
+/* pointer devices, so touch/stacked-mobile is unaffected.               */
+.split-panel { flex: 1 1 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .split-panel {
+    transition: flex-grow 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.45s ease;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+  .split-panels:hover .split-panel { flex-grow: 0.82; }
+  .split-panels .split-panel:hover { flex-grow: 1.6; }
+  .split-panels:hover .split-panel:not(:hover) { opacity: 0.66; }
+}
+
+/* Faint engineering-panel texture: a hairline grid, faded at the edges */
+.tech-grid {
+  background-image:
+    linear-gradient(to right, var(--music-hairline) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--music-hairline) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse at 30% 40%, black 30%, transparent 78%);
+  mask-image: radial-gradient(ellipse at 30% 40%, black 30%, transparent 78%);
+}

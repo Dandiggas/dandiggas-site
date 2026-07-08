@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tech.dandiggas.com"),
   title: "Dan Diggas — Engineer & Musician",
   description:
     "Daniel Adekugbe — backend engineer at Sophos, session musician, and tool builder. Building things that remove friction.",
