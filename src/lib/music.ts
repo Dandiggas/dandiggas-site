@@ -89,3 +89,28 @@ export const releases: Release[] = [
   { title: "Need You, Pt. 2", artist: "Marie Dahlstrøm, Dan Diggas & Dayne Jordan", role: "Single", year: 2021, cover: "/music/covers/need-you-pt2.jpg", url: "https://music.apple.com/album/1585127930" },
   { title: "Pomiędzy", artist: "Vito Bambino, feat. Dan Diggas", role: "Def Jam World Tour: London", year: 2025, cover: "/music/covers/pomiedzy.jpg", url: "https://music.apple.com/album/1798470482" },
 ];
+
+// Production, songwriting and keys credits for other artists. Roles and titles
+// verified against Apple Music / Deezer / press. See the two-per-role note in
+// the design if adding more. Ordered so repeated album covers are not adjacent.
+export type Credit = {
+  title: string;
+  artist: string;
+  role: "Producer" | "Writer" | "Keys";
+  year: number;
+  cover: string;
+  url?: string;
+};
+
+export const credits: Credit[] = [
+  { title: "Lil Bro", artist: "Central Cee", role: "Producer", year: 2022, cover: "/music/credits/lil-bro.jpg", url: "https://music.apple.com/us/search?term=Central%20Cee%20Lil%20Bro" },
+  { title: "Square 1", artist: "Mahalia", role: "Producer", year: 2019, cover: "/music/credits/square-1.jpg", url: "https://music.apple.com/us/search?term=Mahalia%20Square%201" },
+  { title: "Aura", artist: "SG Lewis, feat. J Warner", role: "Keys", year: 2018, cover: "/music/credits/aura.jpg", url: "https://music.apple.com/us/search?term=SG%20Lewis%20Aura" },
+  { title: "Nothing On You", artist: "Marie Dahlstrøm, feat. Odeal", role: "Producer", year: 2024, cover: "/music/credits/nothing-on-you.jpg", url: "https://music.apple.com/us/search?term=Marie%20Dahlstrom%20Nothing%20On%20You" },
+  { title: "I Wish I Missed My Ex", artist: "Mahalia", role: "Writer", year: 2019, cover: "/music/credits/i-wish.jpg", url: "https://music.apple.com/us/search?term=Mahalia%20I%20Wish%20I%20Missed%20My%20Ex" },
+  { title: "Walking Away", artist: "Sinéad Harnett", role: "Writer", year: 2019, cover: "/music/credits/walking-away.jpg", url: "https://music.apple.com/us/search?term=Sinead%20Harnett%20Walking%20Away" },
+  { title: "VIBE (Interlude)", artist: "M Huncho", role: "Producer", year: 2021, cover: "/music/credits/vibe-interlude.jpg", url: "https://music.apple.com/us/search?term=M%20Huncho%20VIBE%20Interlude" },
+  { title: "Regular People", artist: "Mahalia, feat. Hamzaa & Lucky Daye", role: "Writer", year: 2019, cover: "/music/credits/regular-people.jpg", url: "https://music.apple.com/us/search?term=Mahalia%20Regular%20People" },
+  { title: "Little Love", artist: "Blinkie, feat. Grace Tither", role: "Writer", year: 2019, cover: "/music/credits/little-love.jpg", url: "https://music.apple.com/us/search?term=Blinkie%20Little%20Love" },
+  { title: "New Every Morning", artist: "Ryan Ofei", role: "Producer", year: 2023, cover: "/music/credits/new-every-morning.jpg", url: "https://music.apple.com/us/search?term=Ryan%20Ofei%20New%20Every%20Morning" },
+];

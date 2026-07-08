@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Code, MusicNotes, ArrowRight } from "@phosphor-icons/react/dist/ssr";
-import { artists } from "@/lib/music";
 
 const stagger = (i: number) =>
   ({ ["--stagger" as string]: i } as React.CSSProperties);
@@ -10,8 +9,6 @@ const arrowMotion =
   "transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0";
 
 export function SplitLanding() {
-  const topArtists = artists.slice(0, 4).join(", ");
-
   return (
     <div className="split-panels relative flex min-h-[calc(100dvh-4.375rem)] flex-col md:flex-row">
       {/* Engineer */}
@@ -66,8 +63,8 @@ export function SplitLanding() {
             Musician
           </h2>
           <p className="mt-4 max-w-md text-base leading-relaxed text-white/75">
-            Session keys for {topArtists}, and more. Festival stages, live TV,
-            live sessions.
+            Producer, songwriter and keys. Records with Mahalia and Central
+            Cee, live for Little Simz, Cleo Sol, and more.
           </p>
           <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-amber-300">
             Enter the music

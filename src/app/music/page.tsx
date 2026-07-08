@@ -5,6 +5,7 @@ import { ArtistMarquee } from "@/components/music/ArtistMarquee";
 import { LiveVideos } from "@/components/music/LiveVideos";
 import { PhotoGallery } from "@/components/music/PhotoGallery";
 import { Releases } from "@/components/music/Releases";
+import { Credits } from "@/components/music/Credits";
 import { ContactCTA } from "@/components/music/ContactCTA";
 import { Reveal } from "@/components/music/Reveal";
 import { instruments, releases } from "@/lib/music";
@@ -12,11 +13,11 @@ import { instruments, releases } from "@/lib/music";
 export const metadata: Metadata = {
   title: "Music — Dan Diggas",
   description:
-    "Dan Diggas is a London session keyboardist. Live keys for Mahalia, Little Simz, Ella Eyre, Kamal., Marie Dahlstrøm, and more.",
+    "Dan Diggas is a London producer, songwriter and keyboardist. Production, writing and keys for Mahalia, Central Cee, SG Lewis, Marie Dahlstrøm, and more.",
   openGraph: {
     title: "Music — Dan Diggas",
     description:
-      "London session keyboardist. Live keys for Mahalia, Little Simz, Ella Eyre, Kamal., Marie Dahlstrøm, and more.",
+      "London producer, songwriter and keyboardist. Credits with Mahalia, Central Cee, SG Lewis, Sinéad Harnett, Marie Dahlstrøm, and more.",
     images: ["/music/hero-crowd.jpg"],
     type: "website",
   },
@@ -48,9 +49,10 @@ export default function MusicPage() {
             </h2>
             <div className="mt-5 space-y-4 leading-relaxed text-music-muted">
               <p>
-                I&rsquo;m a keyboard player from London. Over the last decade
-                I&rsquo;ve played stages and sessions, from festival main stages
-                to live TV, backing artists across soul, R&amp;B, and jazz.
+                I&rsquo;m a producer, songwriter and keyboard player from
+                London. Over the last decade I&rsquo;ve made records with
+                Mahalia, Central Cee, SG Lewis, Sinéad Harnett and more, and
+                played keys on stages from festivals to live TV.
               </p>
               <p>
                 Away from the stage I build software, backend and AI at Sophos,
@@ -70,6 +72,21 @@ export default function MusicPage() {
               ))}
             </ul>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Selected credits (production, writing, keys for other artists) */}
+      <section className="mx-auto max-w-6xl px-6 pb-20 sm:pb-28">
+        <Reveal>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Selected credits
+          </h2>
+          <p className="mt-3 max-w-xl text-music-muted">
+            Production, songwriting and keys for other artists.
+          </p>
+        </Reveal>
+        <div className="mt-10">
+          <Credits />
         </div>
       </section>
 

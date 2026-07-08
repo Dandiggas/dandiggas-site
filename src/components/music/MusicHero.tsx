@@ -21,7 +21,7 @@ export function MusicHero() {
           className="rise-in font-mono text-xs uppercase tracking-[0.25em] text-amber-400"
           style={stagger(0)}
         >
-          Session keyboardist
+          Producer, songwriter, keys
         </p>
         <h1
           className="rise-in mt-4 text-5xl font-bold tracking-tight text-white sm:text-7xl"
@@ -33,8 +33,8 @@ export function MusicHero() {
           className="rise-in mt-5 max-w-xl text-lg leading-relaxed text-white/80"
           style={stagger(2)}
         >
-          Keyboards for Mahalia, Little Simz, Cleo Sol, Ella Eyre, Kamal.,
-          Marie Dahlstrøm, and more. Based in London.
+          Studio and stage work with Mahalia, Central Cee, SG Lewis, Little
+          Simz, and more. Based in London.
         </p>
         <a
           href="#live"
