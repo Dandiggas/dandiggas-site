@@ -33,8 +33,8 @@ export function MusicHero() {
           className="rise-in mt-5 max-w-xl text-lg leading-relaxed text-white/80"
           style={stagger(2)}
         >
-          Keyboards for Mahalia, Little Simz, Ella Eyre, Kamal., Marie
-          Dahlstrøm, and more. Based in London.
+          Keyboards for Mahalia, Little Simz, Cleo Sol, Ella Eyre, Kamal.,
+          Marie Dahlstrøm, and more. Based in London.
         </p>
         <a
           href="#live"

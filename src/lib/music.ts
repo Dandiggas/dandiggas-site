@@ -14,6 +14,7 @@ export type Gig = {
 
 export const gigs: Gig[] = [
   { artist: "Mahalia", title: "Live at Lowlands", venue: "Lowlands Festival", id: "aMIYajikaPU", year: 2022, featured: true },
+  { artist: "Cleo Sol", title: "High / Too Experienced", venue: "HMV Forum, Kentish Town", id: "flNnmCTH17o", year: 2011 },
   { artist: "Kamal.", title: "little pieces, live in Korea", venue: "Seoul Jazz Festival", id: "7MNJKH043Pk", year: 2023, featured: true },
   { artist: "Little Simz", title: "Headline set (full concert)", venue: "Roundhouse Rising", id: "CI1fnm5_ALU", year: 2014, featured: true },
   { artist: "Mahalia", title: "Wish I Missed My Ex", venue: "Wireless Festival", id: "eB0LsA_UuQM", year: 2022 },
@@ -34,6 +35,7 @@ export const gigs: Gig[] = [
 export const artists: string[] = [
   "Mahalia",
   "Little Simz",
+  "Cleo Sol",
   "Ella Eyre",
   "Kamal.",
   "Marie Dahlstrøm",
