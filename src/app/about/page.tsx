@@ -68,22 +68,16 @@ export default function AboutPage() {
 
       <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium">
         <Link
+          href="/tech"
+          className="text-amber-700 hover:underline dark:text-amber-400"
+        >
+          Explore the tech →
+        </Link>
+        <Link
           href="/music"
           className="text-amber-700 hover:underline dark:text-amber-400"
         >
           See the music →
-        </Link>
-        <Link
-          href="/writing"
-          className="text-amber-700 hover:underline dark:text-amber-400"
-        >
-          Read the writing →
-        </Link>
-        <Link
-          href="/projects"
-          className="text-amber-700 hover:underline dark:text-amber-400"
-        >
-          Browse projects →
         </Link>
       </div>
 

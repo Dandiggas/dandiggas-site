@@ -18,8 +18,8 @@ export function SplitLanding() {
       >
         <div className="tech-grid pointer-events-none absolute inset-0" />
         <Link
-          href="/writing"
-          aria-label="Engineering: read the writing"
+          href="/tech"
+          aria-label="Enter the tech"
           className="absolute inset-0 z-10"
         />
         <div className="pointer-events-none relative z-0 mx-auto w-full max-w-xl px-8 py-16 md:px-14">
@@ -32,7 +32,7 @@ export function SplitLanding() {
             build for security, ops, and music.
           </p>
           <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-amber-700 dark:text-amber-400">
-            Read the writing
+            Enter the tech
             <ArrowRight weight="bold" className={arrowMotion} />
           </span>
         </div>

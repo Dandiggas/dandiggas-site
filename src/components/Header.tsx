@@ -7,15 +7,14 @@ import { List, X } from "@phosphor-icons/react";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
-  { href: "/writing", label: "Writing" },
-  { href: "/projects", label: "Projects" },
+  { href: "/tech", label: "Tech" },
   { href: "/music", label: "Music" },
   { href: "/about", label: "About" },
 ];
 
 function isActive(href: string, pathname: string) {
-  if (href === "/writing") {
-    return pathname.startsWith("/writing") || pathname.startsWith("/posts");
+  if (href === "/tech") {
+    return pathname.startsWith("/tech") || pathname.startsWith("/posts");
   }
   return pathname.startsWith(href);
 }
