@@ -119,6 +119,9 @@ export default function MusicPage() {
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Records
             </h2>
+            <p className="mt-3 max-w-xl text-music-muted">
+              Tracks and EPs I&rsquo;m credited on. Tap through to listen.
+            </p>
           </Reveal>
           <div className="mt-10">
             <Releases />

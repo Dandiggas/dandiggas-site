@@ -77,4 +77,13 @@ export type Release = {
   url?: string; // optional listen link
 };
 
-export const releases: Release[] = [];
+// Releases where "Dan Diggas" is a credited artist on the release itself (per
+// Apple Music / iTunes), not an unverifiable session credit. Billing strings
+// match how each release is credited.
+export const releases: Release[] = [
+  { title: "No Drama", artist: "Dan Diggas, Marie Dahlstrøm & J Warner", role: "Single", year: 2020, cover: "/music/covers/no-drama.jpg", url: "https://music.apple.com/album/1527138503" },
+  { title: "Grow", artist: "Dan Diggas & Geneva White", role: "Single", year: 2021, cover: "/music/covers/grow.jpg", url: "https://music.apple.com/album/1587784964" },
+  { title: "4inARow", artist: "Marie Dahlstrøm, Dan Diggas & Aligo", role: "EP", year: 2021, cover: "/music/covers/4inarow.jpg", url: "https://music.apple.com/album/1545620730" },
+  { title: "Need You, Pt. 2", artist: "Marie Dahlstrøm, Dan Diggas & Dayne Jordan", role: "Single", year: 2021, cover: "/music/covers/need-you-pt2.jpg", url: "https://music.apple.com/album/1585127930" },
+  { title: "Pomiędzy", artist: "Vito Bambino, feat. Dan Diggas", role: "Def Jam World Tour: London", year: 2025, cover: "/music/covers/pomiedzy.jpg", url: "https://music.apple.com/album/1798470482" },
+];
