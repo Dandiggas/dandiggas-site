@@ -13,11 +13,11 @@ import { instruments, releases } from "@/lib/music";
 export const metadata: Metadata = {
   title: "Music — Dan Diggas",
   description:
-    "Dan Diggas is a London producer, songwriter and keyboardist. Production, writing and keys for Mahalia, Central Cee, SG Lewis, Marie Dahlstrøm, and more.",
+    "Dan Diggas is a London producer, songwriter and multi-instrumentalist. Production, writing, keys, bass and guitar for Mahalia, Central Cee, SG Lewis, Marie Dahlstrøm, and more.",
   openGraph: {
     title: "Music — Dan Diggas",
     description:
-      "London producer, songwriter and keyboardist. Credits with Mahalia, Central Cee, SG Lewis, Sinéad Harnett, Marie Dahlstrøm, and more.",
+      "London producer, songwriter and multi-instrumentalist. Credits with Mahalia, Central Cee, SG Lewis, Sinéad Harnett, Marie Dahlstrøm, and more.",
     images: ["/music/hero-crowd.jpg"],
     type: "website",
   },
@@ -49,10 +49,11 @@ export default function MusicPage() {
             </h2>
             <div className="mt-5 space-y-4 leading-relaxed text-music-muted">
               <p>
-                I&rsquo;m a producer, songwriter and keyboard player from
-                London. Over the last decade I&rsquo;ve made records with
-                Mahalia, Central Cee, SG Lewis, Sinéad Harnett and more, and
-                played keys on stages from festivals to live TV.
+                I&rsquo;m a producer, songwriter and multi-instrumentalist from
+                London, playing keys, bass and guitar. Over the last decade
+                I&rsquo;ve made records with Mahalia, Central Cee, SG Lewis,
+                Sinéad Harnett and more, and played keys on stages from
+                festivals to live TV.
               </p>
               <p>
                 Away from the stage I build software, backend and AI at Sophos,

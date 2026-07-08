@@ -6,7 +6,7 @@ import { SocialLinks } from "@/components/SocialLinks";
 export const metadata: Metadata = {
   title: "About — Dan Diggas",
   description:
-    "Daniel Adekugbe (Dan Diggas): producer, songwriter and keyboard player, and a backend and AI engineer at Sophos. Based in London.",
+    "Daniel Adekugbe (Dan Diggas): producer, songwriter and multi-instrumentalist, and a backend and AI engineer at Sophos. Based in London.",
 };
 
 export default function AboutPage() {
@@ -29,7 +29,7 @@ export default function AboutPage() {
             a.k.a. Dan Diggas
           </p>
           <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-            Producer, songwriter, keyboard player. Engineer. London.
+            Producer, songwriter, multi-instrumentalist. Engineer. London.
           </p>
         </div>
       </div>
@@ -45,9 +45,9 @@ export default function AboutPage() {
           <span className="font-medium text-neutral-900 dark:text-neutral-100">
             Music.
           </span>{" "}
-          As a producer, songwriter and keyboard player I&rsquo;ve worked with
-          Mahalia, Central Cee, SG Lewis, Sinéad Harnett, M Huncho and Marie
-          Dahlstrøm, among others. I produced Central Cee&rsquo;s
+          As a producer, songwriter and multi-instrumentalist (keys, bass and
+          guitar) I&rsquo;ve worked with Mahalia, Central Cee, SG Lewis, Sinéad
+          Harnett, M Huncho and Marie Dahlstrøm, among others. I produced Central Cee&rsquo;s
           &ldquo;Lil Bro&rdquo;, produced and wrote across Mahalia&rsquo;s{" "}
           <em>Love and Compromise</em>, and play keys live for artists including
           Little Simz, Cleo Sol, Kamal. and Ella Eyre, from festival main stages

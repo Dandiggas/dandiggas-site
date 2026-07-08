@@ -63,8 +63,8 @@ export function SplitLanding() {
             Musician
           </h2>
           <p className="mt-4 max-w-md text-base leading-relaxed text-white/75">
-            Producer, songwriter and keys. Records with Mahalia and Central
-            Cee, live for Little Simz, Cleo Sol, and more.
+            Producer, songwriter and multi-instrumentalist. Records with
+            Mahalia and Central Cee, live for Little Simz, Cleo Sol, and more.
           </p>
           <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-amber-300">
             Enter the music

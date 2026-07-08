@@ -21,7 +21,7 @@ export function MusicHero() {
           className="rise-in font-mono text-xs uppercase tracking-[0.25em] text-amber-400"
           style={stagger(0)}
         >
-          Producer, songwriter, keys
+          Producer, songwriter, multi-instrumentalist
         </p>
         <h1
           className="rise-in mt-4 text-5xl font-bold tracking-tight text-white sm:text-7xl"
