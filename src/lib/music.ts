@@ -128,4 +128,9 @@ export const credits: Credit[] = [
   { title: "Little Love", artist: "Blinkie, feat. Grace Tither", role: "Writer", year: 2019, cover: "/music/credits/little-love.jpg", url: "https://music.apple.com/us/search?term=Blinkie%20Little%20Love" },
   { title: "Free", artist: "Cat Burns", role: "Keys", year: 2021, cover: "/music/credits/free.jpg", url: "https://music.apple.com/us/search?term=Cat%20Burns%20Free" },
   { title: "New Every Morning", artist: "Ryan Ofei", role: "Producer", year: 2023, cover: "/music/credits/new-every-morning.jpg", url: "https://music.apple.com/us/search?term=Ryan%20Ofei%20New%20Every%20Morning" },
+  { title: "Chill Chase", artist: "J Warner, feat. Wretch 32", role: "Producer", year: 2015, cover: "/music/credits/chill-chase.jpg", url: "https://music.apple.com/us/search?term=J%20Warner%20Chill%20Chase" },
+  { title: "Summer Evenings", artist: "Marie Dahlstrøm & Aligo", role: "Producer", year: 2020, cover: "/music/credits/summer-evenings.jpg", url: "https://music.apple.com/us/search?term=Marie%20Dahlstrom%20Summer%20Evenings" },
+  { title: "Slide", artist: "Dende & J Warner", role: "Producer", year: 2024, cover: "/music/credits/slide.jpg", url: "https://music.apple.com/us/search?term=Dende%20J%20Warner%20Slide" },
+  { title: "More Than a Feeling", artist: "Blinkie, feat. Grace Tither", role: "Writer", year: 2022, cover: "/music/credits/more-than-a-feeling.jpg", url: "https://music.apple.com/us/search?term=Blinkie%20More%20Than%20a%20Feeling" },
+  { title: "I Don't Wanna Wake Up", artist: "Marie Dahlstrøm, feat. James Vickery", role: "Writer", year: 2020, cover: "/music/credits/i-dont-wanna-wake-up.jpg", url: "https://music.apple.com/us/search?term=Marie%20Dahlstrom%20I%20Dont%20Wanna%20Wake%20Up" },
 ];
