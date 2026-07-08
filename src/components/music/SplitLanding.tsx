@@ -73,13 +73,16 @@ export function SplitLanding() {
         </div>
       </section>
 
-      {/* Seam wordmark (desktop) */}
+      {/* Seam wordmark + tagline (desktop) */}
       <div
-        className="rise-in pointer-events-none absolute left-1/2 top-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 md:block"
+        className="rise-in pointer-events-none absolute left-1/2 top-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 md:flex"
         style={stagger(2)}
       >
         <span className="rounded-full border border-white/20 bg-neutral-900/75 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-white backdrop-blur-md">
           Dan Diggas
+        </span>
+        <span className="rounded-full bg-neutral-900/55 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.28em] text-amber-300/90 backdrop-blur-md">
+          Keys open doors
         </span>
       </div>
     </div>
