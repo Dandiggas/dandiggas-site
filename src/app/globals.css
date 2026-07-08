@@ -166,3 +166,22 @@ body {
   -webkit-mask-image: radial-gradient(ellipse at 30% 40%, black 30%, transparent 78%);
   mask-image: radial-gradient(ellipse at 30% 40%, black 30%, transparent 78%);
 }
+
+/* Tech hero: a fuller hairline grid fading from the top-centre */
+.tech-grid-hero {
+  background-image:
+    linear-gradient(to right, var(--music-hairline) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--music-hairline) 1px, transparent 1px);
+  background-size: 54px 54px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 28%, black 18%, transparent 76%);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 28%, black 18%, transparent 76%);
+}
+
+/* Slow amber glow pulse behind the tech hero headline */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, 0) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, 0) scale(1.06); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .glow-pulse { animation: glow-pulse 7s ease-in-out infinite; }
+}
