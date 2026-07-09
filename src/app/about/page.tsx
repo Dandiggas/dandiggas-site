@@ -18,12 +18,12 @@ export default function AboutPage() {
         <div className="md:sticky md:top-24 md:self-start">
           <Tilt className="relative mx-auto aspect-[4/5] w-full max-w-[300px] overflow-hidden rounded-2xl border border-neutral-200 shadow-xl shadow-black/10 dark:border-neutral-800 dark:shadow-black/40">
             <Image
-              src="/about-portrait.jpg"
+              src="/about-me.jpg"
               alt="Daniel Adekugbe (Dan Diggas)"
               fill
               priority
               sizes="(min-width: 768px) 300px, 100vw"
-              className="object-cover"
+              className="object-cover object-[center_20%]"
             />
           </Tilt>
         </div>
