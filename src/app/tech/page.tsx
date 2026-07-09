@@ -108,7 +108,7 @@ export default function TechPage() {
             className="rise-in mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl"
             style={stagger(1)}
           >
-            I build systems that get out of the way.
+            AI tools, and the infrastructure under them.
           </h1>
           <p
             className="rise-in mt-5 max-w-xl text-lg leading-relaxed text-music-muted"
