@@ -17,7 +17,7 @@ export function SplitLanding() {
         style={stagger(0)}
       >
         <Image
-          src="/tech/desk.jpg"
+          src="/tech/engineer.jpg"
           alt=""
           fill
           priority
