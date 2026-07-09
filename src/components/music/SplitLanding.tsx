@@ -13,25 +13,33 @@ export function SplitLanding() {
     <div className="split-panels relative flex min-h-[calc(100dvh-4.375rem)] flex-col md:flex-row">
       {/* Engineer */}
       <section
-        className="split-panel rise-in group relative flex min-h-[46dvh] items-center overflow-hidden bg-music-bg md:min-h-0"
+        className="split-panel rise-in group relative flex min-h-[46dvh] items-center overflow-hidden bg-black md:min-h-0"
         style={stagger(0)}
       >
-        <div className="tech-grid pointer-events-none absolute inset-0" />
+        <Image
+          src="/tech/desk.jpg"
+          alt=""
+          fill
+          priority
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/40 md:bg-gradient-to-l md:from-black/45 md:via-black/45 md:to-black/80" />
         <Link
           href="/tech"
           aria-label="Enter the tech"
           className="absolute inset-0 z-10"
         />
         <div className="pointer-events-none relative z-0 mx-auto w-full max-w-xl px-8 py-16 md:px-14">
-          <Code weight="duotone" size={40} className="text-amber-500" />
-          <h2 className="mt-6 text-4xl font-bold tracking-tight text-music-fg sm:text-5xl">
+          <Code weight="duotone" size={40} className="text-amber-400" />
+          <h2 className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Engineer
           </h2>
-          <p className="mt-4 max-w-md text-base leading-relaxed text-music-muted">
+          <p className="mt-4 max-w-md text-base leading-relaxed text-white/75">
             Backend and AI infrastructure at Sophos, plus local-first tools I
             build for security, ops, and music.
           </p>
-          <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-amber-700 dark:text-amber-400">
+          <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-amber-300">
             Enter the tech
             <ArrowRight weight="bold" className={arrowMotion} />
           </span>

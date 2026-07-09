@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { credits } from "@/lib/music";
+import { Tilt } from "@/components/music/Tilt";
 
 export function Credits() {
   if (credits.length === 0) return null;
@@ -17,7 +18,7 @@ export function Credits() {
             rel={external ? "noopener noreferrer" : undefined}
             className="group block"
           >
-            <div className="relative aspect-square overflow-hidden rounded-lg border border-music-hairline">
+            <Tilt className="relative aspect-square overflow-hidden rounded-lg border border-music-hairline">
               <Image
                 src={credit.cover}
                 alt={`${credit.title} by ${credit.artist}`}
@@ -28,7 +29,7 @@ export function Credits() {
               <span className="absolute left-2 top-2 rounded-full bg-black/65 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-amber-300 backdrop-blur-sm">
                 {credit.role}
               </span>
-            </div>
+            </Tilt>
             <p className="mt-2 flex items-center gap-1 text-sm font-medium text-music-fg">
               <span className="truncate">{credit.title}</span>
               <ArrowUpRight
