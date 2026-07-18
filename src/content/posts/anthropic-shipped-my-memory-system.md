@@ -6,7 +6,7 @@ readTime: "10 min read"
 ---
 
 
-Claude Code shipped native auto-memory earlier this year — a memory directory, an always-loaded index file, topic files pulled in on demand, persistence every turn. Last week I finally sat down with it properly. Which is to say: Anthropic shipped the thing I have spent the last year building by hand.
+Claude Code shipped native auto-memory back in February — a memory directory, an always-loaded index file, topic files pulled in on demand, persistence every turn. I found out last week. Which is to say: Anthropic shipped the thing I have spent the last year building by hand, and I was too deep in building it to notice.
 
 My first reaction was the obvious one. Did I just build something obsolete?
 
