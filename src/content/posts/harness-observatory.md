@@ -17,7 +17,7 @@ This post is the tour, and the argument underneath it. In my own words, from the
 
 ## First, the audit: where was I actually?
 
-The day before, I'd done something uncomfortable: graded my own AI adoption against a five-step ladder I borrowed from a Boris Cherny post — useful scaffolding, nothing more. 0 is Gated (org blocks AI), 1 is Assisted (human drives, AI helps inline), 2 is Parallel (multiple agents in flight, human orchestrates in-session), 3 is Supervised Autonomy (model-driven work runs cross-session or headless, human reviews), 4 is AI-native.
+The day before, I'd done something uncomfortable: graded my own AI adoption against a five-step ladder. (I'd seen Boris Cherny's post around this time and thought it was interesting.) 0 is Gated (org blocks AI), 1 is Assisted (human drives, AI helps inline), 2 is Parallel (multiple agents in flight, human orchestrates in-session), 3 is Supervised Autonomy (model-driven work runs cross-session or headless, human reviews), 4 is AI-native.
 
 I made the assessment adversarial on purpose. No vibes, no credit without a config file to cite. The result:
 
