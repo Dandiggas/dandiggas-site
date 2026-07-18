@@ -6,19 +6,19 @@ readTime: "10 min read"
 ---
 
 
-Claude Code shipped native auto-memory back in February — a memory directory, an always-loaded index file, topic files pulled in on demand, persistence every turn. I found out last week. Which is to say: Anthropic shipped the thing I have spent the last year building by hand, and I was too deep in building it to notice.
+Claude Code has had native auto-memory since February — a memory directory, an always-loaded index file, topic files pulled in on demand, persistence every turn. I've known about it the whole time. I prune that index myself. In my harness it was never the whole memory system: MEMORY.md is the working tier, and anything durable migrates into a knowledge graph, so important information doesn't get lost when the index gets pruned — it gets promoted to long-term memory.
 
-My first reaction was the obvious one. Did I just build something obsolete?
+But last week I sat down and asked the uncomfortable question properly: with the native tier doing more every release, had I built something obsolete?
 
 By the end of the same day I had my answer — no — and I'd shipped two things to prove it: an observability dashboard for my own harness, and a version bump to my most load-bearing skill, v1.4.0 to v1.5.0, changelog entry and all.
 
-This post is about why the scare turned out to be good news, and about the operating principle it confirmed. In my own words, from the note I wrote that day: **"I'm versioning my harness and testing it as I go along to actually improve."** The harness — the memory files, the skills, the hooks, the enforcement scripts wrapped around my AI agent — is a product. It has versions, a changelog, tests, and now a dashboard. That framing is the whole post. Here are the receipts.
+This post is about why that question turned out to be good news, and about the operating principle it confirmed. In my own words, from the note I wrote that day: **"I'm versioning my harness and testing it as I go along to actually improve."** The harness — the memory files, the skills, the hooks, the enforcement scripts wrapped around my AI agent — is a product. It has versions, a changelog, tests, and now a dashboard. That framing is the whole post. Here are the receipts.
 
 ---
 
 ## First, the audit: where was I actually?
 
-The day before the scare, I'd done something uncomfortable: graded my own AI adoption against a public ladder — Boris Cherny's "Steps of AI Adoption". Five steps: 0 is Gated (org blocks AI), 1 is Assisted (human drives, AI helps inline), 2 is Parallel (multiple agents in flight, human orchestrates in-session), 3 is Supervised Autonomy (model-driven work runs cross-session or headless, human reviews), 4 is AI-native.
+The day before, I'd done something uncomfortable: graded my own AI adoption against a public ladder — Boris Cherny's "Steps of AI Adoption". Five steps: 0 is Gated (org blocks AI), 1 is Assisted (human drives, AI helps inline), 2 is Parallel (multiple agents in flight, human orchestrates in-session), 3 is Supervised Autonomy (model-driven work runs cross-session or headless, human reviews), 4 is AI-native.
 
 I made the assessment adversarial on purpose. No vibes, no credit without a config file to cite. The result:
 
@@ -32,9 +32,9 @@ But Step-3 *operation*? Missing, and the evidence of absence was just as concret
 
 So the audit named a single bottleneck: **every loop terminates in my live attention.** Nothing model-driven starts, verifies, or lands without me in the session. My throughput is my synchronous hours. That's the wall between 2.7 and 3.
 
-Hold that thought — the bottleneck matters for what comes next. Because the day after I wrote it down, the ground moved.
+Hold that thought — the bottleneck matters for what comes next. Because the day after I wrote it down, I turned the same adversarial lens on my own memory system.
 
-## Then the ground moved
+## Then I measured the overlap
 
 Claude Code's native auto-memory ([shipped in v2.1.59, February 2026](https://code.claude.com/docs/en/memory)) does, out of the box, most of what my hand-built memory substrate does. Memory directory. An index file auto-loaded at session start, with a soft limit (first 200 lines, ~25KB, then a warning). Frontmatter handling. Topic files loaded on demand. Persistence as you go. Plus `/memory`, `/context` and `/recap` commands for basic inspection.
 
@@ -58,7 +58,7 @@ Three columns came out of the audit.
 - **Skill evals.** Nothing native measures whether a skill performs well, costs what it should, or degrades over time.
 - **Observability.** The native `/memory` command is a file lister. There is no way to *see* the memory system — its health, its shape, its drift.
 
-Then I looked at that third column properly and noticed the thing that turned the scare into a good day: **the differentiated column was my roadmap.** The graph — shipped. The enforcement — running. Evals and observability — the exact next two items on my list. Anthropic hadn't obsoleted my work; they'd taken over the boring bottom layer and validated everything I'd planned to build on top of it.
+Then I looked at that third column properly and noticed the thing that turned the question into a good day: **the differentiated column was my roadmap.** The graph — shipped. The enforcement — running. Evals and observability — the exact next two items on my list. Anthropic hadn't obsoleted my work; they'd taken over the boring bottom layer and validated everything I'd planned to build on top of it.
 
 That's the commoditisation lesson, and it's older than AI tooling: **when the substrate commoditises, build the layer above.** Nobody runs a mail server as a differentiator any more; the interesting work moved up. Memory storage for coding agents just made the same transition. The value was never in the files — it was in the graph, the discipline, and the visibility layered over them.
 
@@ -126,4 +126,4 @@ Versioning tells me *what* changed. Hooks enforce *that* checks run. Neither tel
 
 The raw material already exists — my weekly-review skill mines session transcripts for friction. Turning that mining into per-skill metrics is the next increment. Which means the next post writes itself: if the harness is a product, it needs a test suite that scores it. Skills get evals.
 
-The audit said 2.7. The scare said "obsolete". The verdict said: the substrate is free now — good — the product is the layer above, and you're already building it. One version bump at a time.
+The audit said 2.7. The question said "obsolete?". The verdict said: the substrate is free now — good — the product is the layer above, and you're already building it. One version bump at a time.
