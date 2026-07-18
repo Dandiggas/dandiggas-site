@@ -6,7 +6,7 @@ readTime: "10 min read"
 ---
 
 
-Last week, Claude Code shipped native auto-memory. A memory directory, an always-loaded index file, topic files pulled in on demand, persistence every turn. Which is to say: Anthropic shipped the thing I have spent the last year building by hand.
+Claude Code shipped native auto-memory earlier this year — a memory directory, an always-loaded index file, topic files pulled in on demand, persistence every turn. Last week I finally sat down with it properly. Which is to say: Anthropic shipped the thing I have spent the last year building by hand.
 
 My first reaction was the obvious one. Did I just build something obsolete?
 
@@ -36,7 +36,7 @@ Hold that thought — the bottleneck matters for what comes next. Because the da
 
 ## Then the ground moved
 
-Claude Code's native auto-memory does, out of the box, most of what my hand-built memory substrate does. Memory directory. An index file auto-loaded at session start, with a soft limit (first 200 lines, ~25KB, then a warning). Frontmatter handling. Topic files loaded on demand. Persistence as you go. Plus `/memory`, `/context` and `/recap` commands for basic inspection.
+Claude Code's native auto-memory ([shipped in v2.1.59, February 2026](https://code.claude.com/docs/en/memory)) does, out of the box, most of what my hand-built memory substrate does. Memory directory. An index file auto-loaded at session start, with a soft limit (first 200 lines, ~25KB, then a warning). Frontmatter handling. Topic files loaded on demand. Persistence as you go. Plus `/memory`, `/context` and `/recap` commands for basic inspection.
 
 I'd built all of that. File by file, convention by convention, over a year. And now it's a bullet point in someone else's release notes.
 
@@ -52,7 +52,7 @@ Three columns came out of the audit.
 
 **Still differentiated — the layer above.** No native equivalent exists for any of this:
 
-- The **wikilink graph**. My memory files link to each other `[[like this]]`, which makes memory a traversable graph rather than a pile of files. Retrieval becomes deterministic graph-walking instead of hoping search finds the right note.
+- The **wikilink graph**. My memory files link to each other `[[like this]]`, which makes memory a traversable graph rather than a pile of files. Retrieval becomes deterministic graph-walking instead of hoping search finds the right note. And the graph is plain markdown, so it's tool-agnostic: native auto-memory is per-repository, machine-local, and Claude Code's alone, but every agent I run can read the same notes. Long-term memory that outlives any one tool.
 - The **enforcement discipline**. Consolidate-don't-append: a corrected fact *replaces* the stale line rather than piling a contradiction on top of it. Grep before you write, so the same entity never gets two divergent entries. An archive-and-retraction ledger so "why this changed" survives without taxing every session. None of that is a storage feature. It's editorial policy, machine-enforced.
 - The **cron warm-start** — an unattended loop that does discovery before I sit down, so the session opens against fresh state.
 - **Skill evals.** Nothing native measures whether a skill performs well, costs what it should, or degrades over time.
