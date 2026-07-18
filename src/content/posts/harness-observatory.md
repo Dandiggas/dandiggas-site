@@ -1,18 +1,17 @@
 ---
-title: "Anthropic Shipped My Memory System, and It Was the Best Thing That Happened to My Harness"
+title: "My Harness Was Invisible. So I Built It an Observatory."
 date: "2026-07-18"
-preview: "Claude Code shipped native auto-memory — the substrate I spent a year hand-building. Instead of mourning it, I audited what commoditised, shipped an observability dashboard for my harness, and landed the trim as a semver bump. When the substrate commoditises, build the layer above."
+preview: "Nine skills, seven hooks, 135 memory files, crons — all buried in dotfiles and edited by digging through VS Code. I built a UI over the whole thing: memory graph, in-place editing, skill changelogs, hook config, and an evals screen. Because handing frontier tasks down to cheaper models only works if you can measure what a model can do with your current skills."
 readTime: "10 min read"
 ---
 
+My harness — the memory files, the skills, the hooks, the crons, the enforcement scripts wrapped around my AI agent — has quietly become a real system. Nine self-authored skills. Seven hooks across five lifecycle events. 135 memory files. An unattended triage loop.
 
-Claude Code has had native auto-memory since February — a memory directory, an always-loaded index file, topic files pulled in on demand, persistence every turn. I've known about it the whole time. I prune that index myself. In my harness it was never the whole memory system: MEMORY.md is the working tier, and anything durable migrates into a knowledge graph, so important information doesn't get lost when the index gets pruned — it gets promoted to long-term memory.
+And until last week it was invisible. All of it lives in dotfiles. The only interface was VS Code and grep: editing a skill meant digging through a config directory, checking harness health meant remembering what to look for, and if a skill's performance had quietly regressed, there was nothing to look at. No way to know at all.
 
-But last week I sat down and asked the uncomfortable question properly: with the native tier doing more every release, had I built something obsolete?
+So I built it an observatory — a small local UI where I can see the whole harness and change it in place. Edit skill files. Browse and correct memory. An overview of the hooks and the crons. And the screen the whole thing is building towards: evals, because the endgame is measuring what my skills actually let a model do.
 
-By the end of the same day I had my answer — no — and I'd shipped two things to prove it: an observability dashboard for my own harness, and a version bump to my most load-bearing skill, v1.4.0 to v1.5.0, changelog entry and all.
-
-This post is about why that question turned out to be good news, and about the operating principle it confirmed. In my own words, from the note I wrote that day: **"I'm versioning my harness and testing it as I go along to actually improve."** The harness — the memory files, the skills, the hooks, the enforcement scripts wrapped around my AI agent — is a product. It has versions, a changelog, tests, and now a dashboard. That framing is the whole post. Here are the receipts.
+This post is the tour, and the argument underneath it. In my own words, from the note I wrote that day: **"I'm versioning my harness and testing it as I go along to actually improve."** The harness is a product. It has versions, a changelog, tests, and now a dashboard. Here are the receipts.
 
 ---
 
@@ -32,11 +31,13 @@ But Step-3 *operation*? Missing, and the evidence of absence was just as concret
 
 So the audit named a single bottleneck: **every loop terminates in my live attention.** Nothing model-driven starts, verifies, or lands without me in the session. My throughput is my synchronous hours. That's the wall between 2.7 and 3.
 
-Hold that thought — the bottleneck matters for what comes next. Because the day after I wrote it down, I turned the same adversarial lens on my own memory system.
+Hold that thought — the bottleneck matters for everything that follows. Because the day after I wrote it down, I turned the same adversarial lens on my own memory system.
 
 ## Then I measured the overlap
 
-Claude Code's native auto-memory ([shipped in v2.1.59, February 2026](https://code.claude.com/docs/en/memory)) does, out of the box, most of what my hand-built memory substrate does. Memory directory. An index file auto-loaded at session start, with a soft limit (first 200 lines, ~25KB, then a warning). Frontmatter handling. Topic files loaded on demand. Persistence as you go. Plus `/memory`, `/context` and `/recap` commands for basic inspection.
+Some context first. Claude Code has had native auto-memory since February ([shipped in v2.1.59](https://code.claude.com/docs/en/memory)) — a memory directory, an always-loaded index file, topic files pulled in on demand, persistence every turn. I've known about it the whole time; I prune that index myself. In my harness it was never the whole memory system: MEMORY.md is the working tier, and anything durable migrates into a knowledge graph, so important information doesn't get lost when the index gets pruned — it gets promoted to long-term memory.
+
+But with the native tier doing more every release, the uncomfortable question was worth asking properly: had I built something obsolete? Native auto-memory does, out of the box, most of what my hand-built memory substrate does. Memory directory. An index file auto-loaded at session start, with a soft limit (first 200 lines, ~25KB, then a warning). Frontmatter handling. Topic files loaded on demand. Persistence as you go. Plus `/memory`, `/context` and `/recap` commands for basic inspection.
 
 I'd built all of that. File by file, convention by convention, over a year. And now it's a bullet point in someone else's release notes.
 
@@ -62,11 +63,9 @@ Then I looked at that third column properly and noticed the thing that turned th
 
 That's the commoditisation lesson, and it's older than AI tooling: **when the substrate commoditises, build the layer above.** Nobody runs a mail server as a differentiator any more; the interesting work moved up. Memory storage for coding agents just made the same transition. The value was never in the files — it was in the graph, the discipline, and the visibility layered over them.
 
-## The same-day response, part one: a dashboard for the harness
+## The observatory: six screens over the harness
 
-The fastest way to act on "the layer above is the product" was to build the piece of it I could see: observability.
-
-So I built one — a small local Next.js app I call the harness observatory. Six screens, each answering a question I previously answered by grepping around my config directory:
+The fastest way to act on "the layer above is the product" was to build the piece of it I could see: observability. By the end of the same day I'd shipped it — a small local Next.js app I call the harness observatory. Six screens, each answering a question I previously answered by digging through VS Code:
 
 **Is the harness healthy?** An overview screen: index size against the 120-line budget, plus red flags like that empty project allowlist the audit caught.
 
@@ -92,7 +91,7 @@ That last screen is where a second framing clicked: **hooks are the harness's CI
 
 And I tested the dashboard like anything else I ship: a real test suite (24 green at v1, 37 now), every route exercised, rendered screens screenshot-checked in light and dark — which caught one genuine visual defect before I ever used the thing.
 
-## Part two: the trim, shipped as v1.5.0
+## The trim, shipped as v1.5.0
 
 Then I acted on the "partially redundant" column. The mechanical half of my session-start routine — the deterministic enumeration that previously ran through model-driven reader agents — moved into a single startup hook script. Roughly three seconds of shell and REST calls, zero model tokens, computing everything the session needs on open: prune-gate status, staleness of the overnight triage file, sprint boundary check, review comments awaiting a reply, git activity, pipeline failures on active repos. The reader agents didn't disappear; they're now the fallback for when a section of the script fails — and every section fails loudly, never silently.
 
@@ -115,7 +114,7 @@ v1.5.0  the commoditisation trim: mechanical half moves to a zero-token
 
 Read that changelog as a trend line and you can see the harness converging on the audit's bottleneck: each version moves work *out* of my attended session — into disposable agent windows, then an unattended cron, now a zero-token hook. And v1.5.0 exists *because* the commoditisation audit identified the trim; the verdict went straight into the version history. That's what "harness as a product" means in practice. Not a philosophy — a workflow. Something shifts (a platform release, an audit finding, a repeated failure), the change lands as a versioned, reasoned, tested increment, and the dashboard shows the result.
 
-## What's next: evals
+## The point of it all: evals
 
 The observatory has a sixth screen, and it's deliberately empty.
 
@@ -124,6 +123,8 @@ The observatory has a sixth screen, and it's deliberately empty.
 
 Versioning tells me *what* changed. Hooks enforce *that* checks run. Neither tells me whether a skill is actually performing — whether v1.5.0's brief is as complete as v1.4.0's, whether a skill's cost is drifting, whether quality is decaying as the harness grows. The schema is stubbed and waiting: per-skill records of sessions sampled, metric scores, notes, over time.
 
-The raw material already exists — my weekly-review skill mines session transcripts for friction. Turning that mining into per-skill metrics is the next increment. Which means the next post writes itself: if the harness is a product, it needs a test suite that scores it. Skills get evals.
+On my home setup I've already added the first feeder: skill-usage tracking. Which skills fire most, across sessions. Usage tells me where performance matters most — the hot skills get measured first, optimised first, maybe restructured first.
 
-The audit said 2.7. The question said "obsolete?". The verdict said: the substrate is free now — good — the product is the layer above, and you're already building it. One version bump at a time.
+And here's the bet all of this is building towards. Right now, frontier models do the orchestration and most of the work. Over time, the lower tiers should take over tasks that today need a frontier model — and the skills and the memory loop are exactly what carry them: a well-written skill plus a well-pruned memory is what makes a cheaper model competent at a task it couldn't do cold. But you can only hand a task down when you can measure what a model is actually capable of with the current skills. That measurement is the evals screen's job. It's also the audit's bottleneck seen from the other side: loops stop terminating in my live attention when cheaper models can be trusted to run them — and trust is a measurement, not a feeling.
+
+The raw material already exists — my weekly-review skill mines session transcripts for friction. Turning that mining into per-skill metrics is the next increment. The audit said 2.7. The verdict said the substrate is free and the product is the layer above. The observatory is that layer's first shipped piece — and evals are how it earns the next one. One version bump at a time.
