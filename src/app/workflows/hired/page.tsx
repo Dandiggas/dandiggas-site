@@ -11,15 +11,15 @@ export const metadata: Metadata = {
 
 const levels = [
   {
-    title: "Level 1: run it by hand. Works for everyone, free.",
+    title: "Level 1: Run it by hand. Works for everyone, free.",
     body: "You need any AI chatbot that can search the web: free ChatGPT, Gemini, Copilot or Perplexity all can. Paste the prompt below with your details each morning with your coffee. Takes about 2 minutes of your time.",
   },
   {
-    title: "Level 2: make it automatic.",
-    body: "ChatGPT has scheduled tasks and Gemini has scheduled actions. Set the prompt to run every weekday morning and the report comes to you. This is the closest to what the video shows without touching code.",
+    title: "Level 2: Make it automatic.",
+    body: "ChatGPT has scheduled tasks, Gemini has scheduled actions, and Claude has scheduled tasks on its paid plans. Set the prompt to run every weekday morning and the report comes to you. This is the closest to what the video shows without touching code.",
   },
   {
-    title: "Level 3: what I actually run. For developers.",
+    title: "Level 3: What I actually run. For developers.",
     body: "An AI agent (I use a coding agent with terminal access) on a cron schedule, weekday mornings, that sweeps the news, drafts the emails and sends the report to my phone. If the words cron and agent harness mean something to you, you can rebuild this in an evening from the prompt below.",
   },
 ];
