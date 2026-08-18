@@ -10,6 +10,9 @@ export interface Post {
   date: string;
   preview: string;
   readTime: string;
+  video?: string;
+  videoPoster?: string;
+  videoCaption?: string;
   content: string;
 }
 
@@ -29,6 +32,9 @@ export function getAllPosts(): Post[] {
         date: data.date || "",
         preview: data.preview || "",
         readTime: data.readTime || "",
+        video: data.video || undefined,
+        videoPoster: data.videoPoster || undefined,
+        videoCaption: data.videoCaption || undefined,
         content,
       };
     });
@@ -48,6 +54,9 @@ export function getPostBySlug(slug: string): Post | null {
     date: data.date || "",
     preview: data.preview || "",
     readTime: data.readTime || "",
+    video: data.video || undefined,
+    videoPoster: data.videoPoster || undefined,
+    videoCaption: data.videoCaption || undefined,
     content,
   };
 }
