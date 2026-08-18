@@ -63,6 +63,25 @@ export default async function PostPage({
             )}
           </div>
         </header>
+        {post.video && (
+          <figure className="mb-8">
+            <video
+              className="w-full rounded-xl border border-neutral-200 dark:border-neutral-800 bg-black"
+              controls
+              preload="metadata"
+              playsInline
+              poster={post.videoPoster}
+            >
+              <source src={post.video} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            {post.videoCaption && (
+              <figcaption className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
+                {post.videoCaption}
+              </figcaption>
+            )}
+          </figure>
+        )}
         <BlogContent html={contentHtml} />
       </article>
     </div>

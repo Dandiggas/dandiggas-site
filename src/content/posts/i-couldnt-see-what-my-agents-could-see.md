@@ -3,6 +3,9 @@ title: "I Couldn't See What My Agents Could See"
 date: "2026-08-14"
 preview: "I use AI agents across three different harnesses every day, and for months I had no idea which of them knew what. So I built myself a control panel. This is how it got birthed, and why observability of your own setup is a different problem from observability of your outputs."
 readTime: "5 min read"
+video: "/blog/agent-estate-walkthrough.mp4"
+videoPoster: "/blog/agent-estate-walkthrough-poster.jpg"
+videoCaption: "A walk through the Agent Estate: every harness, skill, memory note and eval on my machine in one view."
 ---
 
 I use large language models a lot. Not for one product, not at work. On my own machine, for my daily life. Music admin, job applications, coding practice, content, email. Over time those uses hardened into consistent workflows, and the workflows got packaged into skills, which are little instruction files an agent loads so it does a task my way instead of its way.
