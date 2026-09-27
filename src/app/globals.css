@@ -185,3 +185,178 @@ body {
 @media (prefers-reduced-motion: no-preference) {
   .glow-pulse { animation: glow-pulse 7s ease-in-out infinite; }
 }
+
+/* ------------------------------------------------------------------ */
+/* Brim                                                                */
+/* Brim is a product, not a case study, so it gets its own skin rather */
+/* than the site's amber. The palette is lifted straight out of the    */
+/* app: warm paper, a near-black forest green, a soft grey-green panel.*/
+/* Scoped to .brim-root so nothing here leaks into the rest of the     */
+/* site.                                                               */
+/* ------------------------------------------------------------------ */
+/* The deep forest green of the first draft, which Dan prefers
+   (2026-09-27), whatever theme the rest of the site is in. The app's own
+   light colours show in the screenshots. */
+.brim-root,
+body:has(.brim-root) {
+  --brim-paper: #171c15;
+  --brim-ink: #eceee7;
+  --brim-panel: #1f261d;
+  --brim-muted: #949a8f;
+  --brim-hairline: rgba(236, 238, 231, 0.14);
+  color-scheme: dark;
+}
+
+.brim-root {
+  background: var(--brim-paper);
+  color: var(--brim-ink);
+  letter-spacing: -0.011em;
+}
+
+/* The site's header and footer take Brim's colours on its page, so the
+   page reads as one product. */
+body:has(.brim-root),
+body:has(.brim-root) header,
+body:has(.brim-root) footer {
+  background: var(--brim-paper);
+  border-color: var(--brim-hairline);
+}
+body:has(.brim-root) header a,
+body:has(.brim-root) header button,
+body:has(.brim-root) footer div {
+  color: var(--brim-ink);
+}
+
+.brim-root h1,
+.brim-root h2,
+.brim-root h3 {
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.brim-muted {
+  color: var(--brim-muted);
+}
+
+/* The wordmark, matching the app's own lockup: very tight, very heavy. */
+.brim-wordmark {
+  /* The app sets "Brim." in SF Pro Rounded, semibold. */
+  font-family: ui-rounded, "SF Pro Rounded", var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+}
+
+/* A screenshot of the app window: it carries macOS's own shadow, so no
+   frame of our own. */
+.brim-window {
+  filter: drop-shadow(0 30px 40px rgba(41, 51, 38, 0.12));
+}
+
+.brim-chip {
+  border: 1px solid var(--brim-hairline);
+  background: var(--brim-panel);
+  border-radius: 999px;
+  padding: 0.55rem 1.1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.brim-dot {
+  color: #7a8f5c;
+}
+
+/* A soft wash behind the hero, the colour of the app's panel. */
+.brim-glow {
+  background: radial-gradient(
+    60% 90% at 12% 0%,
+    rgba(122, 143, 92, 0.22),
+    transparent 70%
+  );
+}
+
+.brim-band {
+  background: var(--brim-panel);
+  border-block: 1px solid var(--brim-hairline);
+}
+
+.brim-card {
+  border: 1px solid var(--brim-hairline);
+  border-radius: 0.9rem;
+  padding: 1.25rem;
+  background: color-mix(in srgb, var(--brim-paper) 70%, transparent);
+}
+
+.brim-num {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: #7a8f5c;
+}
+
+/* The app's own button, on the web. */
+.brim-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 0.65rem;
+  padding: 0.85rem 1.6rem;
+  font-weight: 600;
+  background: var(--brim-ink);
+  color: var(--brim-paper);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.brim-cta:hover {
+  transform: translateY(-1px);
+}
+
+.brim-cta-idle {
+  background: transparent;
+  color: var(--brim-muted);
+  border: 1px dashed var(--brim-hairline);
+  cursor: default;
+}
+
+.brim-cta-idle:hover {
+  transform: none;
+}
+
+.brim-link {
+  color: var(--brim-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* The screenshot sits on the page like a window, not a flat image. */
+.brim-shot {
+  max-width: 760px;
+  margin-inline: auto;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--brim-hairline);
+  box-shadow:
+    0 2px 6px rgba(35, 43, 32, 0.06),
+    0 24px 60px -20px rgba(35, 43, 32, 0.28);
+}
+
+.brim-sep {
+  color: #7a8f5c;
+}
+
+.brim-road-item {
+  padding-left: 1rem;
+  position: relative;
+  color: var(--brim-ink);
+}
+
+.brim-road-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #7a8f5c;
+}
