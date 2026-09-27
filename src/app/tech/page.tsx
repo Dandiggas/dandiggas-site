@@ -25,6 +25,14 @@ type Project = {
 
 const projects: Project[] = [
   {
+    title: "Brim",
+    description:
+      "Mac app that turns a stems delivery into a ready DAW session: every stem named, placed and playable, with a receipt showing what was imported and what was skipped. Signed and notarised.",
+    tech: ["SwiftUI", "Python", "Ableton", "Logic Pro", "FL Studio", "Pro Tools"],
+    href: "/brim",
+    actions: [{ label: "Open Brim", href: "/brim" }],
+  },
+  {
     title: "ShadowScout",
     description:
       "Autonomous compliance approval agent for shadow AI tools. Searches vendor evidence, maps it to company policy, produces scoped decisions, and monitors approved tools for drift.",
