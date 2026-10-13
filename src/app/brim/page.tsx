@@ -8,15 +8,29 @@ export const metadata: Metadata = {
     "A Mac app that turns a delivery of stems into a session in your DAW, ready to play. Your originals never move.",
 };
 
-// The notarised disk image, shared from Dropbox. Null until Dan has opened
-// it on a second Mac (MUS-139); until then the buttons say
-// "Coming soon".
-const RELEASE: { version: string; url: string | null } = {
-  version: "0.1.1",
-  url: null,
-};
+// The notarised installers (signed and approved by Apple), served from
+// public/brim/download. Both builds have the same features. Source of truth
+// for builds and minimum macOS: brim/releases/README.md.
+const VERSION = "0.1.4";
 
-const REQUIREMENTS = "Apple silicon Mac · macOS 13 or later · Free";
+const BUILDS = [
+  {
+    name: "Apple silicon",
+    machines: "Macs with an M1 chip or newer",
+    macos: "macOS 12 Monterey or later",
+    url: "/brim/download/Brim-0.1.4-Apple-Silicon.dmg",
+    size: "36 MB",
+  },
+  {
+    name: "Intel",
+    machines: "Macs with an Intel processor",
+    macos: "macOS 12 Monterey or later",
+    url: "/brim/download/Brim-0.1.4-Intel.dmg",
+    size: "43 MB",
+  },
+];
+
+const REQUIREMENTS = `Version ${VERSION} · Apple silicon or Intel · macOS 12 or later · Free`;
 
 const does = [
   [
@@ -40,13 +54,33 @@ const does = [
 const daws = ["Ableton Live", "Logic Pro", "FL Studio", "Pro Tools"];
 
 function Download({ className = "" }: { className?: string }) {
-  return RELEASE.url ? (
-    <a href={RELEASE.url} download className={`brim-cta ${className}`}>
-      Download for Mac
-      <span aria-hidden="true">↓</span>
-    </a>
-  ) : (
-    <span className={`brim-cta brim-cta-idle ${className}`}>Coming soon</span>
+  return (
+    <div className={className}>
+      <div className="flex flex-col gap-4 sm:flex-row">
+        {BUILDS.map((build, i) => (
+          <div key={build.name} className="flex flex-col">
+            <a
+              href={build.url}
+              download
+              className={`brim-cta ${i > 0 ? "brim-cta-alt" : ""}`}
+            >
+              Download for {build.name}
+              <span aria-hidden="true">↓</span>
+            </a>
+            <p className="brim-muted mt-2 text-sm leading-snug">
+              {build.machines}
+              <br />
+              {build.macos} · {build.size}
+            </p>
+          </div>
+        ))}
+      </div>
+      <p className="brim-muted mt-4 max-w-md text-sm leading-relaxed">
+        Not sure which Mac you have? Open the Apple menu, then About This Mac.
+        If it says Chip, you have Apple silicon. If it says Processor, you
+        have Intel.
+      </p>
+    </div>
   );
 }
 
@@ -70,9 +104,7 @@ export default function BrimPage() {
             </p>
             <div className="mt-9">
               <Download />
-              <p className="brim-muted mt-4 text-sm">
-                Version {RELEASE.version} · {REQUIREMENTS}
-              </p>
+              <p className="brim-muted mt-4 text-sm">Version {VERSION} · Free</p>
             </div>
           </div>
 

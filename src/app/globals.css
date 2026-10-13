@@ -311,6 +311,12 @@ body:has(.brim-root) footer div {
   transform: translateY(-1px);
 }
 
+.brim-cta-alt {
+  background: transparent;
+  color: var(--brim-ink);
+  border: 1px solid var(--brim-ink);
+}
+
 .brim-cta-idle {
   background: transparent;
   color: var(--brim-muted);
