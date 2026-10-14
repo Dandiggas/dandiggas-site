@@ -11,21 +11,21 @@ export const metadata: Metadata = {
 // The notarised installers (signed and approved by Apple), served from
 // public/brim/download. Both builds have the same features. Source of truth
 // for builds and minimum macOS: brim/releases/README.md.
-const VERSION = "0.1.4";
+const VERSION = "0.1.5";
 
 const BUILDS = [
   {
     name: "Apple silicon",
     machines: "Macs with an M1 chip or newer",
     macos: "macOS 12 Monterey or later",
-    url: "/brim/download/Brim-0.1.4-Apple-Silicon.dmg",
+    url: "/brim/download/Brim-0.1.5-Apple-Silicon.dmg",
     size: "36 MB",
   },
   {
     name: "Intel",
     machines: "Macs with an Intel processor",
     macos: "macOS 12 Monterey or later",
-    url: "/brim/download/Brim-0.1.4-Intel.dmg",
+    url: "/brim/download/Brim-0.1.5-Intel.dmg",
     size: "43 MB",
   },
 ];
