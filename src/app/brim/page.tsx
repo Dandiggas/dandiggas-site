@@ -87,6 +87,23 @@ function Download({ className = "" }: { className?: string }) {
 export default function BrimPage() {
   return (
     <div className="brim-root">
+      {/* Demo: the first thing a visitor sees. Muted autoplay so it starts on
+          its own; controls let them turn the sound on. */}
+      <section className="mx-auto max-w-6xl px-6 pt-10 sm:pt-14">
+        <video
+          src="/brim/brim-demo.mp4"
+          poster="/brim/brim-demo-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls
+          preload="metadata"
+          aria-label="Brim demo: one delivery of stems becomes a ready session in Ableton Live, Logic Pro, Pro Tools and FL Studio."
+          className="brim-demo aspect-video h-auto w-full"
+        />
+      </section>
+
       {/* Hero: what it is, the download, and the app itself */}
       <section className="relative overflow-hidden">
         <div className="brim-glow pointer-events-none absolute inset-x-0 top-0 h-[560px]" />

@@ -346,6 +346,20 @@ body:has(.brim-root) footer div {
     0 24px 60px -20px rgba(35, 43, 32, 0.28);
 }
 
+/* The demo video at the top of /brim: same frame as .brim-shot, wider so
+   the four DAW screens stay readable. */
+.brim-demo {
+  display: block;
+  max-width: 960px;
+  margin-inline: auto;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--brim-hairline);
+  box-shadow:
+    0 2px 6px rgba(35, 43, 32, 0.06),
+    0 24px 60px -20px rgba(35, 43, 32, 0.28);
+}
+
 .brim-sep {
   color: #7a8f5c;
 }
