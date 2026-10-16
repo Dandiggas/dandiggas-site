@@ -8,14 +8,14 @@ export const metadata: Metadata = {
     "A Mac app that turns a delivery of stems into a session in your DAW, ready to play. Your originals never move.",
 };
 
-// Brim is sold through Lemon Squeezy (store "Brim", live product 1444195).
+import { buyPath } from "./checkout";
+
+// Brim is sold through Lemon Squeezy; the checkout link lives in ./checkout.ts.
 // After payment, Lemon Squeezy emails the buyer both notarised installers.
 // The app does not check licence keys yet, so the page does not mention them.
 // Source of truth for builds and minimum macOS: brim/releases/README.md.
 const VERSION = "0.1.5";
 const PRICE = "£29";
-const CHECKOUT_URL =
-  "https://brim.lemonsqueezy.com/checkout/buy/24e2a8d2-b617-4aa1-b6bb-413f439a774b";
 
 const REQUIREMENTS = `Version ${VERSION} · Apple silicon or Intel · macOS 12 or later`;
 
@@ -40,10 +40,11 @@ const does = [
 
 const daws = ["Ableton Live", "Logic Pro", "FL Studio", "Pro Tools"];
 
-function Buy({ className = "" }: { className?: string }) {
+// `from` names the button so the analytics path shows which one was clicked.
+function Buy({ from, className = "" }: { from: string; className?: string }) {
   return (
     <div className={className}>
-      <a href={CHECKOUT_URL} className="brim-cta">
+      <a href={buyPath(from)} className="brim-cta">
         Buy Brim · {PRICE}
         <span aria-hidden="true">→</span>
       </a>
@@ -91,7 +92,7 @@ export default function BrimPage() {
               DAW, ready to play.
             </p>
             <div className="mt-9">
-              <Buy />
+              <Buy from="hero" />
               <p className="brim-muted mt-4 text-sm">{REQUIREMENTS}</p>
             </div>
           </div>
@@ -162,7 +163,7 @@ export default function BrimPage() {
             </p>
             <p className="brim-muted mt-2 text-sm">{REQUIREMENTS}</p>
           </div>
-          <Buy />
+          <Buy from="close" />
         </div>
         <p className="brim-muted mx-auto max-w-6xl px-6 pb-10 text-sm">
           Made by{" "}

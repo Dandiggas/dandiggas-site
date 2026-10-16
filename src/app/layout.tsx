@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
@@ -42,6 +43,8 @@ export default function RootLayout({
             </div>
           </footer>
         </ThemeProvider>
+        {/* Vercel Web Analytics: pageviews and referrers, site wide. */}
+        <Analytics />
       </body>
     </html>
   );
