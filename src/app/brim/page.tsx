@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 };
 
 // Brim is sold through Lemon Squeezy (store "Brim", live product 1444195).
-// After payment, Lemon Squeezy emails the buyer a licence key and both
-// notarised installers. Source of truth for builds and minimum macOS:
+// After payment, Lemon Squeezy emails the buyer both notarised installers.
+// The app does not check licence keys yet, so the page does not mention them. Source of truth for builds and minimum macOS:
 // brim/releases/README.md.
 const VERSION = "0.1.5";
 const PRICE = "£29";
@@ -49,7 +49,7 @@ function Buy({ className = "" }: { className?: string }) {
       </a>
       <p className="brim-muted mt-3 max-w-md text-sm leading-relaxed">
         One payment, yours to keep. You get the installers for Apple silicon
-        and Intel Macs by email, with your licence key.
+        and Intel Macs by email.
       </p>
     </div>
   );
