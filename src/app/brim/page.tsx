@@ -8,34 +8,16 @@ export const metadata: Metadata = {
     "A Mac app that turns a delivery of stems into a session in your DAW, ready to play. Your originals never move.",
 };
 
-// The notarised installers (signed and approved by Apple), served from
-// public/brim/download. Both builds have the same features. Source of truth
-// for builds and minimum macOS: brim/releases/README.md.
+// Brim is sold through Lemon Squeezy (store "Brim", live product 1444195).
+// After payment, Lemon Squeezy emails the buyer a licence key and both
+// notarised installers. Source of truth for builds and minimum macOS:
+// brim/releases/README.md.
 const VERSION = "0.1.5";
-
-const BUILDS = [
-  {
-    name: "Apple silicon",
-    machines: "Macs with an M1 chip or newer",
-    macos: "macOS 12 Monterey or later",
-    url: "/brim/download/Brim-0.1.5-Apple-Silicon.dmg",
-    size: "36 MB",
-  },
-  {
-    name: "Intel",
-    machines: "Macs with an Intel processor",
-    macos: "macOS 12 Monterey or later",
-    url: "/brim/download/Brim-0.1.5-Intel.dmg",
-    size: "43 MB",
-  },
-];
-
-const REQUIREMENTS = `Version ${VERSION} · Apple silicon or Intel · macOS 12 or later · Free`;
-
-// Lemon Squeezy live checkout for the Brim product (store "Brim"). Brim stays
-// a free download; buying it is optional for now.
-const CHECKOUT_URL = "https://brim.lemonsqueezy.com/checkout/buy/24e2a8d2-b617-4aa1-b6bb-413f439a774b";
 const PRICE = "£29";
+const CHECKOUT_URL =
+  "https://brim.lemonsqueezy.com/checkout/buy/24e2a8d2-b617-4aa1-b6bb-413f439a774b";
+
+const REQUIREMENTS = `Version ${VERSION} · Apple silicon or Intel · macOS 12 or later`;
 
 const does = [
   [
@@ -58,46 +40,18 @@ const does = [
 
 const daws = ["Ableton Live", "Logic Pro", "FL Studio", "Pro Tools"];
 
-function Download({ className = "" }: { className?: string }) {
-  return (
-    <div className={className}>
-      <div className="flex flex-col gap-4 sm:flex-row">
-        {BUILDS.map((build, i) => (
-          <div key={build.name} className="flex flex-col">
-            <a
-              href={build.url}
-              download
-              className={`brim-cta ${i > 0 ? "brim-cta-alt" : ""}`}
-            >
-              Download for {build.name}
-              <span aria-hidden="true">↓</span>
-            </a>
-            <p className="brim-muted mt-2 text-sm leading-snug">
-              {build.machines}
-              <br />
-              {build.macos} · {build.size}
-            </p>
-          </div>
-        ))}
-      </div>
-      <p className="brim-muted mt-4 max-w-md text-sm leading-relaxed">
-        Not sure which Mac you have? Open the Apple menu, then About This Mac.
-        If it says Chip, you have Apple silicon. If it says Processor, you
-        have Intel.
-      </p>
-    </div>
-  );
-}
-
 function Buy({ className = "" }: { className?: string }) {
   return (
-    <p className={`brim-muted text-sm leading-relaxed ${className}`}>
-      If Brim saves you time, you can{" "}
-      <a href={CHECKOUT_URL} className="brim-link">
-        buy it for {PRICE}
+    <div className={className}>
+      <a href={CHECKOUT_URL} className="brim-cta">
+        Buy Brim · {PRICE}
+        <span aria-hidden="true">→</span>
       </a>
-      .
-    </p>
+      <p className="brim-muted mt-3 max-w-md text-sm leading-relaxed">
+        One payment, yours to keep. You get the installers for Apple silicon
+        and Intel Macs by email, with your licence key.
+      </p>
+    </div>
   );
 }
 
@@ -121,7 +75,7 @@ export default function BrimPage() {
         />
       </section>
 
-      {/* Hero: what it is, the download, and the app itself */}
+      {/* Hero: what it is, the buy button, and the app itself */}
       <section className="relative overflow-hidden">
         <div className="brim-glow pointer-events-none absolute inset-x-0 top-0 h-[560px]" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pb-16 pt-16 sm:pt-24 lg:grid-cols-[1fr_1.05fr]">
@@ -137,9 +91,8 @@ export default function BrimPage() {
               DAW, ready to play.
             </p>
             <div className="mt-9">
-              <Download />
-              <p className="brim-muted mt-4 text-sm">Version {VERSION} · Free</p>
-              <Buy className="mt-2" />
+              <Buy />
+              <p className="brim-muted mt-4 text-sm">{REQUIREMENTS}</p>
             </div>
           </div>
 
@@ -208,9 +161,8 @@ export default function BrimPage() {
               Your next delivery, ready to play.
             </p>
             <p className="brim-muted mt-2 text-sm">{REQUIREMENTS}</p>
-            <Buy className="mt-1" />
           </div>
-          <Download />
+          <Buy />
         </div>
         <p className="brim-muted mx-auto max-w-6xl px-6 pb-10 text-sm">
           Made by{" "}
