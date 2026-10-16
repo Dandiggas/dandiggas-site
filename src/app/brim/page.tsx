@@ -32,6 +32,11 @@ const BUILDS = [
 
 const REQUIREMENTS = `Version ${VERSION} · Apple silicon or Intel · macOS 12 or later · Free`;
 
+// Lemon Squeezy live checkout for the Brim product (store "Brim"). Brim stays
+// a free download; buying it is optional for now.
+const CHECKOUT_URL = "https://brim.lemonsqueezy.com/checkout/buy/24e2a8d2-b617-4aa1-b6bb-413f439a774b";
+const PRICE = "£29";
+
 const does = [
   [
     "Drop in the delivery",
@@ -84,6 +89,18 @@ function Download({ className = "" }: { className?: string }) {
   );
 }
 
+function Buy({ className = "" }: { className?: string }) {
+  return (
+    <p className={`brim-muted text-sm leading-relaxed ${className}`}>
+      If Brim saves you time, you can{" "}
+      <a href={CHECKOUT_URL} className="brim-link">
+        buy it for {PRICE}
+      </a>
+      .
+    </p>
+  );
+}
+
 export default function BrimPage() {
   return (
     <div className="brim-root">
@@ -122,6 +139,7 @@ export default function BrimPage() {
             <div className="mt-9">
               <Download />
               <p className="brim-muted mt-4 text-sm">Version {VERSION} · Free</p>
+              <Buy className="mt-2" />
             </div>
           </div>
 
@@ -190,6 +208,7 @@ export default function BrimPage() {
               Your next delivery, ready to play.
             </p>
             <p className="brim-muted mt-2 text-sm">{REQUIREMENTS}</p>
+            <Buy className="mt-1" />
           </div>
           <Download />
         </div>
