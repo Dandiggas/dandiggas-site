@@ -8,3 +8,12 @@ export const CHECKOUT_URL =
 export function buyPath(from: string) {
   return `/brim/buy?from=${encodeURIComponent(from)}`;
 }
+
+// The free 7 day trial is a £0 Lemon Squeezy product that emails a key.
+// TEST-MODE checkout until the live twin exists (Linear MUS-258); one line to swap.
+export const TRIAL_CHECKOUT_URL =
+  "https://brim.lemonsqueezy.com/checkout/buy/059aa60d-32df-4040-8242-e9944a6ad503";
+
+export function trialPath(from: string) {
+  return `/brim/trial?from=${encodeURIComponent(from)}`;
+}

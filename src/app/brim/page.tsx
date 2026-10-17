@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "A Mac app that turns a delivery of stems into a session in your DAW, ready to play. Your originals never move.",
 };
 
-import { buyPath } from "./checkout";
+import { buyPath, trialPath } from "./checkout";
 
 // Brim is sold through Lemon Squeezy; the checkout link lives in ./checkout.ts.
 // After payment, Lemon Squeezy emails the buyer both notarised installers.
@@ -51,6 +51,11 @@ function Buy({ from, className = "" }: { from: string; className?: string }) {
       <p className="brim-muted mt-3 max-w-md text-sm leading-relaxed">
         One payment, yours to keep. You get the installers for Apple silicon
         and Intel Macs by email.
+      </p>
+      <p className="brim-muted mt-3 text-sm">
+        <a href={trialPath(from)} className="brim-link">
+          No key yet? Start a free 7 day trial
+        </a>
       </p>
     </div>
   );
