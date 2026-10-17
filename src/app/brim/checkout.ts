@@ -9,10 +9,10 @@ export function buyPath(from: string) {
   return `/brim/buy?from=${encodeURIComponent(from)}`;
 }
 
-// The free 7 day trial is a £0 Lemon Squeezy product that emails a key.
-// TEST-MODE checkout until the live twin exists (Linear MUS-258); one line to swap.
+// The free 7 day trial is a £0 Lemon Squeezy product (live product 1447910)
+// that emails a key with a 7 day life, good on one Mac.
 export const TRIAL_CHECKOUT_URL =
-  "https://brim.lemonsqueezy.com/checkout/buy/059aa60d-32df-4040-8242-e9944a6ad503";
+  "https://brim.lemonsqueezy.com/checkout/buy/884a537d-63c4-462b-bb63-c53211422860";
 
 export function trialPath(from: string) {
   return `/brim/trial?from=${encodeURIComponent(from)}`;
