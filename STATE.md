@@ -2,7 +2,7 @@
 
 ## Brim trial link, 17 October 2026
 
-/brim now carries "No key yet? Start a free 7 day trial" under both Buy buttons. It goes through /brim/trial?from=hero|close (noindex pass-through, same GoToCheckout component as /brim/buy, now taking url/event/heading props) so a trial click is a counted pageview; `track("trial_click")` also fires for a future Pro plan. TRIAL_CHECKOUT_URL in src/app/brim/checkout.ts is the TEST-MODE Lemon Squeezy product until Dan creates the live twin (Linear MUS-258); swap that one constant. Commit 9d30a93, pushed, deployed. PROVEN: live HTML carries the link; a Safari visit landed on the "Brim Trial, FREE" checkout; Vercel API reports /brim/trial 1 pageview.
+/brim now carries "No key yet? Start a free 7 day trial" under both Buy buttons. It goes through /brim/trial?from=hero|close (noindex pass-through, same GoToCheckout component as /brim/buy, now taking url/event/heading props) so a trial click is a counted pageview; `track("trial_click")` also fires for a future Pro plan. TRIAL_CHECKOUT_URL in src/app/brim/checkout.ts points at the LIVE Brim Trial product 1447910 since 35e96e1 (17 Oct 07:00, live: /brim/trial redirects to .../buy/884a537d...; the checkout shows "Brim Trial, FREE" with no test banner). Commit 9d30a93, pushed, deployed. PROVEN: live HTML carries the link; a Safari visit landed on the "Brim Trial, FREE" checkout; Vercel API reports /brim/trial 1 pageview.
 
 ## Brim page tracking, 16 October 2026
 
