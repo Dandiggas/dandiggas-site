@@ -14,7 +14,7 @@ import { buyPath, trialPath } from "./checkout";
 // After payment, Lemon Squeezy emails the buyer both notarised installers.
 // The app does not check licence keys yet, so the page does not mention them.
 // Source of truth for builds and minimum macOS: brim/releases/README.md.
-const VERSION = "0.1.5";
+const VERSION = "0.1.7";
 const PRICE = "£29";
 
 const REQUIREMENTS = `Version ${VERSION} · Apple silicon or Intel · macOS 12 or later`;
@@ -38,7 +38,7 @@ const does = [
   ],
 ];
 
-const daws = ["Ableton Live", "Logic Pro", "FL Studio", "Pro Tools"];
+const daws = ["Ableton Live", "Logic Pro", "FL Studio", "Pro Tools", "Studio One"];
 
 // `from` names the button so the analytics path shows which one was clicked.
 function Buy({ from, className = "" }: { from: string; className?: string }) {
@@ -76,7 +76,7 @@ export default function BrimPage() {
           playsInline
           controls
           preload="metadata"
-          aria-label="Brim demo: one delivery of stems becomes a ready session in Ableton Live, Logic Pro, Pro Tools and FL Studio."
+          aria-label="Brim demo: one delivery of stems becomes a ready session in Ableton Live, Logic Pro, Pro Tools, FL Studio and Studio One."
           className="brim-demo aspect-video h-auto w-full"
         />
       </section>
