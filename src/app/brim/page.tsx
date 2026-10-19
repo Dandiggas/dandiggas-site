@@ -14,7 +14,7 @@ import { buyPath, trialPath } from "./checkout";
 // After payment, Lemon Squeezy emails the buyer both notarised installers.
 // The app does not check licence keys yet, so the page does not mention them.
 // Source of truth for builds and minimum macOS: brim/releases/README.md.
-const VERSION = "0.1.8";
+const VERSION = "0.1.9";
 const PRICE = "£29";
 
 const REQUIREMENTS = `Version ${VERSION} · Apple silicon or Intel · macOS 12 or later`;
