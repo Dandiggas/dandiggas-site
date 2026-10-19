@@ -14,7 +14,7 @@ import { buyPath, trialPath } from "./checkout";
 // After payment, Lemon Squeezy emails the buyer both notarised installers.
 // Since 0.1.6 the app asks for that key on first launch (or a 7 day trial key).
 // Source of truth for builds and minimum macOS: brim/docs/releasing.md.
-const VERSION = "0.1.9";
+const VERSION = "0.1.10";
 const PRICE = "£29";
 
 const REQUIREMENTS = `Version ${VERSION} · Apple silicon or Intel · macOS 12 or later`;
