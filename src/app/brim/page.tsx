@@ -12,8 +12,8 @@ import { buyPath, trialPath } from "./checkout";
 
 // Brim is sold through Lemon Squeezy; the checkout link lives in ./checkout.ts.
 // After payment, Lemon Squeezy emails the buyer both notarised installers.
-// The app does not check licence keys yet, so the page does not mention them.
-// Source of truth for builds and minimum macOS: brim/releases/README.md.
+// Since 0.1.6 the app asks for that key on first launch (or a 7 day trial key).
+// Source of truth for builds and minimum macOS: brim/docs/releasing.md.
 const VERSION = "0.1.9";
 const PRICE = "£29";
 
