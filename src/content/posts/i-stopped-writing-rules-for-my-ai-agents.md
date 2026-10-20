@@ -19,9 +19,7 @@ A written rule is a reminder. A reminder is just text inside the working memory 
 
 When I grouped the session logs, four engineering problems stood out.
 
-**1. Skipping installed workflow skills.** I checked 451 hand-run sessions across Claude Code, Codex, and Hermes to see how often my reusable workflow guides (skills) actually loaded. My plain-English explainer skill (`explain`) loaded 0 times out of 35 sessions where I asked for it. My code-style specification (`readable-code`) loaded 0 times out of 29 coding sessions.
-
-Two platform limits caused this failure. First, I had 157 skills installed, and the harness drops the descriptions of the least-used skills when the list exceeds its context budget. About 70 of my skills appeared to the model as a bare name with no description. Second, I type short commands like "English" or "red first", which did not match the formal descriptions in the skill headers.
+**1. Skipping workflow skills.** My rules say to load my plain-English explainer skill (`explain`) when I ask for a simple breakdown, and my code-style skill (`readable-code`) before editing code. Across 451 sessions, `explain` loaded 0 times out of 35. `readable-code` loaded 0 times out of 29. My real prompts use shorthand like "English" or "red first" (plus voice-dictation mishears from Wispr Flow), which did not match the formal descriptions in the skill headers.
 
 **2. Starting code edits before design sign-off.** On larger builds, I want the agent to state the goal, list the affected files, and wait for my confirmation before touching the repository. A markdown instruction to wait works most of the time, but when a model is confident it calls file-edit tools in the same turn as its plan.
 
@@ -33,19 +31,19 @@ Two platform limits caused this failure. First, I had 157 skills installed, and 
 
 Instead of writing longer rules, I built 13 small code guards (Claude Code mods) that sit between the prompt, the model, and the tool runner. Each guard intercepts either the prompt I submit (`prompt.submit`), the sub-agent spawn (`agent.spawn`), or the tool the agent tries to run (`tool.call`).
 
-### 1. Routing skills by real phrases and blocking unguided edits (`skill-router` and `readable-code-guard`)
+### 1. Rotating the active skill menu and routing by real phrases (`skill-router` and `readable-code-guard`)
 
-To fix the 0-out-of-35 skill loading failure, I first set 59 rarely used third-party skills to name-only in my configuration. That brought all 218 of my active skills back under the description budget.
+My full skill library holds over 300 skills in a central index (`~/.agents/skills/`). Loading all of them at startup would overflow the tool's description budget and hide the descriptions of the bottom skills. Instead, a weekly usage scanner (`skills-usage-scan.py`) reads 30 days of session logs across all my agents and syncs only the active tier into each harness, while everything else stays lazy-loadable from the library index.
 
-Next, I built a word-to-skill lookup table (`skill-routes.json`) from the exact phrases in my session logs, including voice-dictation mishears from Wispr Flow (such as "ScalaDraw" for Excalidraw and "Brimble" for Brim). That lookup table alone matched 45% of my real prompts, up from 29%.
+To fix the 0-out-of-35 trigger miss on active skills, I built a word-to-skill lookup table (`skill-routes.json`) from the exact phrases in my session logs, including voice-dictation mishears from Wispr Flow (such as "ScalaDraw" for Excalidraw and "Brimble" for Brim). That lookup table alone matched 45% of my real prompts, up from 29%.
 
 The `skill-router` guard runs on every prompt I type:
 
 1. Match the prompt against the word-to-skill table first.
-2. If no word matches and the prompt has 6 or more words, ask a small, fast model (Haiku) to classify the prompt against my skill list.
+2. If no word matches and the prompt has 6 or more words, ask a small, fast model (Haiku) to classify the prompt against my active skill list.
 3. Attach the full text of the matched skill (`SKILL.md`) to the prompt once per session, and send a one-line reminder on later turns.
 
-For coding repositories, I paired the router with `readable-code-guard`. That guard blocks file modifications (`Edit` and `Write` tool calls) inside my main project repositories until `skill-router` has attached the `readable-code` specification to the session.
+For coding repositories, I paired the router with `readable-code-guard`. That guard blocks file modifications (`Edit` and `Write` tool calls) inside my main project repositories until `skill-router` has attached the `readable-code` skill to the session.
 
 ### 2. Locking outward actions in the tool runner (`send-gate`)
 

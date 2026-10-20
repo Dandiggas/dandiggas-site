@@ -1,5 +1,11 @@
 # Site state
 
+## Published, 20 October 2026
+
+Blog: https://tech.dandiggas.com/posts/i-stopped-writing-rules-for-my-ai-agents
+
+Site commit `e30196e` (`src/content/posts/i-stopped-writing-rules-for-my-ai-agents.md`) pushed to `origin/main` and verified live (HTTP 200, title `<title>I Typed &#x27;I Told You&#x27; 117 Times. Then I Stopped Writing Rules for My AI Agents. — Dan Diggas</title>`). LinkedIn companion draft at `~/Desktop/Inbox/2026-10-20-linkedin-post-code-guards.md` opened for Dan to post manually.
+
 ## Brim trial link, 17 October 2026
 
 /brim now carries "No key yet? Start a free 7 day trial" under both Buy buttons. It goes through /brim/trial?from=hero|close (noindex pass-through, same GoToCheckout component as /brim/buy, now taking url/event/heading props) so a trial click is a counted pageview; `track("trial_click")` also fires for a future Pro plan. TRIAL_CHECKOUT_URL in src/app/brim/checkout.ts points at the LIVE Brim Trial product 1447910 since 35e96e1 (17 Oct 07:00, live: /brim/trial redirects to .../buy/884a537d...; the checkout shows "Brim Trial, FREE" with no test banner). Commit 9d30a93, pushed, deployed. PROVEN: live HTML carries the link; a Safari visit landed on the "Brim Trial, FREE" checkout; Vercel API reports /brim/trial 1 pageview.
