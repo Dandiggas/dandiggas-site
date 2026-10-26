@@ -39,3 +39,9 @@ Dan: "it's now a paid thing, take all the free stuff off". /brim now shows "Buy 
 - Vercel reconnected via `vercel git connect` (link.repoId 1422553659, prod branch main). Production deploy dpl_68N5Z4zJtRQ383Z5ChbDegAihrSB from main READY; /brim checked live.
 - Also c06206b: licence-key wording removed from the buy note.
 - Backup of pre-scrub history: ~/Desktop/Archive/dandiggas-site-pre-scrub-2026-10-16.bundle
+
+## Brim free download, 26 October 2026 (branch brim-free, commit 87cb3a4, NOT pushed)
+
+- /brim: two download buttons (Apple silicon, Intel) through /brim/get, a counted pass-through, to public/brim/download/Brim-0.1.12-*.dmg. No price, buy or trial text.
+- /brim/buy and /brim/trial redirect (307) to /brim, so older apps' licence screen links land on the free download. checkout.ts, buy and trial pages removed.
+- Checked on a local next start: links, redirects, pass-through target. Not deployed: the 0.1.12 installers are not in public/ yet.
