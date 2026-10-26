@@ -8,14 +8,9 @@ export const metadata: Metadata = {
     "A Mac app that turns a delivery of stems into a session in your DAW, ready to play. Your originals never move.",
 };
 
-import { buyPath, trialPath } from "./checkout";
+import { BUILDS, VERSION, getPath } from "./downloads";
 
-// Brim is sold through Lemon Squeezy; the checkout link lives in ./checkout.ts.
-// After payment, Lemon Squeezy emails the buyer both notarised installers.
-// Since 0.1.6 the app asks for that key on first launch (or a 7 day trial key).
-// Source of truth for builds and minimum macOS: brim/docs/releasing.md.
-const VERSION = "0.1.11";
-const PRICE = "£29";
+// Brim is free (26 Oct 2026): two download buttons, no key. See ./downloads.ts.
 
 const REQUIREMENTS = `Version ${VERSION} · Apple silicon or Intel · macOS 12 or later`;
 
@@ -41,21 +36,20 @@ const does = [
 const daws = ["Ableton Live", "Logic Pro", "FL Studio", "Pro Tools", "Studio One"];
 
 // `from` names the button so the analytics path shows which one was clicked.
-function Buy({ from, className = "" }: { from: string; className?: string }) {
+function Download({ from, className = "" }: { from: string; className?: string }) {
   return (
     <div className={className}>
-      <a href={buyPath(from)} className="brim-cta">
-        Buy Brim · {PRICE}
-        <span aria-hidden="true">→</span>
-      </a>
+      <div className="flex flex-wrap gap-3">
+        {BUILDS.map((build) => (
+          <a key={build.id} href={getPath(build, from)} className="brim-cta">
+            Download for {build.name}
+            <span aria-hidden="true">↓</span>
+          </a>
+        ))}
+      </div>
       <p className="brim-muted mt-3 max-w-md text-sm leading-relaxed">
-        One payment, yours to keep. You get the installers for Apple silicon
-        and Intel Macs by email.
-      </p>
-      <p className="brim-muted mt-3 text-sm">
-        <a href={trialPath(from)} className="brim-link">
-          No key yet? Start a free 7 day trial
-        </a>
+        Free. No account and no key. Not sure which Mac you have? Apple menu,
+        About This Mac: an M chip is Apple silicon.
       </p>
     </div>
   );
@@ -81,7 +75,7 @@ export default function BrimPage() {
         />
       </section>
 
-      {/* Hero: what it is, the buy button, and the app itself */}
+      {/* Hero: what it is, the downloads, and the app itself */}
       <section className="relative overflow-hidden">
         <div className="brim-glow pointer-events-none absolute inset-x-0 top-0 h-[560px]" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pb-16 pt-16 sm:pt-24 lg:grid-cols-[1fr_1.05fr]">
@@ -97,7 +91,7 @@ export default function BrimPage() {
               DAW, ready to play.
             </p>
             <div className="mt-9">
-              <Buy from="hero" />
+              <Download from="hero" />
               <p className="brim-muted mt-4 text-sm">{REQUIREMENTS}</p>
             </div>
           </div>
@@ -168,7 +162,7 @@ export default function BrimPage() {
             </p>
             <p className="brim-muted mt-2 text-sm">{REQUIREMENTS}</p>
           </div>
-          <Buy from="close" />
+          <Download from="close" />
         </div>
         <p className="brim-muted mx-auto max-w-6xl px-6 pb-10 text-sm">
           Made by{" "}

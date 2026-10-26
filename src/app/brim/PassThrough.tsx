@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import { track } from "@vercel/analytics";
 
+// A counted pass-through: the visitor lands here first, so each click shows
+// up in Vercel Web Analytics as a pageview of this path, then goes on to `url`.
 // The analytics script loads deferred and sets window.vai once it has run and
 // sent the pageview. Leaving before that loses the count, so wait for it,
 // give the beacon a moment, then hand over. Never wait longer than the cap.
@@ -18,11 +20,12 @@ declare global {
 
 type Props = {
   url: string;
-  event: "buy_click" | "trial_click";
+  event: "download_click";
   heading: string;
+  fallback: string;
 };
 
-export function GoToCheckout({ url, event, heading }: Props) {
+export function PassThrough({ url, event, heading, fallback }: Props) {
   useEffect(() => {
     const from = new URLSearchParams(window.location.search).get("from") ?? "";
     // Ignored on the Hobby plan; starts counting on Pro.
@@ -47,7 +50,7 @@ export function GoToCheckout({ url, event, heading }: Props) {
       <p className="brim-muted mt-4">
         If nothing happens,{" "}
         <a href={url} className="brim-link">
-          continue to Lemon Squeezy
+          {fallback}
         </a>
         .
       </p>
