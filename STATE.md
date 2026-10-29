@@ -1,6 +1,12 @@
 # Site state
 
-## Draft, 29 October 2026: revoke-an-AI-agent post (branch draft/revoke-an-ai-agent, commit 5a387d0, NOT pushed)
+## Published, 29 October 2026: revoke-an-AI-agent post
+
+Blog: https://tech.dandiggas.com/posts/what-does-it-actually-mean-to-revoke-an-ai-agent (main b78f4f1, pushed, live HTTP 200)
+LinkedIn: https://www.linkedin.com/feed/update/urn:li:activity:7521511751868407808/ (flyer + in-person photo, Hammed Ajibade and Snyk tagged, posted via Dia, read back on screen)
+X: https://x.com/Dandiggastech/status/2115744689944940923 (2 photos, link in reply 2115744711474335978)
+
+### Earlier draft notes
 
 - Post: src/content/posts/what-does-it-actually-mean-to-revoke-an-ai-agent.md, photo public/blog/agent-revocation/your-agent-is-you.jpg (location data stripped, cropped to the slide).
 - From AI Security Night London (Snyk, 28 Oct), Hammed Ajibade's talk. Framed as "his talk got me thinking". Gerald not mentioned.
