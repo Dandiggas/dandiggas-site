@@ -1,17 +1,21 @@
 ---
 title: "What Does It Actually Mean to Revoke an AI Agent?"
 date: "2026-10-29"
-preview: "A talk at AI Security Night London asked how you revoke an AI agent. On the way home I kept asking: revoke what? The process, the keys, the work already running, or the damage already done?"
+preview: "At AI Security Night London, one talk asked how you revoke an AI agent. On the way home I kept asking: revoke what? The process, the keys, the work already running, or the damage already done?"
 readTime: "7 min read"
 ---
 
-Last night I went to AI Security Night at Snyk's London office. Hammed Ajibade, Lead Software Engineer at Pulse, gave a talk called "How Do You Revoke an AI Agent?"
+Last night I went to [AI Security Night](https://www.meetup.com/aiseceng-london/events/316997681/), run by the AI Security Engineers London community at Snyk's office in Euston.
 
-One slide stuck with me. It was called "The same-user problem". You sign in as HAMMED@WORK. Your agent signs in as HAMMED@WORK. One user, to every system it touches. You can't narrow it, stop it or audit it without doing the same to you.
+[![AI Security Night London: Revoking Agents and the Rise of the AI Security Engineer, 28 October, Snyk London.](/blog/agent-revocation/ai-security-night-london.jpg)](https://www.meetup.com/aiseceng-london/events/316997681/)
 
-![Hammed Ajibade's "Your agent is you" slide at AI Security Night London.](/blog/agent-revocation/your-agent-is-you.jpg)
+The theme was one most of us building with agents are running into. Agents don't just write text anymore. They call tools, look around systems and take real actions. So how do you keep them in check?
 
-His talk got me thinking. On the way home I kept pulling at one word: revoke. What exactly are you revoking?
+Hammed Ajibade, Lead Software Engineer at Pulse, opened with "How Do You Revoke an AI Agent?" His talk looked at splitting what an agent can do into read, recommend and execute, where to put human approval, how to scope credentials and take them back, and how to leave an evidence trail. Around it there was pizza, drinks and a room full of people building and securing AI systems.
+
+One thing stuck with me: the revoke part.
+
+On the way home I kept pulling at that one word. What exactly are you revoking? The question kept opening into more questions, and by the time I got home I had a whole chain of them.
 
 I build agent systems, and I wanted to check whether my own picture of this held up. Most of it did. Two parts didn't, and those are the parts worth writing about.
 
@@ -46,8 +50,6 @@ Scaling the Deployment to zero stops every copy. That works if one agent is one 
 The next answer is to take its access away. Revoke the API key or the token, and the next authenticated request fails.
 
 That is closer to what "revoke" should mean. It stops future work even if the program restarts. It still has gaps. Revocation is not always instant. A short-lived token that was already issued may keep working until it expires. Some services cache an authorization decision for a while.
-
-This is where Hammed's slide comes back. If the agent signs in as you, revoking its credential revokes yours. You can't cut the agent off without cutting yourself off. The agent needs its own identity before revoking it means anything.
 
 ## The request that already went through
 
