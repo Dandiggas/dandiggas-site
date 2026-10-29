@@ -1,5 +1,12 @@
 # Site state
 
+## Draft, 29 October 2026: revoke-an-AI-agent post (branch draft/revoke-an-ai-agent, commit 5a387d0, NOT pushed)
+
+- Post: src/content/posts/what-does-it-actually-mean-to-revoke-an-ai-agent.md, photo public/blog/agent-revocation/your-agent-is-you.jpg (location data stripped, cropped to the slide).
+- From AI Security Night London (Snyk, 28 Oct), Hammed Ajibade's talk. Framed as "his talk got me thinking". Gerald not mentioned.
+- LinkedIn companion: ~/Desktop/Inbox/2026-10-29-linkedin-post-revoke-an-ai-agent.md. Post only after the blog is live.
+- Checked on local next dev :3456 (headings, image, code block, links render). Awaiting Dan's approval to merge and push.
+
 ## Published, 20 October 2026
 
 Blog: https://tech.dandiggas.com/posts/i-stopped-writing-rules-for-my-ai-agents
