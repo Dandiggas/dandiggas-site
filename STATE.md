@@ -1,5 +1,13 @@
 # Site state
 
+## Published, 4 November 2026: Check the Recruiter Before the Code
+
+Blog: https://tech.dandiggas.com/posts/check-the-recruiter-before-the-code (main 3d3214e, pushed, live HTTP 200, both images 200)
+LinkedIn: https://www.linkedin.com/feed/update/urn:li:activity:7523860503069220864/ (terminal report + diagram, posted via Dia, read back in recent activity; tab crashed after Post, posted once)
+X: https://x.com/Dandiggastech/status/2118095118439698443 (1 photo, links in reply 2118095146151444599)
+Repo: https://github.com/Dandiggas/recruiter-due-diligence (public)
+Score both after 7 days (11 Nov).
+
 ## Published, 29 October 2026: revoke-an-AI-agent post
 
 Blog: https://tech.dandiggas.com/posts/what-does-it-actually-mean-to-revoke-an-ai-agent (main b78f4f1, pushed, live HTTP 200)
