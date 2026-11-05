@@ -57,6 +57,18 @@ I asked a second model, Codex, to attack the checker itself. It found 6 holes. A
 
 All 6 are fixed. Each fix has a test, and each test failed on the old code before it passed on the new code. Anything the checker can't read now goes on a "not read" list, and that list alone makes the risk at least medium. If the checker fails, it says "not checked". It never says "safe".
 
+## Update, 5 November: keep it off your machine entirely
+
+The locked container still runs on your own laptop. Some people would rather the take-home never got near their laptop at all. So now there's a remote mode:
+
+```bash
+scripts/inspect-takehome.sh --remote ~/Downloads/assessment.zip
+```
+
+The same scan runs in a throwaway [GitHub codespace](https://github.com/features/codespaces), a short-lived cloud machine. The zip goes up still packed and is only unpacked in the cloud. The report comes back and the codespace gets deleted. The script only says "deleted" after GitHub confirms it's gone. A link is downloaded straight into the codespace, so it never touches your machine.
+
+I didn't want to just assume the locks still hold in there, so a live test checks them inside a real codespace: no network, read-only files, no admin rights. It passes. Codex had another go at the new code and found 7 more holes. One of them was in the original checker too: a git hook inside a top-level folder, which is how most zips are packed, read as "low". All fixed, each with a test.
+
 ## What it can't do
 
 It reads the code. It doesn't run it. Code that downloads its real payload later from a normal-looking site can still read as low. "Low" means no known trick was found, not that the code is safe.
