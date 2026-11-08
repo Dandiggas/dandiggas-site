@@ -13,13 +13,11 @@ I read it and nodded. Then I measured my own sessions against it, because I had 
 
 I pulled every message I have typed into my coding agents since March: 10,218 in Claude Code, 197 in Codex, 11,041 in Hermes. I dropped anything automated or pasted. That left 7,785 prompts typed by hand.
 
-| Measure | Value |
-|---|---|
-| Median prompt | 11 words |
-| Prompts of 15 words or fewer | 60% |
-| Prompts in a "Goal / Constraints / Out of scope" template | 1% |
-| Prompts that hand the decision to the agent ("you decide") | 0.1% |
-| Sessions with three corrections in a row | 7 of 905 |
+- Median prompt: **11 words**
+- Prompts of 15 words or fewer: **60%**
+- Prompts in a "Goal / Constraints / Out of scope" template: **1%**
+- Prompts that hand the decision to the agent ("you decide"): **0.1%**
+- Sessions with three corrections in a row: **7 of 905**
 
 Eleven words. No template. The articles going round show prompts with a goal line, a constraints line, a non-goals line and a check command. I do not write those. My prompts work anyway, and I wanted to know why.
 
