@@ -25,25 +25,25 @@ Two reasons. The durable rules moved into the harness (the tools and hooks aroun
 
 ## The drawing, with the payload
 
-Before an agent writes code for me, I draw the change. Boxes for each step. Arrows for each hop. And on every arrow, the data that moves (the payload), with the real field names.
+Before an agent writes code for me, I draw the change. Boxes for each step. Arrows for each hop. And on every arrow, the data that moves (the payload), with the real field names and the shape of the data.
 
-Here is one from this week. A card on my home dashboard that shows my beat library.
+Here is one. At work I drew a trigger that turns a ticket event into an agent run. This is that drawing, redrawn with the names and values changed. The shape is the real one.
 
-![The change as a drawing: scan.py writes index.json with generated_at and beats; beatshelf.py reads the file; server.py sends projects, with_audio, per_daw, newest_beat; the page shows a card and a sheet; three routes open the Beat Shelf page.](/blog/drawing-is-the-spec/beat-shelf.png)
+![A ticket event starts an agent run, drawn to the payload: the webhook body with its list of changes and set of labels, the event on the bus, the batch from the queue, the conditional write into a seen map keyed by event_id, a latest-status map keyed by issue_key that drops stale events, the run request, the typed result posted back on the ticket.](/blog/drawing-is-the-spec/ticket-trigger.png)
 
-Read the arrows. The scanner writes `{generated_at, beats[]}` to a file. The reader opens the file, no HTTP. The server sends `{projects, with_audio, per_daw, newest_beat}` to the page. One line at the bottom says when the card reads "ok" and when it reads "down".
+Read the arrows. The tracker sends `{event_id, issue_key, changed_at, changes[], labels[]}` and wants a 200 within ten seconds. The receiver forwards it onto a bus that crosses into a second cloud account. The queue hands over a batch, a list of up to ten messages, and the same event can be in that list twice, or two events for one ticket can arrive out of order. Two maps sort that out. `seen`, keyed by event_id, takes a write only if the key is absent. `latest`, keyed by issue_key, takes a write only if the timestamp is newer than the one stored. Only then does one container start, with `{run_id, workflow, timeout_s, env{}, allowed_tools[]}`. The result goes back onto the ticket as `{verdict, cost_usd, tokens{}, findings[]}`. One line at the bottom says when the system reads "ok" and when it reads "down".
 
-That is the whole spec. Scope: these boxes and no others. Boundaries: read a file, do not call a service. Data contract: those four fields. Done: card shows ok when the index is under two days old. Osmani's template has the same five things. Mine is a picture.
+That is the whole spec. Scope: these seven boxes and no others. Boundaries: account A only forwards, and the run never sees the queue. Data contract: the fields in the white boxes, with their types. Done: one run per event_id and the newest status per ticket wins, even when the queue delivers twice. Osmani's template has the same five things. Mine is a picture.
 
 ## Why the payload matters
 
 A drawing with box names only tells you the shape. A drawing with the data on the arrows tells you what you will see when you open the code.
 
-When the happy path is on the drawing down to the field names, I can read the code and know what each line should do before I read it. I know that `beatshelf.py` opens one file and returns four fields. If I see it opening a socket, that is wrong, and I do not need to understand the socket code to know it. I know where `generated_at` gets compared to today. If that comparison is missing, the "down" state is missing.
+When the happy path is on the drawing down to the field names, I can read the code and know what each line should do before I read it. I know that the dedupe function does one conditional write and nothing else. If I see it read the table first and then write, that is a race, and I do not need to read the rest to know it. I know where `changed_at` gets compared to the stored one. If that comparison is missing, the stale "Open" event starts a run it should not.
 
-My attention goes to the edges: the index file is missing, the date is in the future, the JSON is broken. The agent wrote tests for six of those. I checked the six against the drawing, not against the code.
+My attention goes to the edges: the batch holds the same event twice, the two events for one ticket arrive in the wrong order, the webhook gets no 200 and sends again. The agent wrote a test for each of those. I checked them against the drawing, not against the code.
 
-The opposite happened to me earlier this year. I let an agent build a take-home from a text brief. The tests passed. In the interview I could not walk through my own code. I had never drawn it, so I had no picture of what moved between the parts. A system I drew to the payload at work months ago, I can still fault-find today. I know what the data looks like coming in, so I know where to go.
+The opposite happened to me earlier this year. I let an agent build a take-home from a text brief. The tests passed. In the interview I could not walk through my own code. I had never drawn it, so I had no picture of what moved between the parts. This system, which I drew to the payload at work months ago, I can still fault-find today. I know what the data looks like coming in, so I know where to go.
 
 That is the difference between implemented and understood. The drawing is where understanding lives.
 
@@ -51,17 +51,11 @@ That is the difference between implemented and understood. The drawing is where 
 
 The drawing did one more thing I did not expect. It changed how I work with people, not just agents.
 
-At work I drew a trigger that turns a ticket event into a workflow run. An event crosses from one cloud account to another, lands on a queue, gets checked against events already seen, then starts the run. I drew it to the payload: the event body at the start, the message on the queue, the key used to spot a duplicate, the request that starts the run.
-
-Here is that drawing, redrawn with the names and values changed. The shape is the real one.
-
-![A ticket event starts an agent run, drawn to the payload: the webhook body with its list of changes and set of labels, the event on the bus, the batch from the queue, the conditional write into a seen map keyed by event_id, a latest-status map keyed by issue_key that drops stale events, the run request, the typed result posted back on the ticket.](/blog/drawing-is-the-spec/ticket-trigger.png)
-
 Three things happened that a text spec never gave me.
 
 **Colleagues read the intent in one look.** Nobody asked me what the change did. They looked at the arrows and knew. The questions I got were about the hops, which is where the design decisions are.
 
-**The data structure got questioned where it was chosen.** When the message on the queue is written out on the arrow, you can ask whether it is the right shape before any code depends on it. Is the duplicate key the event id, or the ticket id plus a timestamp? Is this the right data type for this piece of data? Should the seen-events store be a hash map (a dictionary, keyed for instant lookup) rather than a list we scan every time? That is where you start to reason about those patterns. You can do it without the drawing. Seeing the data on the arrow makes it clearer to reason about, and the question is cheap on the drawing and expensive after.
+**The data structure got questioned where it was chosen.** When the message on the queue is written out on the arrow, you can ask whether it is the right shape before any code depends on it. Is the duplicate key the event id, or the ticket id plus a timestamp? Is this the right data type for this piece of data? Should the seen-events store be a hash map (a dictionary, keyed for instant lookup) rather than a list we scan every time? In this drawing the answer turned out to be two maps with two different keys, because they answer two different questions: have I seen this event, and is this the newest status for this ticket. That is where you start to reason about those patterns. You can do it without the drawing. Seeing the data on the arrow makes it clearer to reason about, and the question is cheap on the drawing and expensive after.
 
 **Bottlenecks showed up as geometry.** Where several arrows meet one box, that box is the queue, the lock or the slow call. Where one arrow carries a large payload across an account boundary, that hop is the cost. You see it before you measure it.
 
