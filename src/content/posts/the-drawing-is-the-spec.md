@@ -55,7 +55,7 @@ At work I drew a trigger that turns a ticket event into a workflow run. An event
 
 Here is that drawing, redrawn with the names and values changed. The shape is the real one.
 
-![A ticket event starts an agent run, drawn to the payload: the webhook body, the event on the bus, the message on the queue, the conditional write into the seen table keyed by event_id, the run request, the comment back on the ticket.](/blog/drawing-is-the-spec/ticket-trigger.png)
+![A ticket event starts an agent run, drawn to the payload: the webhook body with its list of changes and set of labels, the event on the bus, the batch from the queue, the conditional write into a seen map keyed by event_id, a latest-status map keyed by issue_key that drops stale events, the run request, the typed result posted back on the ticket.](/blog/drawing-is-the-spec/ticket-trigger.png)
 
 Three things happened that a text spec never gave me.
 
