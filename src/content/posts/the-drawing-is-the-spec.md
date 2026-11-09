@@ -53,6 +53,10 @@ The drawing did one more thing I did not expect. It changed how I work with peop
 
 At work I drew a trigger that turns a ticket event into a workflow run. An event crosses from one cloud account to another, lands on a queue, gets checked against events already seen, then starts the run. I drew it to the payload: the event body at the start, the message on the queue, the key used to spot a duplicate, the request that starts the run.
 
+Here is that drawing, redrawn with the names and values changed. The shape is the real one.
+
+![A ticket event starts an agent run, drawn to the payload: the webhook body, the event on the bus, the message on the queue, the conditional write into the seen table keyed by event_id, the run request, the comment back on the ticket.](/blog/drawing-is-the-spec/ticket-trigger.png)
+
 Three things happened that a text spec never gave me.
 
 **Colleagues read the intent in one look.** Nobody asked me what the change did. They looked at the arrows and knew. The questions I got were about the hops, which is where the design decisions are.
