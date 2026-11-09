@@ -27,7 +27,7 @@ Two reasons. The durable rules moved into the harness (the tools and hooks aroun
 
 Before an agent writes code for me, I draw the change. Boxes for each step. Arrows for each hop. And on every arrow, the data that moves (the payload), with the real field names and the shape of the data.
 
-Here is one. At work I drew a trigger that turns a ticket event into an agent run. This is that drawing, redrawn with the names and values changed. The shape is the real one.
+Here is one. On a project I was working on, I drew a trigger that turns a ticket event into an agent run. This is that drawing, redrawn with the names and values changed. The shape is the real one.
 
 ![A ticket event starts an agent run, drawn to the payload: the webhook body with its list of changes and set of labels, the event on the bus, the batch from the queue, the conditional write into a seen map keyed by event_id, a latest-status map keyed by issue_key that drops stale events, the run request, the typed result posted back on the ticket.](/blog/drawing-is-the-spec/ticket-trigger.png)
 
@@ -43,7 +43,7 @@ When the happy path is on the drawing down to the field names, I can read the co
 
 My attention goes to the edges: the batch holds the same event twice, the two events for one ticket arrive in the wrong order, the webhook gets no 200 and sends again. The agent wrote a test for each of those. I checked them against the drawing, not against the code.
 
-The opposite happened to me earlier this year. I let an agent build a take-home from a text brief. The tests passed. In the interview I could not walk through my own code. I had never drawn it, so I had no picture of what moved between the parts. This system, which I drew to the payload at work months ago, I can still fault-find today. I know what the data looks like coming in, so I know where to go.
+The opposite happened to me earlier this year. I let an agent build a take-home from a text brief. The tests passed. In the interview I could not walk through my own code. I had never drawn it, so I had no picture of what moved between the parts. This system, which I drew to the payload months ago on a project I was working on, I can still fault-find today. I know what the data looks like coming in, so I know where to go.
 
 That is the difference between implemented and understood. The drawing is where understanding lives.
 
