@@ -36,7 +36,7 @@ Each change my agents ship now carries some of these, picked by what the change 
 
 **3. A test that failed first.** A test that passes on the broken code proves nothing. Last week an agent spent 13 tool calls failing to download one PDF from my email. The cause was one character: an en dash in the filename crashed the server that hands my agents their mail. The fix shipped with a test that plants a file with an en dash in its name. On the old code it failed ("Remote end closed connection without response"). On the new code it passes. Both runs are in the record.
 
-![The attachment fix drawn as boxes and hops: the request goes into the mail server, the server fetches the file, a new helper turns the filename into a header the server can send, and the reply goes back with the file. The data that moves is written on every arrow.](/blog/agents-show-me/attachment-fix-drawing.png)
+![The attachment fix, before and after. Before: the agent asks for the PDF, the mail server gets the file and its name from Gmail, the en dash in the name does not fit the header, and the agent gets no reply. After: a new helper sends a plain name plus a UTF-8 name, and the PDF is saved. The data that moves is written on every arrow.](/blog/agents-show-me/attachment-fix-drawing.png)
 
 **4. A drawing of the change, with the data on every arrow.** Boxes for each step, arrows for each hop, and on each arrow the data that moves (the payload). I [wrote about why a few days ago](/posts/the-drawing-is-the-spec). Now every change carries one, drawn in Excalidraw and saved as an image with the editable drawing inside it. It is the first thing I look at.
 
