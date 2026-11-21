@@ -6,6 +6,9 @@ readTime: "6 min read"
 video: "/blog/brim-demo.mp4"
 videoPoster: "/blog/brim-demo-poster.jpg"
 videoCaption: "Brim in 13 seconds: a made-up delivery called Night Bus goes in, the tempo is typed, and a named Ableton session comes out."
+theme: proof
+stat: "60% on the first test"
+line: "The test songs had a metronome in them. This is how I check what my agents build."
 ---
 
 My AI feature scored 60% on its first test. Then I found out the test data had the answer in it.

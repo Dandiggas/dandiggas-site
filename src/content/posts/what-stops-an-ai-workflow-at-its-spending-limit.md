@@ -3,6 +3,9 @@ title: "What Actually Stops an AI Workflow at Its Spending Limit?"
 date: "2026-11-20"
 preview: "A spending limit sounds like a number in a config file. When I tested one, the number was the easy part. The hard parts were two calls spending the same balance at once, a caller that could pick a new budget, and a reply that failed before anyone counted it."
 readTime: "5 min read"
+theme: guardrails
+stat: "1 shared service in front of every call"
+line: "Two calls spending the same balance at once, and a reply that failed before anyone counted it."
 ---
 
 I recently worked on measuring and limiting what an AI workflow spends. One run of the workflow can make many model calls before it finishes.

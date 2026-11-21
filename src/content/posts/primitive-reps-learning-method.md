@@ -3,6 +3,9 @@ title: "Primitive Reps: The Way I Learn Hard Things"
 date: "2026-06-22"
 preview: "I do not learn hard technical skills by covering topics. I break them into small movements and repeat those movements across scenarios until the pattern becomes automatic."
 readTime: "5 min read"
+theme: platforms
+stat: "method"
+line: "Small movements, repeated across scenarios, until the pattern is automatic."
 ---
 
 I have always learned best through reps.

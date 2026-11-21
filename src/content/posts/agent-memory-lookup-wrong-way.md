@@ -3,6 +3,9 @@ title: "I Built My Agent a Memory. The Lookup Was Pointing the Wrong Way."
 date: "2026-08-13"
 preview: "My agent's memory had a write path and no read path. The check I needed already existed. It just ran at the end of the job instead of the start. An ordering bug wearing the costume of a missing feature."
 readTime: "9 min read"
+theme: memory
+stat: "write path, no read path"
+line: "An ordering bug wearing the costume of a missing feature."
 ---
 
 An agent I work with was filing notes about a repository I'd asked it to look at. Before writing anything, it searched my notes for the repo's name, a rule I'd added months ago so it would update existing notes instead of piling up duplicates.

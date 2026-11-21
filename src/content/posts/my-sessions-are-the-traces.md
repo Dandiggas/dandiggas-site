@@ -3,6 +3,9 @@ title: "My Sessions Are the Traces: Error Analysis on My Own AI Agents"
 date: "2026-10-27"
 preview: "Chapter 3 of Evals for AI Engineers says to read traces end to end, mark the first failing step, and group the notes only after 20 of them. I work with coding agents all day, so I built that into the dashboard I already use. Here is the page, the first mark, and the plan."
 readTime: "6 min read"
+theme: proof
+stat: "20 traces before grouping"
+line: "Read each trace end to end, mark the first failing step, group only after 20."
 ---
 
 I read chapter 3 of Evals for AI Engineers (O'Reilly, by Shreya Shankar and Hamel Husain) and realised I already had the dataset the chapter asks for. I work with coding agents all day: Claude Code, Codex, Hermes and Antigravity. Every session is a trace (the full ordered record of what I typed, every tool call, what came back, and what the agent said).

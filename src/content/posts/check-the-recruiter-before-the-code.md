@@ -3,6 +3,9 @@ title: "Check the Recruiter Before the Code"
 date: "2026-11-04"
 preview: "Binance lost $6.3 billion, and by its own account it started with a fake job interview and a take-home. I've run due diligence on recruiter messages with my agents since March. Tonight I added the part that reads the take-home without running it, and open-sourced the lot."
 readTime: "5 min read"
+theme: security
+stat: "$6.3bn, one fake interview"
+line: "The part that reads the take-home without running it, open-sourced."
 ---
 
 Binance lost about $6.3 billion last week. By Binance's own account, it started with a job interview.

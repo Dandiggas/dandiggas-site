@@ -3,6 +3,9 @@ title: "My Agent Argues With Me Before It Updates My Worldview"
 date: "2026-07-06"
 preview: "Summaries pile up and thinking stays still. So I built a pipeline where videos become typed challenges against a beliefs file capped at seven entries, checked for novelty against a knowledge graph, and judged by exactly one person: me."
 readTime: "10 min read"
+theme: memory
+stat: "7 beliefs, capped"
+line: "Videos become typed challenges against a beliefs file, judged by one person."
 ---
 
 [Last post](https://tech.dandiggas.com/posts/ai-agent-first-loop), my agent learned to run while I sleep. This weekend I gave it a more dangerous job: telling me when I'm wrong.

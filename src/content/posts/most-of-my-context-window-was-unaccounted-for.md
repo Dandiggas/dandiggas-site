@@ -6,6 +6,9 @@ readTime: "5 min read"
 video: "/blog/agent-estate-context.mp4"
 videoPoster: "/blog/agent-estate-context-poster.jpg"
 videoCaption: "The context workbench: every live session, with the system prompt, tools, skills and conversation measured and attributed per source."
+theme: memory
+stat: "80% unattributed"
+line: "One live session measured. Most of the used context had no name."
 ---
 
 Last week I wrote about building myself a dashboard so I could finally see my own agent setup: which harness had which skill, what each one was, how often I actually used it. That answered what my setup *has*.

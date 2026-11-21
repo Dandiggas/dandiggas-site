@@ -3,6 +3,9 @@ title: "Recruiter Risk Triage: Separating Real Opportunities From Unsafe Outreac
 date: "2026-06-25"
 preview: "A real LinkedIn recruiter message felt slightly off, so I checked the company, found the website did not resolve, and traced the role back to an expired job description. This is the local-first tool I built from that instinct."
 readTime: "5 min read"
+theme: security
+stat: "local-first"
+line: "The website did not resolve. The role traced back to an expired job description."
 ---
 
 I was minding my own business on a normal day when a recruiter message came through on LinkedIn.

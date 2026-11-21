@@ -3,6 +3,9 @@ title: "What Does It Actually Mean to Revoke an AI Agent?"
 date: "2026-10-29"
 preview: "At AI Security Night London, one talk asked how you revoke an AI agent. On the way home I kept asking: revoke what? The process, the keys, the work already running, or the damage already done?"
 readTime: "7 min read"
+theme: security
+stat: "4 things to revoke"
+line: "The process, the keys, the work already running, or the damage already done?"
 ---
 
 Last night I went to [AI Security Night](https://www.meetup.com/aiseceng-london/events/316997681/), run by the AI Security Engineers London community at Snyk's office in Euston.

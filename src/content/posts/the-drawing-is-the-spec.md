@@ -3,6 +3,14 @@ title: "The Drawing Is the Spec. The Data on the Arrows Is the Contract."
 date: "2026-11-09"
 preview: "Everyone is writing about managing coding agents like a team. I measured 7,785 of my own prompts: median 11 words. The prompt is short because the spec is a drawing, with the real data written on every arrow. Once the data on each hop is chosen, the code is already decided. Here is the loop, with a real diagram."
 readTime: "8 min read"
+theme: proof
+stat: "7,785 prompts · median 11 words"
+line: "Once the data on each hop is chosen, the code is already decided."
+numbers:
+  - value: "7,785"
+    label: "prompts measured"
+  - value: "11"
+    label: "words, the median prompt"
 ---
 
 Addy Osmani published an article this week called "Your coding agents made you a manager" ([X, 8 Nov 2026](https://x.com/addyosmani/status/2119332146485891501)). Give the agent a check it can run. Brief what the repo cannot show. Turn every second correction into a rule. Plan before code. Delegate the task, never the judgment.

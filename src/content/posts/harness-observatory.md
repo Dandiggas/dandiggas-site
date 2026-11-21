@@ -3,6 +3,9 @@ title: "My Harness Was Invisible. So I Built It an Observatory."
 date: "2026-07-18"
 preview: "Nine skills, seven hooks, 135 memory files, crons — all buried in dotfiles and edited by digging through VS Code. I built a UI over the whole thing: memory graph, in-place editing, skill changelogs, hook config, and an evals screen. Because handing frontier tasks down to cheaper models only works if you can measure what a model can do with your current skills."
 readTime: "10 min read"
+theme: memory
+stat: "9 skills · 7 hooks · 135 memory files"
+line: "Memory graph, in-place editing, skill changelogs, hook config, an evals screen."
 ---
 
 My harness — the memory files, the skills, the hooks, the crons, the enforcement scripts wrapped around my AI agent — has quietly become a real system. Nine self-authored skills. Seven hooks across five lifecycle events. 135 memory files. An unattended triage loop.

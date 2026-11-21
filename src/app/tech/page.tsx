@@ -1,252 +1,198 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
-import { getAllPosts } from "@/lib/posts";
-import { SocialLinks } from "@/components/SocialLinks";
-import { Reveal } from "@/components/music/Reveal";
+import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import { getSiteStats } from "@/lib/site-stats";
+import { formatDate, readMinutes } from "@/lib/format";
+import { THEMES, themeByKey } from "@/content/themes";
+import { FEATURED } from "@/content/featured";
+import { PROJECTS } from "@/content/projects";
+import { getNowFeed } from "@/content/now";
+import { Reveal } from "@/components/motion/Reveal";
+import { Words } from "@/components/motion/Words";
+import { CountUp } from "@/components/motion/CountUp";
+import { Stat } from "@/components/site/Stat";
+import { NowFeed } from "@/components/site/NowFeed";
+import { FollowRow } from "@/components/site/FollowRow";
+import { Subscribe } from "@/components/site/Subscribe";
+import { LedgerRow } from "@/components/site/LedgerRow";
+import { ThemeFilter } from "@/components/site/ThemeFilter";
+import { KeepUpBand } from "@/components/site/KeepUpBand";
 
 export const metadata: Metadata = {
   title: "Tech — Dan Diggas",
   description:
-    "Daniel Adekugbe — backend and AI engineer at Sophos. Writing and projects on AI agents, security, and local-first tools.",
+    "Daniel Adekugbe: backend and AI engineer. Every post measured on my own AI agents, every project shipped with its proof.",
 };
 
-const stagger = (i: number) =>
-  ({ ["--stagger" as string]: i } as React.CSSProperties);
-
-type ProjectAction = { label: string; href: string; external?: boolean };
-type Project = {
-  title: string;
-  description: string;
-  tech: string[];
-  href?: string;
-  actions?: ProjectAction[];
-  status?: string;
-};
-
-const projects: Project[] = [
-  {
-    title: "Brim",
-    description:
-      "Mac app that turns a stems delivery into a ready DAW session: every stem named, placed and playable, with a receipt showing what was imported and what was skipped. Signed and notarised.",
-    tech: ["SwiftUI", "Python", "Ableton", "Logic Pro", "FL Studio", "Pro Tools"],
-    href: "/brim",
-    actions: [{ label: "Open Brim", href: "/brim" }],
-  },
-  {
-    title: "ShadowScout",
-    description:
-      "Autonomous compliance approval agent for shadow AI tools. Searches vendor evidence, maps it to company policy, produces scoped decisions, and monitors approved tools for drift.",
-    tech: ["Python", "Streamlit", "Tavily", "Gemini", "ClickHouse"],
-    href: "https://github.com/Dandiggas/shadow-ai-scout",
-    actions: [
-      { label: "Read write-up", href: "/posts/shadowscout-compliance-approval-agent" },
-      { label: "Watch demo", href: "https://www.loom.com/share/50c79eb38158418e94ad1d94564655e4", external: true },
-      { label: "GitHub", href: "https://github.com/Dandiggas/shadow-ai-scout", external: true },
-    ],
-  },
-  {
-    title: "Recruiter Risk Triage",
-    description:
-      "Local-first dashboard for checking recruiter outreach across legitimacy, security risk, original JD clues, opportunity fit, and safe reply strategy.",
-    tech: ["Python", "Agent Graph", "DNS/RDAP", "Companies House", "Local UI"],
-    href: "https://github.com/Dandiggas/recruiter-risk-triage-v1",
-    actions: [
-      { label: "Read write-up", href: "/posts/recruiter-risk-triage" },
-      { label: "GitHub", href: "https://github.com/Dandiggas/recruiter-risk-triage-v1", external: true },
-    ],
-  },
-  {
-    title: "Keyboard Manual Assistant",
-    description:
-      "A grounded RAG system that answers questions about keyboard manuals using retrieved evidence, refusals, evals, and Langfuse tracing.",
-    tech: ["FastAPI", "Qdrant", "LocalAI", "Langfuse"],
-    href: "/tech/keyboard-manual-assistant",
-    actions: [
-      { label: "Project page", href: "/tech/keyboard-manual-assistant" },
-      { label: "Read write-up", href: "/posts/building-keyboard-manual-rag" },
-      { label: "GitHub", href: "https://github.com/Dandiggas/keyboard-manual-assistant", external: true },
-    ],
-  },
-  {
-    title: "The Shed",
-    description:
-      "Practice app for musicians who can already play. Timer, YouTube player, metronome, tuner, sheet music, AI recommendations.",
-    tech: ["Django", "Next.js", "PostgreSQL", "Railway"],
-    href: "https://github.com/Dandiggas/MusiciansPracticeApp",
-    actions: [
-      { label: "GitHub", href: "https://github.com/Dandiggas/MusiciansPracticeApp", external: true },
-    ],
-  },
-  {
-    title: "AI Studio Agent",
-    description:
-      "Automated stem loading for Ableton Live. The goal: send a message from your phone and open a prepared Ableton project later.",
-    tech: ["Python", "MCP", "Gmail API", "Ableton"],
-    status: "In progress",
-    actions: [
-      { label: "Ableton MCP repo", href: "https://github.com/Dandiggas/ableton-mcp", external: true },
-    ],
-  },
-  {
-    title: "Threat Intel Daily Brief",
-    description:
-      "Automated morning email with high-signal cybersecurity threat items from trusted sources. Built for engineers and analysts.",
-    tech: ["Python", "LLM", "RSS", "SMTP"],
-    status: "In progress",
-  },
-];
+const ext = (href: string) => (href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {});
 
 export default function TechPage() {
   const posts = getAllPosts();
+  const feed = getNowFeed(posts);
+  const stats = getSiteStats();
+  const featured = FEATURED.map((f) => ({ ...f, post: getPostBySlug(f.slug)! }));
+  const shotProjects = PROJECTS.filter((p) => p.featured);
+  const rowProjects = PROJECTS.filter((p) => !p.featured);
 
   return (
-    <div className="bg-music-bg text-music-fg">
-      {/* Hero */}
-      <section className="relative flex min-h-[62vh] items-center overflow-hidden">
-        <div className="tech-grid-hero pointer-events-none absolute inset-0" />
-        <div className="glow-pulse pointer-events-none absolute left-1/2 top-[-6rem] h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-amber-500/15 blur-[130px]" />
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-6 py-24 md:py-28">
-          <p
-            className="rise-in font-mono text-xs uppercase tracking-[0.25em] text-amber-600 dark:text-amber-400"
-            style={stagger(0)}
-          >
-            Engineer
+    <div className="tech-page">
+      {/* Hero: the words, the counts, and the Now card */}
+      <section className="wrap tech-hero">
+        <div>
+          <p className="eyebrow rise" style={{ ["--i" as string]: 0 }}>Engineer · Writing and projects</p>
+          <Words text="I run AI coding agents all day and write down what actually happened." className="tech-h1" />
+          <p className="lead rise" style={{ ["--i" as string]: 3 }}>
+            Backend and AI infrastructure by day. Local-first tools for security, ops and music the rest of the time.
+            Every post here is measured on my own sessions, and every project ships with its proof.
           </p>
-          <h1
-            className="rise-in mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl"
-            style={stagger(1)}
-          >
-            AI tools, and the infrastructure under them.
-          </h1>
-          <p
-            className="rise-in mt-5 max-w-xl text-lg leading-relaxed text-music-muted"
-            style={stagger(2)}
-          >
-            Backend and AI infrastructure at Sophos by day. Local-first tools
-            for security, ops, and music the rest of the time.
-          </p>
-          <div className="rise-in mt-7 text-music-fg" style={stagger(3)}>
-            <SocialLinks />
+          <div className="counts rise" style={{ ["--i" as string]: 4 }}>
+            {stats.map((s) => (
+              <Stat key={s.key} value={s.value} label={s.label} />
+            ))}
           </div>
         </div>
+
+        <aside className="now-card rise" style={{ ["--i" as string]: 2 }} aria-label="Now: what I have been doing, and how to follow">
+          <div className="head">
+            <p className="eyebrow"><span className="live" aria-hidden="true" />Now</p>
+            <span className="tiny mono">updated {formatDate(feed[0].date, "short")}</span>
+          </div>
+          <NowFeed items={feed} limit={5} />
+          <FollowRow label="Follow" items={["rss", "x", "linkedin"]} />
+          <Subscribe note="One email per post, most weeks. Nothing else, ever." />
+        </aside>
       </section>
 
-      {/* Writing */}
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
-        <Reveal>
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-            Writing
-          </h2>
-          <p className="mt-2 text-music-muted">
-            Notes on AI agents, security, and building tools that last.
-          </p>
+      {/* Start here */}
+      <section className="wrap section">
+        <Reveal className="section-head">
+          <div>
+            <p className="eyebrow">Start here</p>
+            <h2 className="h2">Three posts, each with the number that made me write it.</h2>
+          </div>
+          <a className="link" href="#ledger">All {posts.length} posts ↓</a>
         </Reveal>
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {posts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/posts/${post.slug}`}
-              className="group flex flex-col rounded-xl border border-music-hairline bg-music-surface/40 p-5 transition duration-300 hover:-translate-y-0.5 hover:border-amber-500/40 hover:bg-music-surface"
-            >
-              <div className="flex items-center gap-2 font-mono text-xs text-music-muted">
-                <time>
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </time>
-                {post.readTime && (
-                  <>
-                    <span>·</span>
-                    <span>{post.readTime}</span>
-                  </>
+        <div className="start">
+          {featured.map((f, i) => (
+            <Reveal key={f.slug} i={i} className="start-item">
+              <Link className="card" href={`/posts/${f.slug}`}>
+                {f.shot && (
+                  <div className="shot">
+                    <Image src={f.shot} alt={f.shotAlt ?? ""} fill sizes="(min-width: 960px) 460px, 100vw" />
+                  </div>
                 )}
-              </div>
-              <h3 className="mt-2 text-lg font-semibold leading-snug transition-colors group-hover:text-amber-700 dark:group-hover:text-amber-400">
-                {post.title}
-              </h3>
-              <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-music-muted">
-                {post.preview}
-              </p>
-            </Link>
+                <div className="card-body">
+                  <div className="big">
+                    <CountUp value={f.big} />
+                    <small>{f.label}</small>
+                  </div>
+                  <p className="card-title">{f.post.title}</p>
+                  <p className="small">{f.post.line}</p>
+                  <div className="meta">
+                    <span className="pill">{themeByKey(f.post.theme)?.chip}</span>
+                    <span className="tiny mono">
+                      {formatDate(f.post.date, "long")} · {readMinutes(f.post.readTime)}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      {/* Projects */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <Reveal>
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-            Projects
-          </h2>
-          <p className="mt-2 text-music-muted">
-            Practical AI workflow tools for music, security, and operations.
-          </p>
+      {/* The ledger */}
+      <section className="wrap section" id="ledger">
+        <Reveal className="section-head">
+          <div>
+            <p className="eyebrow">The ledger</p>
+            <h2 className="h2">Every post, grouped by what it proves.</h2>
+            <p className="small">Date, title, the number, read time. Newest first inside each group. Pick a theme to narrow it.</p>
+          </div>
+          <ThemeFilter themes={THEMES.map((t) => ({ key: t.key, chip: t.chip }))} total={posts.length} />
         </Reveal>
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {projects.map((project) => (
-            <article
-              key={project.title}
-              className="flex flex-col rounded-xl border border-music-hairline bg-music-surface/40 p-5 transition duration-300 hover:border-amber-500/40 hover:bg-music-surface"
-            >
-              <div className="flex items-start justify-between gap-3">
-                {project.href ? (
-                  <Link
-                    href={project.href}
-                    target={project.href.startsWith("http") ? "_blank" : undefined}
-                    rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="group"
-                  >
-                    <h3 className="text-lg font-semibold transition-colors group-hover:text-amber-700 dark:group-hover:text-amber-400">
-                      {project.title}
-                      {project.href.startsWith("http") && (
-                        <span className="ml-1.5 text-sm text-music-muted">↗</span>
-                      )}
-                    </h3>
-                  </Link>
-                ) : (
-                  <h3 className="text-lg font-semibold">{project.title}</h3>
-                )}
-                {project.status && (
-                  <span className="shrink-0 rounded-full border border-music-hairline px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-music-muted">
-                    {project.status}
-                  </span>
-                )}
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-music-muted">
-                {project.description}
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full bg-music-bg px-2 py-0.5 font-mono text-[11px] text-music-muted"
-                  >
-                    {t}
-                  </span>
+
+        {THEMES.map((t) => {
+          const group = posts.filter((p) => p.theme === t.key);
+          return (
+            <div key={t.key} className="theme-block" data-theme={t.key}>
+              <Reveal className="label" variant="from-left">
+                <h3>{t.label}</h3>
+                <p>{t.description}</p>
+                <p className="n">{group.length} posts</p>
+              </Reveal>
+              <div className="ledger">
+                {group.map((p, i) => (
+                  <LedgerRow key={p.slug} post={p} i={i} />
                 ))}
               </div>
-              {project.actions && project.actions.length > 0 && (
-                <div className="mt-4 flex flex-wrap gap-3 border-t border-music-hairline pt-4">
-                  {project.actions.map((action) => (
-                    <Link
-                      key={action.href + action.label}
-                      href={action.href}
-                      target={action.external ? "_blank" : undefined}
-                      rel={action.external ? "noopener noreferrer" : undefined}
-                      className="text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
-                    >
-                      {action.label}
-                      {action.external && <span className="ml-1">↗</span>}
+            </div>
+          );
+        })}
+      </section>
+
+      {/* Built and shown */}
+      <section className="wrap section" id="projects">
+        <Reveal className="section-head">
+          <div>
+            <p className="eyebrow">Built and shown</p>
+            <h2 className="h2">Projects with the screenshot, not just the stack.</h2>
+            <p className="small">Each one links to the post where it was measured.</p>
+          </div>
+        </Reveal>
+        <div className="built">
+          {shotProjects.map((p, i) => (
+            <Reveal key={p.title} i={i} as="article" className="card">
+              <div className="shot">
+                <Image src={p.shot!} alt={p.title} fill sizes="(min-width: 720px) 560px, 100vw" />
+              </div>
+              <div className="card-body">
+                <div className="card-row">
+                  <h3 className="h3">{p.title}</h3>
+                  {p.pill && <span className="pill">{p.pill}</span>}
+                </div>
+                <p className="small">{p.description}</p>
+                <div className="chips">
+                  {p.tech.map((t) => (
+                    <span key={t} className="chip">{t}</span>
+                  ))}
+                </div>
+                <div className="actions">
+                  {p.actions.map((a) => (
+                    <Link key={a.label} className="link" href={a.href} {...ext(a.href)}>
+                      {a.label}
+                      {a.external && " ↗"}
                     </Link>
                   ))}
                 </div>
-              )}
-            </article>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="more">
+          {rowProjects.map((p, i) => (
+            <Reveal key={p.title} i={i} className="more-row">
+              <span>
+                <span className="title">{p.title}</span>
+                <span className="sub">{p.description}</span>
+              </span>
+              <span className="sub">{p.tech.join(" · ")}</span>
+              <span className="acts">
+                {p.pill && <span className="pill">{p.pill}</span>}
+                {p.actions.map((a) => (
+                  <Link key={a.label} className="link" href={a.href} {...ext(a.href)}>
+                    {a.label}
+                    {a.external && " ↗"}
+                  </Link>
+                ))}
+              </span>
+            </Reveal>
           ))}
         </div>
       </section>
+
+      <KeepUpBand />
     </div>
   );
 }

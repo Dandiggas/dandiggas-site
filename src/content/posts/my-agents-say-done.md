@@ -3,6 +3,18 @@ title: "My Agents Say Done. Now They Have to Show Me."
 date: "2026-11-12"
 preview: "A coding agent says 'done' in the same voice whether the thing works or not. So I stopped taking its word. Every change my agents make now leaves a record with five kinds of proof, a second model's review, and four questions answered, and it all lands on one page I built called Changes HQ. First week: 10 changes, 62 pieces of proof, 67 review findings."
 readTime: "6 min read"
+theme: proof
+stat: "10 changes · 62 proofs · 67 findings"
+line: "Five kinds of proof, a second model's review, four questions, one page."
+numbers:
+  - value: "10"
+    label: "changes across 3 projects, week one"
+  - value: "62"
+    label: "pieces of proof attached"
+  - value: "67"
+    label: "review findings: 51 fixed, 11 accepted, 5 open"
+  - value: "5 of 10"
+    label: "changes honest about partial testing"
 ---
 
 On 5 November I typed this to one of my coding agents:

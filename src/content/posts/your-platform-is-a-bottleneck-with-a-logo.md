@@ -3,6 +3,9 @@ title: "Your Platform Is a Bottleneck With a Logo"
 date: "2026-06-05"
 preview: "A simple test for whether an internal platform is actually self-service, or just another queue developers have to wait in."
 readTime: "5 min read"
+theme: platforms
+stat: "1 test"
+line: "A simple test for whether an internal platform is self-service."
 ---
 
 Internal platforms usually fail quietly.

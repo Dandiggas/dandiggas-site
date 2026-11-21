@@ -154,7 +154,7 @@ export default function BrimPage() {
       </section>
 
       {/* Close */}
-      <section className="brim-band">
+      <section id="download" className="brim-band scroll-mt-24">
         <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-6 py-20 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-2xl font-semibold sm:text-3xl">

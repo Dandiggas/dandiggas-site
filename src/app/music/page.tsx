@@ -77,7 +77,7 @@ export default function MusicPage() {
       </section>
 
       {/* Selected credits (production, writing, keys for other artists) */}
-      <section className="mx-auto max-w-6xl px-6 pb-20 sm:pb-28">
+      <section id="credits" className="mx-auto max-w-6xl scroll-mt-24 px-6 pb-20 sm:pb-28">
         <Reveal>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Selected credits
@@ -148,7 +148,7 @@ export default function MusicPage() {
       )}
 
       {/* Bookings */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section id="bookings" className="mx-auto max-w-6xl scroll-mt-24 px-6 pb-24">
         <ContactCTA />
       </section>
     </div>

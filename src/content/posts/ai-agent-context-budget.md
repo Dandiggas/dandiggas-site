@@ -3,6 +3,9 @@ title: "I Gave My AI Agent a Memory. Then It Started Choking on It."
 date: "2026-06-10"
 preview: "The follow-up to the memory-layer post. Persistent context worked too well: session start was burning 30-40K tokens before I typed a word. Four fixes — context is a budget, not a bucket."
 readTime: "7 min read"
+theme: memory
+stat: "30 to 40K tokens before a word"
+line: "Context is a budget, not a bucket. Four fixes."
 ---
 
 Two months ago I wrote about [building a memory layer for my AI coding assistant](https://tech.dandiggas.com/posts/ai-agent-memory-layer). The idea was simple: load the useful context automatically at the start of a session so I do not have to explain the same project, open PRs, service boundaries, or team workflows every time I sit down.
