@@ -50,7 +50,7 @@ doctor() {
   check "build sha matches HEAD ($(cut -c1-7 "$RUN/build.sha" 2>/dev/null))" '[ "$(cat "$RUN/build.sha" 2>/dev/null)" = "$(git rev-parse HEAD)" ]'
   check "no tracked changes since build" '[ "$(git status --porcelain --untracked-files=no)" = "$(cat "$RUN/build.dirty" 2>/dev/null)" ]'
   check "GET / is 200" '[ "$(curl -s -o /dev/null -w "%{http_code}" "$URL/")" = 200 ]'
-  check "served build id is .next/BUILD_ID" 'curl -s "$URL/" | grep -q "$(cat .next/BUILD_ID)"'
+  check "served build id is .next/BUILD_ID" 'curl -s "$URL/" | grep -qF -- "$(cat .next/BUILD_ID)"'
   check "email form is in coming-soon (placeholder) state" 'curl -s "$URL/tech" | grep -q "data-state=\"coming-soon\""'
   check "evidence dir exists ($PROOF)" '[ -d "$PROOF" ]'
   [ "$ok" = 1 ] && echo "DOCTOR OK $URL" || { echo "DOCTOR FAILED"; exit 1; }
