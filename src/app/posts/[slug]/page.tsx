@@ -1,89 +1,85 @@
-import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import { remark } from "remark";
-import html from "remark-html";
+import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import { renderPost } from "@/lib/markdown";
+import { nextInThread, threadPosition } from "@/lib/thread";
+import { FEED_ALTERNATES, SITE_URL } from "@/lib/links";
 import BlogContent from "@/components/BlogContent";
+import { ProgressBar } from "@/components/motion/ProgressBar";
+import { PostHead } from "@/components/post/PostHead";
+import { PostRail } from "@/components/post/PostRail";
+import { NextInThread } from "@/components/post/NextInThread";
+import { KeepUp } from "@/components/post/KeepUp";
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+  return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
+  const url = `${SITE_URL}/posts/${slug}`;
   return {
     title: `${post.title} — Dan Diggas`,
     description: post.preview,
+    alternates: { canonical: url, types: FEED_ALTERNATES },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.preview,
+      url,
+      publishedTime: post.date,
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Dan Diggas, engineer and musician" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.preview,
+      images: ["/twitter-image.png"],
+    },
   };
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const processed = await remark().use(html).process(post.content);
-  const contentHtml = processed.toString();
+  const all = getAllPosts();
+  const { html, outline } = await renderPost(post.content);
+  const url = `${SITE_URL}/posts/${slug}`;
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-12">
-      <Link
-        href="/tech"
-        className="text-sm text-neutral-500 dark:text-neutral-400 hover:text-amber-700 dark:hover:text-amber-400 transition-colors"
-      >
-        ← Back to tech
-      </Link>
-      <article className="mt-8">
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight">{post.title}</h1>
-          <div className="flex items-center gap-2 mt-3 text-sm text-neutral-500 dark:text-neutral-400">
-            <time>
-              {new Date(post.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-            {post.readTime && (
-              <>
-                <span>·</span>
-                <span>{post.readTime}</span>
-              </>
+    <>
+      <ProgressBar />
+      <div className="wrap post-page">
+        <PostHead post={post} position={threadPosition(post, all)} />
+        <div className="post-grid">
+          <PostRail post={post} outline={outline} url={url} />
+          <article className="post-article">
+            {post.video && (
+              <figure className="proof">
+                <div className="frame">
+                  <video controls preload="metadata" playsInline poster={post.videoPoster}>
+                    <source src={post.video} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                {post.videoCaption && (
+                  <figcaption>
+                    <span className="k">Proof · clip</span>
+                    <span>{post.videoCaption}</span>
+                  </figcaption>
+                )}
+              </figure>
             )}
-          </div>
-        </header>
-        {post.video && (
-          <figure className="mb-8">
-            <video
-              className="w-full rounded-xl border border-neutral-200 dark:border-neutral-800 bg-black"
-              controls
-              preload="metadata"
-              playsInline
-              poster={post.videoPoster}
-            >
-              <source src={post.video} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            {post.videoCaption && (
-              <figcaption className="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
-                {post.videoCaption}
-              </figcaption>
-            )}
-          </figure>
-        )}
-        <BlogContent html={contentHtml} />
-      </article>
-    </div>
+            <BlogContent html={html} />
+            <NextInThread posts={nextInThread(post, all)} />
+            <KeepUp />
+          </article>
+        </div>
+      </div>
+    </>
   );
 }

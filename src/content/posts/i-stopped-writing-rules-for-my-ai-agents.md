@@ -3,6 +3,16 @@ title: "I Typed 'I Told You' 117 Times. Then I Stopped Writing Rules for My AI A
 date: "2026-10-20"
 preview: "I scanned 1,754 sessions and 4,701 of my own prompts across two months. Written rules in a markdown file did not stop my agents from skipping skills, starting edits before design sign-off, or burning frontier tokens on lookups. Here is how I replaced text rules with deterministic code guards."
 readTime: "6 min read"
+theme: guardrails
+stat: "1,754 sessions · 4,701 prompts"
+line: "Text rules are reminders. Code guards run outside the model."
+numbers:
+  - value: "117"
+    label: "times I typed \"I told you\""
+  - value: "1,754"
+    label: "sessions scanned"
+  - value: "4,701"
+    label: "prompts scanned"
 ---
 
 I keep one shared rule file (an operating contract) for every AI coding tool I run. Each time an agent skipped a step in my workflow, I added a new line to that file.

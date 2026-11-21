@@ -6,6 +6,9 @@ readTime: "5 min read"
 video: "/blog/agent-estate-walkthrough.mp4"
 videoPoster: "/blog/agent-estate-walkthrough-poster.jpg"
 videoCaption: "A walk through the Agent Estate: every harness, skill, memory note and eval on my machine in one view."
+theme: memory
+stat: "3 harnesses"
+line: "Three harnesses, no idea which knew what. So I built a control panel."
 ---
 
 I use large language models a lot. Not for one product, not at work. On my own machine, for my daily life. Music admin, job applications, coding practice, content, email. Over time those uses hardened into consistent workflows, and the workflows got packaged into skills, which are little instruction files an agent loads so it does a task my way instead of its way.

@@ -3,6 +3,9 @@ title: "ShadowScout: Sending the Scout Before Another AI Tool Gets Adopted"
 date: "2026-06-26"
 preview: "A hackathon build for shadow AI approvals: Tavily searches vendor evidence, Gemini extracts claims, deterministic policy rules make the decision, and ClickHouse-shaped audit rows preserve the trail."
 readTime: "5 min read"
+theme: security
+stat: "hackathon build"
+line: "Vendor evidence in, scoped decision out, audit rows kept."
 ---
 
 I built ShadowScout at the Multiagents Hackathon in London because the problem is obvious now: AI tools are entering companies faster than security and legal teams can review them.

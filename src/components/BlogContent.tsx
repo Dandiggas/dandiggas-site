@@ -29,7 +29,7 @@ export default function BlogContent({ html }: { html: string }) {
   return (
     <>
       <div
-        className="prose text-neutral-800 dark:text-neutral-200"
+        className="post-body"
         onClick={(event) => {
           const target = event.target;
           if (!(target instanceof HTMLImageElement)) return;
@@ -37,7 +37,8 @@ export default function BlogContent({ html }: { html: string }) {
           event.preventDefault();
           setLightboxImage({
             src: target.currentSrc || target.src,
-            alt: target.alt || "Expanded blog image",
+            // Proof figures move the alt text to the caption (data-caption).
+            alt: target.dataset.caption || target.alt || "Expanded blog image",
           });
         }}
         dangerouslySetInnerHTML={{ __html: html }}

@@ -3,6 +3,9 @@ title: "I Built a RAG System to Solve a Real Problem I've Had for 15 Years"
 date: "2026-04-09"
 preview: "You put a specific keyboard on the rider, get flown out to the gig, and when you arrive it's something completely different. That's the scenario this project solves."
 readTime: "5 min read"
+theme: music
+stat: "15 years of riders"
+line: "You put a keyboard on the rider, you get flown out, and it is something else."
 ---
 
 ## The Problem

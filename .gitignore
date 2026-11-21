@@ -40,3 +40,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 public/brim/*.dmg
+
+# e2e builds and reports
+/.next-ready/
+/test-results/
+/playwright-report/
+
+# the env example is safe to commit (no secrets, see the file)
+!.env.example

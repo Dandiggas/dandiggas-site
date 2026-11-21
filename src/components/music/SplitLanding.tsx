@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Code, MusicNotes, ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { SeamBar } from "@/components/home/SeamBar";
 
 const stagger = (i: number) =>
   ({ ["--stagger" as string]: i } as React.CSSProperties);
@@ -22,7 +23,7 @@ export function SplitLanding() {
           fill
           priority
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover object-center"
+          className="drift object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/40 md:bg-gradient-to-l md:from-black/45 md:via-black/45 md:to-black/80" />
         <Link
@@ -36,8 +37,9 @@ export function SplitLanding() {
             Engineer
           </h2>
           <p className="mt-4 max-w-md text-base leading-relaxed text-white/75">
-            Backend and AI infrastructure at Sophos, plus local-first tools I
-            build for security, ops, and music.
+            Backend and AI infrastructure by day. Agent systems that have to
+            prove their work, and local-first tools for security, ops and
+            music, the rest of the time.
           </p>
           <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-amber-300">
             Enter the tech
@@ -45,6 +47,9 @@ export function SplitLanding() {
           </span>
         </div>
       </section>
+
+      {/* Phones: the name between the two panels */}
+      <SeamBar />
 
       {/* Musician */}
       <section
@@ -57,7 +62,7 @@ export function SplitLanding() {
           fill
           priority
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover object-center"
+          className="drift object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/40 md:bg-gradient-to-r md:from-black/50 md:via-black/40 md:to-black/75" />
         <Link

@@ -3,6 +3,9 @@ title: "I wanted to see what my AI agents could reach"
 date: "2026-10-12"
 preview: "I added a map to Agent Estate to explore what could happen when file access, tools and outside connections work together. Each possible route keeps its evidence, conditions and unknowns visible."
 readTime: "5 min read"
+theme: guardrails
+stat: "every route, with evidence"
+line: "A map of every route from file access, tools and outside connections, with its evidence."
 ---
 
 I wanted a map of what could happen if one of my agents was tricked or taken over.

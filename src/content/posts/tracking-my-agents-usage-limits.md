@@ -3,6 +3,9 @@ title: "I Built a Usage Tracker for My AI Agents"
 date: "2026-10-07"
 preview: "I run three AI coding tools, each with its own five-hour and weekly limits. This is the panel I built to see all of them in one place: how it asks each tool, how it reads three very different answers, how the numbers get to the screen, and how I checked it tells the truth."
 readTime: "6 min read"
+theme: guardrails
+stat: "3 tools · 1 panel"
+line: "Three tools, three different answers, one panel that tells the truth."
 ---
 
 I run three AI coding tools: Claude Code, Codex and Antigravity. Each plan has limits on how much you can use in a five-hour stretch and how much in a week. Hit one halfway through a job and that tool stops until it resets.

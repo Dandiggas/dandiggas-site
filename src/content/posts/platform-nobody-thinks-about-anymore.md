@@ -3,6 +3,9 @@ title: "The Platform Nobody Thinks About Anymore"
 date: "2026-05-28"
 preview: "Platform engineering only becomes visible when it breaks. This is the story of building reusable testing, compliance and production-gating infrastructure that multiple services could adopt without reinventing the same deployment safety work every time."
 readTime: "12 min read"
+theme: platforms
+stat: "longest read"
+line: "Reusable testing, compliance and production gating for many services."
 ---
 
 There is a category of engineering work that only becomes visible when it breaks.

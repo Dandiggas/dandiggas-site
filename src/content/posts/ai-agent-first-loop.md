@@ -3,6 +3,9 @@ title: "My AI Agent Waited for Me to Start It. Now One Part Runs While I Sleep."
 date: "2026-07-04"
 preview: "I had memory, budgets, and guardrails, and I was still the one pressing go. Climbing from harness to loop turned out to be one timer, one snapshot file, and knowing which celebrated pattern to skip."
 readTime: "9 min read"
+theme: memory
+stat: "1 timer · 1 snapshot"
+line: "From harness to loop: one timer, one snapshot file."
 ---
 
 Two posts ago I [built a memory layer](https://tech.dandiggas.com/posts/ai-agent-memory-layer) for my AI coding assistant. Last post I [put that memory on a budget](https://tech.dandiggas.com/posts/ai-agent-context-budget) when it got fat and started eating the window it was meant to protect.

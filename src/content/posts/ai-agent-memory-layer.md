@@ -3,6 +3,9 @@ title: "I Built a Memory Layer for My AI Agent"
 date: "2026-05-20"
 preview: "Stateless AI sessions waste engineering time. I built a context layer where sessions load relevant history, persist decisions, and traverse a knowledge graph instead of starting from zero."
 readTime: "8 min read"
+theme: memory
+stat: "the first one"
+line: "Sessions load relevant history, persist decisions, traverse a knowledge graph."
 ---
 
 You open a new session with your AI coding assistant. You type a question about a service you touched three weeks ago. It has no idea what you're talking about. So you spend ten minutes re-explaining the architecture, the deployment pattern, the ticket you were working on, why the last PR got blocked, and what decisions were made in a Slack thread that's now buried under 400 messages.

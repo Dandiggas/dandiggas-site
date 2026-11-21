@@ -12,17 +12,20 @@ Live site: https://tech.dandiggas.com
 - React 19
 - TypeScript
 - Tailwind CSS 4
-- Markdown content via `gray-matter`, `remark`, and `remark-html`
+- Markdown content via `gray-matter`, `remark`, `remark-rehype` and `rehype-stringify`
 
 ## Structure
 
 ```text
 src/app/                 App Router pages
-src/app/projects/        Project listing and project detail pages
-src/content/posts/       Markdown posts
+src/app/tech/            Tech index (the ledger) and project pages
+src/app/posts/[slug]/    Post pages
+src/app/feed.xml/        RSS feed
+src/content/posts/       Markdown posts (front matter: theme, stat, line, numbers)
+src/content/             Themes, featured posts, projects, the Now feed, about tracks
 src/lib/posts.ts         Post loading/parsing
+src/lib/markdown.ts      Markdown to HTML (posts and feed)
 src/components/          Shared UI components
-public/profile.jpeg      Profile image
 ```
 
 ## Development
@@ -38,6 +41,14 @@ Open http://localhost:3000.
 
 ```bash
 npm run build
+```
+
+## Tests
+
+```bash
+npm test            # unit tests (Vitest)
+npm run test:e2e    # end-to-end tests (Playwright, builds the site twice)
+npm run proof       # proof screenshots into .agent/proof/
 ```
 
 ## Content priorities

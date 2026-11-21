@@ -3,6 +3,9 @@ title: "Falsify the judge before trusting the eval"
 date: "2026-07-27"
 preview: "An LLM judge can give you a green evaluation without proving it can recognise a bad answer. So I added a tier to my eval harness that has to fail before it's allowed to pass."
 readTime: "3 min read"
+theme: proof
+stat: "must fail first"
+line: "A tier in the eval harness that has to fail before it is allowed to pass."
 ---
 
 An LLM judge can give you a green evaluation without proving that it can recognise a bad answer.

@@ -3,6 +3,9 @@ title: "My Agent Saw an Empty Graph. The Parser Was Wrong."
 date: "2026-09-22"
 preview: "A schema came back in a format the client did not recognise, and the parser turned that into an empty list. No exception, no HTTP error. For an agent reading the graph through MCP tools, 'I can't read this' became 'there is nothing here'."
 readTime: "4 min read"
+theme: memory
+stat: "0 results · 0 errors"
+line: "'I can't read this' became 'there is nothing here'."
 ---
 
 *This came from a real issue at work. I've changed the names and details for confidentiality.*

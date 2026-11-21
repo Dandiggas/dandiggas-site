@@ -24,7 +24,7 @@ export function Credits() {
                 alt={`${credit.title} by ${credit.artist}`}
                 fill
                 sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
               />
               <span className="absolute left-2 top-2 rounded-full bg-black/65 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-amber-300 backdrop-blur-sm">
                 {credit.role}

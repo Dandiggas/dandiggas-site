@@ -3,6 +3,9 @@ title: "Your Production System Has Logs. Your Career Probably Doesn’t."
 date: "2026-05-15"
 preview: "Engineering work leaves traces everywhere: Jira, GitHub, Slack, incidents, notes. Career observability is about connecting them before performance review season turns you into an archaeologist."
 readTime: "10 min read"
+theme: platforms
+stat: "career observability"
+line: "Connect the traces before review season turns you into an archaeologist."
 ---
 
 ## The problem

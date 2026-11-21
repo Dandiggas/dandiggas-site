@@ -3,6 +3,9 @@ title: "What Broke When I Tried to Use My Own Practice App"
 date: "2026-06-03"
 preview: "The Musician's Practice App is not public yet. This is a build note from getting it ready for early testing by using it like an actual musician, not a feature checklist."
 readTime: "5 min read"
+theme: music
+stat: "The Shed"
+line: "Using it like an actual musician, not a feature checklist."
 ---
 
 The Musician's Practice App is not public yet. This is a build note from getting it ready for early testing.
