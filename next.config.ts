@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The e2e suite builds a second copy (newsletter "ready" state) into its own
+  // folder so the two builds do not overwrite each other.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   async redirects() {
     return [
       { source: "/writing", destination: "/tech", permanent: true },
