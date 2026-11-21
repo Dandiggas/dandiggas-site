@@ -56,10 +56,10 @@ async function open(width, motion) {
   return { ctx, page, outside };
 }
 
-// Motion on: scroll once so every reveal fires. Reduce: never scroll, so a
-// heading stuck invisible shows up as a hole in the screenshot.
-async function settle(page, motion) {
-  if (motion === "reduce") return page.waitForTimeout(600);
+// Read to the end like a reader: scroll once so every reveal fires and every
+// lazy image loads. Under reduce motion the "nothing invisible at load" check
+// runs BEFORE this, so a heading stuck at opacity 0 is still caught.
+async function settle(page) {
   await page.evaluate(async () => {
     for (let y = 0; y < document.documentElement.scrollHeight; y += 500) {
       window.scrollTo({ top: y, behavior: "instant" });
@@ -109,6 +109,10 @@ async function fullPageJourney(feature, route, file, asserts) {
     }
     await asserts(page, w, m);
     await settle(page, m);
+    const broken = await page.evaluate(() =>
+      Array.from(document.querySelectorAll("main img")).filter((i) => !(i.complete && i.naturalWidth > 0)).map((i) => i.currentSrc || i.src),
+    );
+    check(feature, `every image in main loaded after reading to the end @${w}/${m}`, broken.length === 0, broken.join(" "));
     await shot(page, `${file}-${w}-${m}.png`, true);
     check(feature, `no request left localhost @${w}/${m}`, outside.length === 0, outside.join(" "));
     await ctx.close();

@@ -40,7 +40,8 @@ Features: `home about tech post follow email`. Each one is a recipe in `features
 
 - opens a fresh Chromium context per width (1440x900, and 390x844 with touch) and per motion setting (`no-preference` and `reduce`);
 - aborts and logs every request to a host other than localhost, so X, LinkedIn and Buttondown are never contacted;
-- with motion on, scrolls the whole page once so reveals fire; with reduce motion on, never scrolls, and fails if any heading or `.rise`/`.reveal` piece is below opacity 0.99 at load;
+- with reduce motion on, first fails if any heading or `.rise`/`.reveal` piece is below opacity 0.99 at load, before any scroll;
+- then scrolls the whole page once, the way a reader does, so reveals fire and lazy images load, and fails if any `main img` did not load;
 - uses stable handles: routes, `getByRole` names (`Proof`, `Get the next post`, `RSS feed`, `Everything on the Now page →`), and data attributes (`data-state`, `data-track`, `data-testid="seam-bar"`).
 
 It exits 1 if any check fails. The last line is `DRIVE OK: n/n checks, m shots` or `DRIVE FAILED: ...`.
@@ -81,3 +82,4 @@ It kills only the launcher pid in `.agent/verify-run/server.pid` and its childre
 - `x.com` renders blank to a headless browser, so the driver proves the X link by address, not by the X page.
 - The banned-word rule: the employer word checked by `tests/unit/banned-word.test.ts` must never appear in copy, comments, file names, logs or fixtures. Build it from pieces if a check needs it.
 - `npm run proof` (`scripts/proof-shots.mjs`) is the older proof script. It writes to `.agent/proof/` and needs both e2e servers on 3456 and 3457. This skill does not use it.
+- A full-page screenshot taken without scrolling shows lazy images (`loading="lazy"`) as empty boxes. That is the capture, not the site. The driver scrolls before every full-page shot for this reason.
