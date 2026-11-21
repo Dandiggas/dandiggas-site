@@ -41,7 +41,7 @@ export function Outline({ items }: { items: OutlineItem[] }) {
 
   if (!items.length) return null;
   return (
-    <nav className="outline" aria-label="In this post">
+    <nav className="post-outline" aria-label="In this post">
       <h4>In this post</h4>
       <ol>
         {items.map((it) => {

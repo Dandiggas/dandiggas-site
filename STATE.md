@@ -1,5 +1,19 @@
 # Site state
 
+## Site redesign, 21 November 2026 (branch feat/site-redesign, local commits only, NOT pushed, NOT deployed)
+
+What shipped on the branch: one warm palette site wide, new header and five-column footer, the reduce-motion fix (headings on /tech and /music were stuck invisible), /tech as the ledger (themes, numbers, Start here, projects with screenshots), the post page as a record (standfirst, byline, numbers rail, outline, proof figures, next in thread, keep up), home now strip and "where the two halves meet", About as two tracks, a new /now page, an RSS feed at /feed.xml (/rss.xml redirects), a Buttondown sign-up form that shows "coming soon" until a username is set, and one static Open Graph image.
+Tests: `npm test` (Vitest unit) and `npm run test:e2e` (Playwright, builds the site twice: default and with a test newsletter username). Proof: `npm run proof` writes screenshots and clips to .agent/proof/.
+Open: X share link not seen working (x.com renders blank to a headless browser); Buttondown account does not exist yet; nothing deployed.
+
+### Newsletter: steps for Dan
+
+1. Create the Buttondown account and pick the username. RSS-to-email is a paid feature (the docs gate it as `rss_automation`; the plan name is unconfirmed, check on sign-up).
+2. In Buttondown: Settings, General, RSS-to-email (https://buttondown.com/feeds). Add https://tech.dandiggas.com/feed.xml.
+3. Cadence: a new email for every new feed item (Buttondown checks every 30 minutes). Start with "create a draft" for the first post, then switch to "send". Turn on "skip old items" so the existing posts do not all go out on day one.
+4. Set NEXT_PUBLIC_BUTTONDOWN_USERNAME in the Vercel project env, rebuild, deploy. The form switches from "coming soon" to ready with no code change.
+5. Read-back check: subscribe with a test address, confirm, publish a post, see the email arrive. Screenshot the email.
+
 ## Published, 4 November 2026: Check the Recruiter Before the Code
 
 Blog: https://tech.dandiggas.com/posts/check-the-recruiter-before-the-code (main 3d3214e, pushed, live HTTP 200, both images 200)

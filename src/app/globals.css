@@ -101,17 +101,20 @@
   --font-mono: var(--font-geist-mono);
 }
 
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
+/* Element defaults live in Tailwind's base layer, so a utility class on the
+   element (text-white on the home split, the music hero) still wins. */
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { letter-spacing: -0.03em; color: var(--fg-strong); font-weight: 700; }
+  .brim-root :is(h1, h2, h3, h4) { color: inherit; }
+  :focus-visible { outline: none; box-shadow: 0 0 0 3px var(--amber-ring); border-radius: 6px; }
 }
-h1, h2, h3 { letter-spacing: -0.03em; color: var(--fg-strong); font-weight: 700; }
-.brim-root :is(h1, h2, h3, h4) { color: inherit; }
-
-:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--amber-ring); border-radius: 6px; }
 
 /* ------------------------------------------------------------------ */
 /* Layout and type                                                     */
@@ -670,7 +673,7 @@ body:has(.brim-root) .nav-link::after { background: var(--brim-ink); }
 @media (max-width: 960px) {
   .post-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .rail { position: static; }
-  .rail .outline, .rail .share { display: none; }
+  .rail .post-outline, .rail .share { display: none; }
   .rail .nums { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -786,3 +789,4 @@ body:has(.brim-root) .nav-link::after { background: var(--brim-ink); }
 .elsewhere .small { margin-top: 6px; }
 .elsewhere .buttons { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 @media (max-width: 720px) { .elsewhere { flex-direction: column; align-items: start; } }
+.now-card .now-all { justify-self: start; font-size: 13px; margin-top: -6px; }

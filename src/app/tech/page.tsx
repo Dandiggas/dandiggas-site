@@ -59,6 +59,7 @@ export default function TechPage() {
             <span className="tiny mono">updated {formatDate(feed[0].date, "short")}</span>
           </div>
           <NowFeed items={feed} limit={5} />
+          <Link className="link now-all" href="/now">Everything on the Now page →</Link>
           <FollowRow label="Follow" items={["rss", "x", "linkedin"]} />
           <Subscribe note="One email per post, most weeks. Nothing else, ever." />
         </aside>
