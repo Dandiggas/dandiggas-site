@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import { renderPost } from "@/lib/markdown";
 import { nextInThread, threadPosition } from "@/lib/thread";
-import { SITE_URL } from "@/lib/links";
+import { FEED_ALTERNATES, SITE_URL } from "@/lib/links";
 import BlogContent from "@/components/BlogContent";
 import { ProgressBar } from "@/components/motion/ProgressBar";
 import { PostHead } from "@/components/post/PostHead";
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${post.title} — Dan Diggas`,
     description: post.preview,
-    alternates: { canonical: url },
+    alternates: { canonical: url, types: FEED_ALTERNATES },
     openGraph: {
       type: "article",
       title: post.title,

@@ -2,26 +2,50 @@
 
 import { useEffect, useState } from "react";
 
+type CopyState = "idle" | "copied" | "failed";
+
+const LABEL: Record<CopyState, string> = {
+  idle: "Copy link",
+  copied: "Copied",
+  failed: "Copy failed",
+};
+
+/**
+ * Copies `text` to the clipboard. Resolves true only after the browser
+ * confirms the write; false when the clipboard is missing (an old browser,
+ * a page not served over https) or the write is refused (permission denied).
+ */
+export async function copyText(text: string): Promise<boolean> {
+  if (typeof navigator === "undefined" || !navigator.clipboard?.writeText) return false;
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /** Copy link, LinkedIn, X. Share URLs are built from the canonical post URL. */
 export function ShareLinks({ url, title }: { url: string; title: string }) {
-  const [copied, setCopied] = useState(false);
+  const [state, setState] = useState<CopyState>("idle");
   useEffect(() => {
-    if (!copied) return;
-    const t = setTimeout(() => setCopied(false), 1200);
+    if (state === "idle") return;
+    const t = setTimeout(() => setState("idle"), state === "copied" ? 1200 : 2400);
     return () => clearTimeout(t);
-  }, [copied]);
+  }, [state]);
 
   const u = encodeURIComponent(url);
   return (
     <div className="share" aria-label="Share">
       <button
         type="button"
-        onClick={() => {
-          navigator.clipboard?.writeText(window.location.href).catch(() => {});
-          setCopied(true);
+        data-state={state}
+        aria-live="polite"
+        onClick={async () => {
+          setState((await copyText(window.location.href)) ? "copied" : "failed");
         }}
       >
-        {copied ? "Copied" : "Copy link"}
+        {LABEL[state]}
       </button>
       <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${u}`} target="_blank" rel="noopener noreferrer">
         LinkedIn

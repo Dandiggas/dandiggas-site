@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { List, X } from "@phosphor-icons/react";
 import { ThemeToggle } from "../ThemeToggle";
@@ -12,6 +12,9 @@ const navItems = [
   { href: "/brim", label: "Brim" },
   { href: "/about", label: "About" },
 ];
+
+/** Matches the CSS breakpoint where the desktop nav links show. */
+export const DESKTOP_QUERY = "(min-width: 721px)";
 
 // Posts and the Now page live under the Tech side of the site.
 export function isActive(href: string, pathname: string) {
@@ -24,6 +27,19 @@ export function isActive(href: string, pathname: string) {
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  // The mobile menu belongs to phone widths only. When the window grows past
+  // 720px (a phone rotated, a window resized) the menu closes, so it never
+  // sits next to the desktop nav and is shut when the window shrinks back.
+  // CSS hides it at once; this resets the state.
+  useEffect(() => {
+    const desktop = window.matchMedia(DESKTOP_QUERY);
+    const close = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    desktop.addEventListener("change", close);
+    return () => desktop.removeEventListener("change", close);
+  }, []);
 
   return (
     <header className="site-header">

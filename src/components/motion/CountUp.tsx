@@ -29,10 +29,15 @@ export function CountUp({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (!window.matchMedia("(prefers-reduced-motion: no-preference)").matches) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduce.matches) return;
     if (!("IntersectionObserver" in window)) return;
 
     let raf = 0;
+    const settle = () => {
+      cancelAnimationFrame(raf);
+      el.textContent = final;
+    };
     const run = () => {
       let t0: number | null = null;
       const tick = (t: number) => {
@@ -47,18 +52,28 @@ export function CountUp({
     };
     const io = new IntersectionObserver(
       (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          io.disconnect();
-          run();
-        }
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        // Checked again here: the reader may have turned "reduce motion" on
+        // after the page loaded. Then the number just shows, with no count.
+        if (reduce.matches) settle();
+        else run();
       },
       { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
     );
     io.observe(el);
+    // "Reduce motion" switched on mid-session: stop any count in flight and
+    // never start one.
+    const onChange = () => {
+      if (!reduce.matches) return;
+      io.disconnect();
+      settle();
+    };
+    reduce.addEventListener("change", onChange);
     return () => {
       io.disconnect();
-      cancelAnimationFrame(raf);
-      el.textContent = final;
+      reduce.removeEventListener("change", onChange);
+      settle();
     };
   }, [value, prefix, suffix, duration, final]);
 

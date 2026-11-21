@@ -38,10 +38,10 @@ function VideoCard({
               alt=""
               aria-hidden
               loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
             />
             <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
-            <span className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-amber-400/95 text-neutral-950 shadow-lg transition-transform duration-300 group-hover:scale-110">
+            <span className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-amber-400/95 text-neutral-950 shadow-lg transition-transform duration-300 motion-safe:group-hover:scale-110">
               <Play weight="fill" size={22} />
             </span>
             <span className="absolute inset-x-0 bottom-0 p-4 text-left">

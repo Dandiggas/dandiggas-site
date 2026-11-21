@@ -25,3 +25,30 @@ test("start here has three cards and the projects section has four shots", async
   await expect(page.locator("#projects .built .card")).toHaveCount(4);
   await expect(page.locator("#projects .more-row")).toHaveCount(6);
 });
+
+// Regression: at 768px the fixed ledger columns needed 808px before the
+// title got any room, so tablets scrolled sideways.
+for (const width of [721, 768, 820, 900, 960, 1024]) {
+  test(`no sideways scroll and room for the title at ${width}px`, async ({ page }, info) => {
+    test.skip(info.project.name === "mobile", "one width sweep is enough");
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto("/tech");
+    const { scroll, client } = await page.evaluate(() => ({
+      scroll: document.documentElement.scrollWidth,
+      client: document.documentElement.clientWidth,
+    }));
+    expect(scroll, "page width").toBeLessThanOrEqual(client);
+    const rows = await page.locator("#ledger a.ledger-row").evaluateAll((els) =>
+      els.map((row) => {
+        const r = row.getBoundingClientRect();
+        const t = row.querySelector(".title")!.getBoundingClientRect();
+        return { right: r.right, titleWidth: t.width, titleRight: t.right };
+      }),
+    );
+    for (const r of rows) {
+      expect(r.right).toBeLessThanOrEqual(width);
+      expect(r.titleRight).toBeLessThanOrEqual(width);
+      expect(r.titleWidth).toBeGreaterThanOrEqual(160);
+    }
+  });
+}

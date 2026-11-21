@@ -13,3 +13,9 @@ export const LINKS = {
 } as const;
 
 export const SITE_URL = "https://tech.dandiggas.com";
+
+// The RSS discovery link. Next.js replaces `alternates` as a whole when a page
+// sets its own, so every page that sets a canonical URL must spread this back in.
+export const FEED_ALTERNATES = {
+  "application/rss+xml": [{ url: LINKS.rss, title: "Dan Diggas: writing" }],
+};

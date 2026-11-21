@@ -74,3 +74,42 @@ test("metadata: article Open Graph and large twitter card", async ({ page }) => 
   await expect(page.locator('meta[property="og:image"]').first()).toHaveAttribute("content", /opengraph-image/);
   await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
 });
+
+// Regression: the post's canonical URL replaced the site-wide `alternates`
+// setting, so no post page carried the RSS discovery link.
+test("metadata: canonical URL and RSS discovery link on a post", async ({ page }) => {
+  await page.goto(`/posts/${SLUG}`);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `https://tech.dandiggas.com/posts/${SLUG}`);
+  const rss = page.locator('link[rel="alternate"][type="application/rss+xml"]');
+  await expect(rss).toHaveCount(1);
+  await expect(rss).toHaveAttribute("href", "https://tech.dandiggas.com/feed.xml");
+  await expect(rss).toHaveAttribute("title", "Dan Diggas: writing");
+});
+
+test("every built post page has the RSS discovery link", async ({ page }) => {
+  const feed = await (await page.request.get("/feed.xml")).text();
+  const slugs = [...feed.matchAll(/<link>https:\/\/tech\.dandiggas\.com\/posts\/([^<]+)<\/link>/g)].map((m) => m[1]);
+  expect(slugs.length).toBe(28);
+  for (const slug of slugs) {
+    const html = await (await page.request.get(`/posts/${slug}`)).text();
+    expect(html, slug).toMatch(/<link rel="alternate" type="application\/rss\+xml"[^>]*href="https:\/\/tech\.dandiggas\.com\/feed\.xml"/);
+  }
+});
+
+// Regression: the button said "Copied" when the clipboard refused the write
+// or did not exist at all.
+for (const [name, script] of [
+  ["permission denied", `navigator.clipboard.writeText = () => Promise.reject(new DOMException("denied", "NotAllowedError"));`],
+  ["no clipboard", `Object.defineProperty(Navigator.prototype, "clipboard", { get: () => undefined, configurable: true });`],
+] as const) {
+  test(`copy link reports failure: ${name}`, async ({ page }, info) => {
+    test.skip(info.project.name === "mobile", "share is hidden under 960px by design");
+    await page.addInitScript(script);
+    await page.goto(`/posts/${SLUG}`);
+    const copy = page.locator(".share button");
+    await copy.click();
+    await expect(copy).toHaveText("Copy failed");
+    await expect(copy).not.toHaveText("Copied");
+    await expect(copy).toHaveText("Copy link", { timeout: 4000 });
+  });
+}

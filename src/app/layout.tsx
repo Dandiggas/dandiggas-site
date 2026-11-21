@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { FEED_ALTERNATES } from "@/lib/links";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,9 +22,7 @@ export const metadata: Metadata = {
   title: "Dan Diggas — Engineer & Musician",
   description:
     "Daniel Adekugbe (Dan Diggas): backend and AI engineer, session musician and tool builder. Building things that remove friction.",
-  alternates: {
-    types: { "application/rss+xml": [{ url: "/feed.xml", title: "Dan Diggas: writing" }] },
-  },
+  alternates: { types: FEED_ALTERNATES },
   twitter: { card: "summary_large_image", site: "@Dandiggastech" },
 };
 

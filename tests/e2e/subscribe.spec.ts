@@ -38,17 +38,48 @@ test.describe("ready state (build with NEXT_PUBLIC_BUTTONDOWN_USERNAME=example)"
     expect(popped).toBe(false);
   });
 
-  test("valid address: opens Buttondown in a new page (not waited for)", async ({ page, context }) => {
-    // Never touch the real service: abort the request at the network layer.
-    await context.route("https://buttondown.com/**", (route) => route.abort());
+  test("valid address: posts the exact form to Buttondown, nothing leaves the machine", async ({ page, context }) => {
+    // Block every request that is not to this local test server, so nothing
+    // is ever delivered to the real service or anyone else.
+    const escaped: string[] = [];
+    await context.route(
+      (url) => url.hostname !== "localhost" && url.hostname !== "127.0.0.1",
+      (route) => {
+        escaped.push(route.request().url());
+        return route.abort();
+      },
+    );
+    // Registered last, so it wins for Buttondown: record the submit and
+    // answer it locally instead of letting it go out.
+    const submits: { url: string; method: string; body: string | null; contentType: string | undefined }[] = [];
+    await context.route("https://buttondown.com/**", (route) => {
+      const req = route.request();
+      submits.push({ url: req.url(), method: req.method(), body: req.postData(), contentType: req.headers()["content-type"] });
+      return route.fulfill({ status: 200, contentType: "text/html", body: "<title>stub</title>stub" });
+    });
+
     await page.goto("/tech#subscribe");
     await page.locator('#subscribe input[name="email"]').fill("reader@example.com");
     const [popup] = await Promise.all([
       context.waitForEvent("page"),
       page.locator("#subscribe").getByRole("button", { name: "Get the next post" }).click(),
     ]);
-    await expect.poll(() => popup.url()).not.toBe("about:blank");
-    expect(popup.url().startsWith(ACTION) || popup.url().startsWith("chrome-error://")).toBe(true);
+    await expect.poll(() => submits.length).toBe(1);
+    await popup.waitForLoadState();
+
+    const [submit] = submits;
+    expect(submit.url).toBe(ACTION);
+    expect(submit.method).toBe("POST");
+    expect(submit.contentType).toContain("application/x-www-form-urlencoded");
+    const fields = new URLSearchParams(submit.body ?? "");
+    expect(fields.get("email")).toBe("reader@example.com");
+    expect(fields.get("tag")).toBe("tech-site");
+    expect([...fields.keys()].sort()).toEqual(["email", "tag"]);
+
+    // The new tab landed on the exact action URL (our stub), not an error page.
+    expect(popup.url()).toBe(ACTION);
+    expect(await popup.title()).toBe("stub");
+    expect(escaped.filter((u) => u.startsWith("https://buttondown.com"))).toEqual([]);
     await expect(page.locator("#subscribe .note")).toContainText("Opened Buttondown in a new tab.");
   });
 });

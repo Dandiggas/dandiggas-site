@@ -25,7 +25,7 @@ export function Releases() {
                 alt={`${release.title} cover art`}
                 fill
                 sizes="(min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
               />
               <span className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
             </Tilt>
